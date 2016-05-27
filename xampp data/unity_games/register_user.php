@@ -64,7 +64,10 @@
 	
 	$result = register_user($username, $password, $sex, $age, $school, $state, $mothertongue);
 
-	if (!$result) echo "INSERT failed!";
+	if (!$result) {
+		echo "INSERT failed!";
+		return "";
+	} 
 	
-	return $result;
+	return "success";
 ?>
