@@ -18,7 +18,7 @@ public class RegisterScript : MonoBehaviour {
 	
 	}
 
-    public void OnRegisterButtonClick()
+    public IEnumerator OnRegisterButtonClick()
     {
         string username = GameObject.Find("UsernameFieldText").GetComponent<Text>().text;
         string password = GameObject.Find("PasswordFieldText").GetComponent<Text>().text;
@@ -26,9 +26,27 @@ public class RegisterScript : MonoBehaviour {
             GameObject.Find("MaleToggle").GetComponent<Toggle>() as Toggle,
             GameObject.Find("FemaleToggle").GetComponent<Toggle>() as Toggle);
         string age = GameObject.Find("AgeFieldText").GetComponent<Text>().text;
-        string school = GameObject.Find("SchoolFieldText").GetComponent<Text>().text;
-        string state = GameObject.Find("StateFieldText").GetComponent<Text>().text;
+        string school = GameObject.Find("SchoolDropdown").GetComponent<Dropdown>().options[GameObject.Find("SchoolDropdown").GetComponent<Dropdown>().value].text;
+        string state = GameObject.Find("StateDropdown").GetComponent<Dropdown>().options[GameObject.Find("StateDropdown").GetComponent<Dropdown>().value].text;
         string mothertongue = GameObject.Find("MothertongueFieldText").GetComponent<Text>().text;
+
+
+        WWW db = new WWW("http://localhost/unity_games/register_user.php?username=" + username + "&password=" + password + "&gender=" + sex + "&age=" + age + "&school=" + school + "&state=" + state + "&mothertongue=" + mothertongue);
+        yield return db;
+
+        if (db.text != "success")
+        {
+            print("failed");
+        }
+        else
+        {
+            print("success");
+        }
+    }
+
+    public void RegisterCoroutine()
+    {
+        StartCoroutine(OnRegisterButtonClick());
     }
 
     private static string ExtractGenderFromToggle(Toggle maleToggle, Toggle femaleToggle)
