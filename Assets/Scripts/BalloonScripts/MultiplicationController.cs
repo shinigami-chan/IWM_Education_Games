@@ -43,7 +43,7 @@ public class MultiplicationController : MonoBehaviour
 
     private void prepareEndOfGame()
     {
-        game.getReactionData().creatingCsvFile("test_data.csv");
+        //game.getReactionData().creatingCsvFile("test_data.csv");
         PlayerPrefs.SetInt("PlayerPoints", game.getPlayer().getPoints());
         SceneManager.LoadScene("end_screen");
     }
@@ -55,7 +55,7 @@ public class MultiplicationController : MonoBehaviour
         view.setTaskText(game.getCurrentQuest().getProblem().stringProblemTask());
         view.setButtonTexts(game.getCurrentQuest().getOptions());
         StartCoroutine(startNpcBehaviour());
-        game.getReactionData().addTimeStampLoadedRound(DateTime.Now);
+        //game.getReactionData().addTimeStampLoadedRound(DateTime.Now);
     }
 
 
@@ -135,7 +135,7 @@ public class MultiplicationController : MonoBehaviour
         {
             StopAllCoroutines(); //prevents any intersection with Npc
 
-            game.getReactionData().addTimeStampClickedRight(DateTime.Now);
+            //game.getReactionData().addTimeStampClickedRight(DateTime.Now);
 
             Debug.Log(game.getCurrentQuest().getProblem().stringProblemTask() + " = " + game.getCurrentQuest().getProblem().getSolution() + " correct answer given");
             view.setDisabledButtonColor(view.buttonList[buttonIndex], view.cRight);
@@ -156,7 +156,7 @@ public class MultiplicationController : MonoBehaviour
     {
         if (isPlayer)
         {
-            game.getReactionData().addTimeStampClickedWrong(DateTime.Now);
+            //game.getReactionData().addTimeStampClickedWrong(DateTime.Now);
             Debug.Log(game.getCurrentQuest().getProblem().stringProblemTask() + " = " + game.getCurrentQuest().getProblem().getSolution() + " wrong answer given");
 
             view.popBalloon(buttonIndex, Color.white);
