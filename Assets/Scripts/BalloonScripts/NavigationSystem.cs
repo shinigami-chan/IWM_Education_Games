@@ -44,7 +44,7 @@ public class NavigationSystem : MonoBehaviour {
 
     public void quitGame()
     {
-        Application.Quit();
+        SceneManager.LoadScene("game_selection_scene");
     }
 
     public void muteSound()
