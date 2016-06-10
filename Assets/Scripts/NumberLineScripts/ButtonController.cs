@@ -1,26 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ButtonController : MonoBehaviour {
 
 	// Use this for initialization
 	public void StartEasy(){
-		Application.LoadLevel ("easy");
+		SceneManager.LoadScene("numberline_game_easy_scene");
 	}
 
 	public void StartMedium(){
-		Application.LoadLevel ("medium");
+		SceneManager.LoadScene ("numberline_game_medium_scene");
 	}
 
 	public void StartExpert(){
-		Application.LoadLevel ("expert");
+		SceneManager.LoadScene ("numberline_game_expert_scene");
 	}
 
 	public void QuitGame(){
-		Application.Quit();
+        SceneManager.LoadScene("game_selection_scene");
 	}
 
 	 public void OpenMenu(){
-		Application.LoadLevel ("menu");
+		SceneManager.LoadScene ("numberline_menu_scene");
 	}
 }

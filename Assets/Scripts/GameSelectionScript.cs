@@ -19,7 +19,7 @@ public class GameSelectionScript : MonoBehaviour {
 
     public void loadNumberLineGame()
     {
-        SceneManager.LoadScene("menu");
+        SceneManager.LoadScene("numberline_menu_scene");
     }
 
     public void OnValueChanged(int selection)

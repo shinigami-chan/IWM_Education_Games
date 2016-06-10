@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CollisionMedium : MonoBehaviour {
 	public Text randomNumberText;
@@ -124,7 +125,7 @@ public class CollisionMedium : MonoBehaviour {
 
 	IEnumerator WaitAndDisable(float waitTime){
 		yield return new WaitForSeconds (waitTime);
-		Application.LoadLevel (Application.loadedLevel);
+		SceneManager.LoadScene(Application.loadedLevel);
 	}
 
 		

@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class CollisionEasy : MonoBehaviour {
 	public Text randomNumberText;
@@ -152,7 +153,7 @@ public class CollisionEasy : MonoBehaviour {
 
 	IEnumerator WaitAndDisable(float waitTime){
 		yield return new WaitForSeconds (waitTime);
-		Application.LoadLevel (Application.loadedLevel);
+		SceneManager.LoadScene(Application.loadedLevel);
 	}
 	
 
