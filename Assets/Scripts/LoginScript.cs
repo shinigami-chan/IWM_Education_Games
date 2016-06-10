@@ -22,7 +22,7 @@ public class LoginScript : MonoBehaviour {
     {
         WWW db = new WWW("http://localhost/unity_games/login_user.php?username=" + username + "&password=" + password);
         yield return db;
-
+        
         string[] phpOutput = db.text.Split(":"[0]);
         if (phpOutput[0].Equals(""))
         {

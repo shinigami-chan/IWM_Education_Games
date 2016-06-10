@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class GameSelectionScript : MonoBehaviour {
 
+    Dropdown playerMenu;
 
-	// Use this for initialization
-	void Start () {
-        GameObject.Find("PlayerMenu").GetComponentInChildren<Text>().text = PlayerPrefs.GetString("username");
+    // Use this for initialization
+    void Start () {
+        playerMenu = GameObject.Find("PlayerMenu").GetComponent<Dropdown>();
+        playerMenu.GetComponentInChildren<Text>().text = PlayerPrefs.GetString("username");
     }
 
 
@@ -22,9 +24,9 @@ public class GameSelectionScript : MonoBehaviour {
         SceneManager.LoadScene("numberline_menu_scene");
     }
 
-    public void OnValueChanged(int selection)
+    public void OnValueChanged()
     {
-        if (selection == 1)
+        if (playerMenu.options[playerMenu.value].text.Equals("Ausloggen"))
         {
             Debug.Log("log out");
             Application.Quit();
