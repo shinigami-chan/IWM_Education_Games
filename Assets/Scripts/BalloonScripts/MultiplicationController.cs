@@ -21,7 +21,7 @@ public class MultiplicationController : MonoBehaviour
         view = GameObject.Find("Main Camera").AddComponent<View>();
         game.setNpc(GameObject.Find("Main Camera").AddComponent<Npc>());
 
-        game.getPlayer().setPlayerName(PlayerPrefs.GetString("PlayerName"));
+        game.getPlayer().setPlayerName(PlayerPrefs.GetString("username"));
         view.setPlayerName(game.getPlayer().getPlayerName());
         game.getNpc().setMeanResponseTime(PlayerPrefs.GetInt("SpeedMode"));
         //load first round
@@ -45,7 +45,7 @@ public class MultiplicationController : MonoBehaviour
     {
         //game.getReactionData().creatingCsvFile("test_data.csv");
         PlayerPrefs.SetInt("PlayerPoints", game.getPlayer().getPoints());
-        SceneManager.LoadScene("end_screen");
+        SceneManager.LoadScene("balloon_end_screen_scene");
     }
 
     private void prepareAndStartNewRound()

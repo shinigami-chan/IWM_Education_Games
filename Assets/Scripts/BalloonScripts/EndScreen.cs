@@ -20,7 +20,7 @@ public class EndScreen : MonoBehaviour {
 
     public void RestartGame()
     {
-        SceneManager.LoadScene("main_menu");
+        SceneManager.LoadScene("balloon_menu_scene");
     }
 
 

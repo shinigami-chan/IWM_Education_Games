@@ -39,7 +39,7 @@ public class NavigationSystem : MonoBehaviour {
     {
         Destroy(music);
         Destroy(sound);
-        SceneManager.LoadScene("main_menu");
+        SceneManager.LoadScene("balloon_menu_scene");
     }
 
     public void quitGame()

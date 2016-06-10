@@ -31,12 +31,12 @@ public class MainMenu : MonoBehaviour
         if (playerName.text.Length >= 1)
         {
             PlayerPrefs.SetString("PlayerName", playerName.text);
-            SceneManager.LoadScene("balloon_scene");
+            SceneManager.LoadScene("balloon_game_scene");
         }
         else
         {
             PlayerPrefs.SetString("PlayerName", "Spieler");
-            SceneManager.LoadScene("balloon_scene");
+            SceneManager.LoadScene("balloon_game_scene");
         }
     }
 
