@@ -21,7 +21,7 @@ public class RegisterScript : MonoBehaviour {
     public IEnumerator OnRegisterButtonClick()
     {
         string username = GameObject.Find("UsernameFieldText").GetComponent<Text>().text;
-        string password = GameObject.Find("PasswordFieldText").GetComponent<Text>().text;
+        string password = GameObject.Find("PasswordField").GetComponent<InputField>().text;
         string sex = ExtractGenderFromToggle(
             GameObject.Find("MaleToggle").GetComponent<Toggle>() as Toggle,
             GameObject.Find("FemaleToggle").GetComponent<Toggle>() as Toggle);
@@ -31,7 +31,7 @@ public class RegisterScript : MonoBehaviour {
         string mothertongue = GameObject.Find("MothertongueFieldText").GetComponent<Text>().text;
 
 
-        WWW db = new WWW("http://localhost/unity_games/register_user.php?username=" + username + "&password=" + password + "&gender=" + sex + "&age=" + age + "&school=" + school + "&state=" + state + "&mothertongue=" + mothertongue);
+        WWW db = new WWW("http://localhost/unity_games/register_user.php?username=" + username + "&password=" + GetSHA256(password) + "&gender=" + sex + "&age=" + age + "&school=" + school + "&state=" + state + "&mothertongue=" + mothertongue);
         yield return db;
 
         if (db.text != "success")
