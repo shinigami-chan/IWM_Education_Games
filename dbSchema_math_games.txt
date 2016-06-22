@@ -1,0 +1,161 @@
+CREATE SCHEMA mathgames;
+
+CREATE TABLE mathgames.difficulty ( 
+	difficulty_id        integer  NOT NULL,
+	difficulty_description text  NOT NULL,
+	CONSTRAINT pk_difficulty_table PRIMARY KEY ( difficulty_id )
+ );
+
+CREATE TABLE mathgames.game ( 
+	game_id              integer  NOT NULL,
+	game_name            varchar(100)  NOT NULL,
+	game_description     text  NOT NULL,
+	CONSTRAINT pk_game PRIMARY KEY ( game_id )
+ );
+
+CREATE TABLE mathgames.game_action ( 
+	action_id            integer  NOT NULL,
+	performed_action     integer  NOT NULL,
+	performed_action_descr text  ,
+	CONSTRAINT pk_game_actions UNIQUE ( action_id ) ,
+	CONSTRAINT pk_game_actions_0 PRIMARY KEY ( action_id )
+ );
+
+CREATE TABLE mathgames.native_language ( 
+	native_language_id   integer  NOT NULL,
+	name                 varchar(100)  NOT NULL,
+	CONSTRAINT pk_native_language PRIMARY KEY ( native_language_id )
+ );
+
+CREATE TABLE mathgames.school_type ( 
+	school_type_id       integer  NOT NULL,
+	name                 varchar(100)  NOT NULL,
+	CONSTRAINT pk_school_type PRIMARY KEY ( school_type_id )
+ );
+
+CREATE TABLE mathgames."state" ( 
+	state_id             integer  NOT NULL,
+	name                 varchar(100)  NOT NULL,
+	CONSTRAINT pk_state PRIMARY KEY ( state_id )
+ );
+
+CREATE TABLE mathgames.system_action ( 
+	system_action_id     integer  NOT NULL,
+	system_action        varchar(100)  NOT NULL,
+	system_action_description text  NOT NULL,
+	CONSTRAINT pk_system_actions PRIMARY KEY ( system_action_id )
+ );
+
+CREATE TABLE mathgames."user" ( 
+	user_id              integer  NOT NULL,
+	user_name            varchar(20)  NOT NULL,
+	sex                  char(1)  NOT NULL,
+	age                  integer  ,
+	grade                integer  ,
+	school_type_id       integer  NOT NULL,
+	state_id             integer  NOT NULL,
+	registration_date    timestamp  NOT NULL,
+	native_language_id   integer  ,
+	user_password        varchar(64)  NOT NULL,
+	CONSTRAINT pk_user PRIMARY KEY ( user_id )
+ );
+
+CREATE INDEX idx_user ON mathgames."user" ( school_type_id );
+
+CREATE INDEX idx_user_0 ON mathgames."user" ( state_id );
+
+CREATE INDEX idx_user_1 ON mathgames."user" ( native_language_id );
+
+CREATE TABLE mathgames.system_log ( 
+	system_log_id        integer  NOT NULL,
+	user_id              integer  NOT NULL,
+	start_time           timestamp  NOT NULL,
+	end_time             timestamp  ,
+	CONSTRAINT pk_system_log PRIMARY KEY ( system_log_id )
+ );
+
+CREATE INDEX idx_system_log ON mathgames.system_log ( user_id );
+
+CREATE TABLE mathgames.game_log ( 
+	game_log_id          integer  NOT NULL,
+	start_time           timestamp  NOT NULL,
+	end_time             timestamp  ,
+	cancelled            bool  ,
+	game_id              integer  ,
+	system_log_id        integer  ,
+	difficulty_id        integer  NOT NULL,
+	CONSTRAINT pk_game_logging PRIMARY KEY ( game_log_id )
+ );
+
+CREATE INDEX idx_game_log ON mathgames.game_log ( game_id );
+
+CREATE INDEX idx_game_log_0 ON mathgames.game_log ( system_log_id );
+
+CREATE INDEX idx_game_log_1 ON mathgames.game_log ( difficulty_id );
+
+CREATE TABLE mathgames.system_action_log ( 
+	system_action_log_id integer  NOT NULL,
+	system_log_id        integer  NOT NULL,
+	system_action_id     integer  NOT NULL,
+	CONSTRAINT pk_system_action_log PRIMARY KEY ( system_action_log_id )
+ );
+
+CREATE INDEX idx_system_action_log ON mathgames.system_action_log ( system_log_id );
+
+CREATE INDEX idx_system_action_log_0 ON mathgames.system_action_log ( system_action_id );
+
+CREATE TABLE mathgames.action_log ( 
+	action_log_id        integer  NOT NULL,
+	game_log_id          integer  NOT NULL,
+	time_stamp           timestamp  NOT NULL,
+	action_id            integer  NOT NULL,
+	CONSTRAINT pk_action_log PRIMARY KEY ( action_log_id )
+ );
+
+CREATE INDEX idx_action_log ON mathgames.action_log ( game_log_id );
+
+CREATE INDEX idx_action_log_0 ON mathgames.action_log ( action_id );
+
+ALTER TABLE mathgames.action_log ADD CONSTRAINT fk_action_log_game_log FOREIGN KEY ( game_log_id ) REFERENCES mathgames.game_log( game_log_id );
+
+COMMENT ON CONSTRAINT fk_action_log_game_log ON mathgames.action_log IS '';
+
+ALTER TABLE mathgames.action_log ADD CONSTRAINT fk_action_log_game_actions FOREIGN KEY ( action_id ) REFERENCES mathgames.game_action( action_id );
+
+COMMENT ON CONSTRAINT fk_action_log_game_actions ON mathgames.action_log IS '';
+
+ALTER TABLE mathgames.game_log ADD CONSTRAINT fk_game_log_game FOREIGN KEY ( game_id ) REFERENCES mathgames.game( game_id );
+
+COMMENT ON CONSTRAINT fk_game_log_game ON mathgames.game_log IS '';
+
+ALTER TABLE mathgames.game_log ADD CONSTRAINT fk_game_log_system_log FOREIGN KEY ( system_log_id ) REFERENCES mathgames.system_log( system_log_id );
+
+COMMENT ON CONSTRAINT fk_game_log_system_log ON mathgames.game_log IS '';
+
+ALTER TABLE mathgames.game_log ADD CONSTRAINT fk_game_log_difficulty_table FOREIGN KEY ( difficulty_id ) REFERENCES mathgames.difficulty( difficulty_id );
+
+COMMENT ON CONSTRAINT fk_game_log_difficulty_table ON mathgames.game_log IS '';
+
+ALTER TABLE mathgames.system_action_log ADD CONSTRAINT fk_system_action_log FOREIGN KEY ( system_log_id ) REFERENCES mathgames.system_log( system_log_id );
+
+COMMENT ON CONSTRAINT fk_system_action_log ON mathgames.system_action_log IS '';
+
+ALTER TABLE mathgames.system_action_log ADD CONSTRAINT fk_system_actions_log FOREIGN KEY ( system_action_id ) REFERENCES mathgames.system_action( system_action_id );
+
+COMMENT ON CONSTRAINT fk_system_actions_log ON mathgames.system_action_log IS '';
+
+ALTER TABLE mathgames.system_log ADD CONSTRAINT fk_system_log_user FOREIGN KEY ( user_id ) REFERENCES mathgames."user"( user_id );
+
+COMMENT ON CONSTRAINT fk_system_log_user ON mathgames.system_log IS '';
+
+ALTER TABLE mathgames."user" ADD CONSTRAINT fk_user_school_type FOREIGN KEY ( school_type_id ) REFERENCES mathgames.school_type( school_type_id );
+
+COMMENT ON CONSTRAINT fk_user_school_type ON mathgames."user" IS '';
+
+ALTER TABLE mathgames."user" ADD CONSTRAINT fk_user_state FOREIGN KEY ( state_id ) REFERENCES mathgames."state"( state_id );
+
+COMMENT ON CONSTRAINT fk_user_state ON mathgames."user" IS '';
+
+ALTER TABLE mathgames."user" ADD CONSTRAINT fk_user_native_language FOREIGN KEY ( native_language_id ) REFERENCES mathgames.native_language( native_language_id );
+
+COMMENT ON CONSTRAINT fk_user_native_language ON mathgames."user" IS '';
