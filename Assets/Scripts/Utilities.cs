@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-public static class Hashing {
+public static class Utilities {
 
     public static string GetSHA256(string text)
     {
