@@ -41,7 +41,7 @@ public class LoginScript : MonoBehaviour {
             {
                 Debug.Log("login succeeded");
                 PlayerPrefs.Save();
-                SceneManager.LoadScene("game_selection_scene");
+                SceneManager.LoadScene("Game_Selection");
             }
         }
     }
@@ -49,7 +49,7 @@ public class LoginScript : MonoBehaviour {
 
     public void OnRegisterButtonClick()
     {
-        SceneManager.LoadScene("Registration_Scene");
+        SceneManager.LoadScene("Registration");
     }
 	
 

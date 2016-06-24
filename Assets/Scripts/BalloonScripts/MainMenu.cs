@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-            SceneManager.LoadScene("balloon_game_scene");
+            SceneManager.LoadScene("Balloon_Game");
     }
 
     public void changeSpeed(Slider slider)

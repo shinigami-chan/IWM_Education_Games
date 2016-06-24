@@ -6,22 +6,22 @@ public class ButtonController : MonoBehaviour {
 
 	// Use this for initialization
 	public void StartEasy(){
-		SceneManager.LoadScene("numberline_game_easy_scene");
+		SceneManager.LoadScene("Numberline_Game_Easy");
 	}
 
 	public void StartMedium(){
-		SceneManager.LoadScene ("numberline_game_medium_scene");
+		SceneManager.LoadScene ("Numberline_Game_Medium");
 	}
 
 	public void StartExpert(){
-		SceneManager.LoadScene ("numberline_game_expert_scene");
+		SceneManager.LoadScene ("Numberline_Game_Expert");
 	}
 
 	public void QuitGame(){
-        SceneManager.LoadScene("game_selection_scene");
+        SceneManager.LoadScene("Game_Selection");
 	}
 
 	 public void OpenMenu(){
-		SceneManager.LoadScene ("numberline_menu_scene");
+		SceneManager.LoadScene ("Numberline_Menu");
 	}
 }
