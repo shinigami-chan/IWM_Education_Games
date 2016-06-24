@@ -34,7 +34,7 @@ public class RegisterScript : MonoBehaviour {
         WWW db = new WWW("http://localhost/unity_games/register_user.php?username=" + username + "&password=" + GetSHA256(password) + "&gender=" + sex + "&age=" + age + "&school=" + school + "&state=" + state + "&mothertongue=" + mothertongue);
         yield return db;
 
-        if (db.text != "success")
+        if (db.text != "1")
         {
             print("failed");
         }

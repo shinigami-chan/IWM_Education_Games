@@ -1,0 +1,51 @@
+CREATE SEQUENCE state_state_id;
+ALTER TABLE mathgames.state
+    ALTER state_id DEFAULT nextval('state_state_id');
+ALTER SEQUENCE tablename_colname_seq OWNED BY mathgames.state.state_id
+
+INSERT INTO mathgames.state (name) VALUES ('Baden-W' || U&'\00FC' || 'rttemberg');
+INSERT INTO mathgames.state (name) VALUES ('Bayern');
+INSERT INTO mathgames.state (name) VALUES ('Berlin');
+INSERT INTO mathgames.state (name) VALUES ('Brandenburg');
+INSERT INTO mathgames.state (name) VALUES ('Bremen');
+INSERT INTO mathgames.state (name) VALUES ('Hamburg');
+INSERT INTO mathgames.state (name) VALUES ('Hessen');
+INSERT INTO mathgames.state (name) VALUES ('Mecklenburg-Vorpommern');
+INSERT INTO mathgames.state (name) VALUES ('Niedersachen');
+INSERT INTO mathgames.state (name) VALUES ('Nordrhein-Westfalen');
+INSERT INTO mathgames.state (name) VALUES ('Rheinland-Pfalz');
+INSERT INTO mathgames.state (name) VALUES ('Saarland');
+INSERT INTO mathgames.state (name) VALUES ('Sachsen');
+INSERT INTO mathgames.state (name) VALUES ('Sachsen-Anhalt');
+INSERT INTO mathgames.state (name) VALUES ('Schleswig-Holstein');
+INSERT INTO mathgames.state (name) VALUES ('Th' || U&'\00FC' || 'ringen');
+
+
+CREATE SEQUENCE mathgames.user_user_id;
+ALTER TABLE mathgames.user
+    ALTER user_id SET DEFAULT nextval('mathgames.user_user_id');
+ALTER SEQUENCE mathgames.user_user_id OWNED BY mathgames.user.user_id;
+
+CREATE SEQUENCE mathgames.school_type_school_type_id;
+ALTER TABLE mathgames.school_type
+	ALTER school_type_id SET DEFAULT nextval('mathgames.school_type_school_type_id');
+ALTER SEQUENCE mathgames.school_type_school_type_id OWNED BY mathgames.school_type.school_type_id;
+
+INSERT INTO mathgames.school_type (name) VALUES ('Grundschule');
+INSERT INTO mathgames.school_type (name) VALUES ('Hauptschule');
+INSERT INTO mathgames.school_type (name) VALUES ('Realschule');
+INSERT INTO mathgames.school_type (name) VALUES ('Gymnasium');
+INSERT INTO mathgames.school_type (name) VALUES ('Gesamtschule');
+INSERT INTO mathgames.school_type (name) VALUES ('F' || U&'\00F6' || 'rderschule');
+
+ALTER TABLE mathgames.user
+	ALTER registration_date SET DEFAULT current_timestamp;
+	
+CREATE SEQUENCE mathgames.native_language_native_language_id;
+ALTER TABLE mathgames.native_language
+	ALTER native_language_id SET DEFAULT nextval('mathgames.native_language_native_language_id');
+ALTER SEQUENCE mathgames.native_language_native_language_id OWNED BY mathgames.native_language.native_language_id;
+
+
+
+

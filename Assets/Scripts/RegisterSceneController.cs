@@ -173,16 +173,13 @@ public class RegisterSceneController : MonoBehaviour {
 
         if (IsContentEqual(GameObject.Find("PasswordRepeatField"), GameObject.Find("PasswordField")))
         {
-
+            if (itemsData.text.Equals("1"))
+            {
+                StartCoroutine(regScript.OnRegisterButtonClick());
+            }
+            else
+                UpdateValidity(GameObject.Find("UsernameField"), false);
         }
-
-        if (itemsData.text.Equals("1"))
-        {
-            StartCoroutine(regScript.OnRegisterButtonClick());
-        }
-        else
-            UpdateValidity(GameObject.Find("UsernameField"), false);
-
     }
 
     public void Register()
