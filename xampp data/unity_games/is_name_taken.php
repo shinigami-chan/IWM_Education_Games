@@ -5,8 +5,9 @@
 		// Connect to the database
 		$connection = db_connect();
 		
-		$query = 'SELECT * FROM user_table WHERE username = \''.$username.'\'';
-
+		$query = 'SELECT * FROM mathgames.user WHERE user_name = \''.$username.'\';';
+		echo $query;
+		
 		return $connection->query($query);
 	}
 	
@@ -19,7 +20,13 @@
 	
 	$result = is_name_free($username);
 
-	if (!$result) echo "INSERT failed!";
+	$array = $result->fetchAll();
+	
+	if (!empty($array)) {
+		echo 'taken';
+	} else
+		echo 'not taken';
+	
 	
 	return $result;
 ?>

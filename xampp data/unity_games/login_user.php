@@ -8,7 +8,7 @@
 		if ($username == "") return false;
 		if ($password == "") return false;
 		
-		$query = "SELECT password FROM user_table WHERE username='$username';";
+		$query = "SELECT user_password FROM mathgames.user WHERE user_name='$username';";
 			
 			echo $query."<br>";
 
