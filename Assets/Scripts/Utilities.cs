@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Security.Cryptography;
 using System.Text;
+using UnityEngine;
 
 public static class Utilities {
 
@@ -16,5 +18,10 @@ public static class Utilities {
             hashString += string.Format("{0:x2}", x);
         }
         return hashString;
+    }
+
+    public static string[] GetPhpOutput(WWW url)
+    {
+        return url.text.Split(new string[] { "<br>" }, StringSplitOptions.RemoveEmptyEntries);
     }
 }
