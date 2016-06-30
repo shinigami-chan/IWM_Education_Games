@@ -1,7 +1,7 @@
-CREATE SEQUENCE state_state_id;
+CREATE SEQUENCE mathgames.state_state_id;
 ALTER TABLE mathgames.state
-    ALTER state_id DEFAULT nextval('state_state_id');
-ALTER SEQUENCE tablename_colname_seq OWNED BY mathgames.state.state_id
+    ALTER state_id SET DEFAULT nextval('mathgames.state_state_id');
+ALTER SEQUENCE mathgames.state_state_id OWNED BY mathgames.state.state_id;
 
 INSERT INTO mathgames.state (name) VALUES ('Baden-W' || U&'\00FC' || 'rttemberg');
 INSERT INTO mathgames.state (name) VALUES ('Bayern');
@@ -46,6 +46,25 @@ ALTER TABLE mathgames.native_language
 	ALTER native_language_id SET DEFAULT nextval('mathgames.native_language_native_language_id');
 ALTER SEQUENCE mathgames.native_language_native_language_id OWNED BY mathgames.native_language.native_language_id;
 
-
+INSERT INTO mathgames.native_language (name) VALUES ('Chinesisch');
+INSERT INTO mathgames.native_language (name) VALUES ('Spanisch');
+INSERT INTO mathgames.native_language (name) VALUES ('Englisch');
+INSERT INTO mathgames.native_language (name) VALUES ('Hindi');
+INSERT INTO mathgames.native_language (name) VALUES ('Arabisch');
+INSERT INTO mathgames.native_language (name) VALUES ('Portugiesisch');
+INSERT INTO mathgames.native_language (name) VALUES ('Bengalisch');
+INSERT INTO mathgames.native_language (name) VALUES ('Russisch');
+INSERT INTO mathgames.native_language (name) VALUES ('Japanisch');
+INSERT INTO mathgames.native_language (name) VALUES ('Javanisch');
+INSERT INTO mathgames.native_language (name) VALUES ('Lahnda');
+INSERT INTO mathgames.native_language (name) VALUES ('Deutsch');
+INSERT INTO mathgames.native_language (name) VALUES ('Koreanisch');
+INSERT INTO mathgames.native_language (name) VALUES ('Französisch');
+INSERT INTO mathgames.native_language (name) VALUES ('Telugu');
+INSERT INTO mathgames.native_language (name) VALUES ('Marathi');
+INSERT INTO mathgames.native_language (name) VALUES ('Türkisch');
+INSERT INTO mathgames.native_language (name) VALUES ('Tamil');
+INSERT INTO mathgames.native_language (name) VALUES ('Vietnamesisch');
+INSERT INTO mathgames.native_language (name) VALUES ('Urdu');
 
 

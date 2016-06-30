@@ -41,12 +41,14 @@ public class RegisterSceneController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        regScript = GameObject.Find("RegistrationPanel").GetComponent<RegisterScript>();
         InitDropdown();
     }
 
     // add grades for the lists for different types of schools
     private void InitDropdown()
     {
+        defaultList = generateGradeList(0, 0);
         grundschule = generateGradeList(1, 4);
         hauptschule = generateGradeList(5, 9);
         realschule = generateGradeList(5, 10);
@@ -163,96 +165,76 @@ public class RegisterSceneController : MonoBehaviour {
 
     }
 
-
-    public IEnumerator RegisterIfUsernameIsFree(string username)
+    public bool hasEmail()
     {
-        Debug.Log("load Data");
-        WWW itemsData = new WWW("http://localhost/unity_games/users_data.php?field=" + username);
-
-        yield return itemsData.text;
-
-        if (IsContentEqual(GameObject.Find("PasswordRepeatField"), GameObject.Find("PasswordField")))
-        {
-            if (itemsData.text.Equals("1"))
-            {
-                StartCoroutine(regScript.OnRegisterButtonClick());
-            }
-            else
-                UpdateValidity(GameObject.Find("UsernameField"), false);
-        }
+        if (GameObject.Find("EmailField").GetComponent<InputField>().text.Equals(""))
+            return false;
+        return true;
     }
 
+    public bool hasAge()
+    {
+        if (getSelectedItemFromDropdown(GameObject.Find("AgeDropdown").GetComponent<Dropdown>()).Equals(DefaultDropdownValue))
+            return false;
+        return true;
+    }
+
+    public bool hasSex()
+    {
+        if (GameObject.Find("MaleToggle").GetComponent<Toggle>().isOn ||
+            GameObject.Find("FemaleToggle").GetComponent<Toggle>().isOn)
+            return true;
+        return false;
+    }
+
+    public bool hasSchoolType()
+    {
+        if (getSelectedItemFromDropdown(GameObject.Find("SchoolDropdown").GetComponent<Dropdown>()).Equals(DefaultDropdownValue))
+            return false;
+        return true;
+    }
+
+    public bool hasGrade()
+    {
+        if (getSelectedItemFromDropdown(GameObject.Find("GradeDropdown").GetComponent<Dropdown>()).Equals(DefaultDropdownValue))
+            return false;
+        return true;
+    }
+
+    public bool hasState()
+    {
+        if (getSelectedItemFromDropdown(GameObject.Find("StateDropdown").GetComponent<Dropdown>()).Equals(DefaultDropdownValue))
+            return false;
+        return true;
+    }
+
+    public bool hasNativeLanguage()
+    {
+        if (getSelectedItemFromDropdown(GameObject.Find("MothertongueDropdown").GetComponent<Dropdown>()).Equals(DefaultDropdownValue))
+            return false;
+        return true;
+    }
+
+    public static string getSelectedItemFromDropdown(Dropdown dropdown)
+    {
+        return dropdown.options[dropdown.value].text;
+    }
+    
+    /**
+     * 
+     */
     public void Register()
     {
-        StartCoroutine(RegisterIfUsernameIsFree(GameObject.Find("UsernameField").GetComponent<InputField>().text));
+        GameObject usernameField = GameObject.Find("UsernameField");
+        InputField usernameInput = usernameField.GetComponent<InputField>();
+        string usernameString = usernameInput.text;
+        if (regScript == null) Debug.Log("ich bin null");
+        StartCoroutine(regScript.RegisterIfUsernameIsFree(usernameString));
     }
     
 
 	// Update is called once per frame
 	void Update () {
-
+        //nothing happens here
 	}
-
-    /*    public void HelpTextOnFocus()
-    {
-        string name = EventSystem.current.currentSelectedGameObject.name;
-        Debug.Log("Invoke HelpTextOnFocus() with " + name);
-        if (gameObjectMap.ContainsKey(name))
-        {
-            Debug.Log("Map contains key " + name + ". Show help text");
-            Debug.Log(gameObjectMap[name]);
-            if (gameObjectMap.Equals(null)) Debug.Log("nullinger");
-            gameObjectMap[name].SetActive(true);
-            if (gameObjectMap[name].activeSelf == true)
-            {
-                Debug.Log("Is active!");
-                print("works maybe");
-            }
-        }
-    }
-
-    public void DisableHelpText()
-    {
-        string name = EventSystem.current.currentSelectedGameObject.name;
-        Debug.Log("Invole DisableHelpText() with " + name);
-        if (gameObjectMap.ContainsKey(name))
-        {
-            Debug.Log("Map contains key" + name);
-            Debug.Log("Deselect object");
-            gameObjectMap[name].SetActive(false);
-            if (gameObjectMap[name].activeSelf == true)
-            {
-                Debug.Log("Is active!");
-                print("works maybe");
-            }
-        }
-    }*/
-
-    /*public void initFieldToBackgroundMap()
-    {
-
-        Debug.Log("Start Script:  FocusInputFieldScript");
-        if (gameObjectMap.Keys.Count <= 0)
-        {
-            gameObjectMap.Add("UsernameField", GameObject.Find("UsernameHelpBackground"));
-            gameObjectMap.Add("PasswordField", GameObject.Find("PasswordHelpBackground"));
-            gameObjectMap.Add("PasswordRepeatField", GameObject.Find("PasswordRepeatHelpBackground"));
-            gameObjectMap.Add("AgeField", GameObject.Find("AgeHelpBackground"));
-            gameObjectMap.Add("MaleToggle", GameObject.Find("GenderHelpBackground"));
-            gameObjectMap.Add("FemaleToggle", GameObject.Find("GenderHelpBackground"));
-            gameObjectMap.Add("GradeDropdown", GameObject.Find("GradeHelpBackground"));
-            gameObjectMap.Add("SchoolDropdown", GameObject.Find("SchoolHelpBackground"));
-            gameObjectMap.Add("StateDropdown", GameObject.Find("StateHelpBackground"));
-            gameObjectMap.Add("MotherTongueField", GameObject.Find("MotherTongueHelpBackground"));
-        }
-
-        foreach (KeyValuePair<string, GameObject> kvp in gameObjectMap)
-        {
-            if (kvp.Value != null)
-            {
-                kvp.Value.SetActive(false);
-            }
-        }
-
-    }*/
 }
