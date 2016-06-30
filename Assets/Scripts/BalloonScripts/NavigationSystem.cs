@@ -39,12 +39,12 @@ public class NavigationSystem : MonoBehaviour {
     {
         Destroy(music);
         Destroy(sound);
-        SceneManager.LoadScene("balloon_menu_scene");
+        SceneManager.LoadScene("Balloon_Menu");
     }
 
     public void quitGame()
     {
-        SceneManager.LoadScene("game_selection_scene");
+        SceneManager.LoadScene("Game_Selection");
     }
 
     public void muteSound()

@@ -45,7 +45,7 @@ public class MultiplicationController : MonoBehaviour
     {
         //game.getReactionData().creatingCsvFile("test_data.csv");
         PlayerPrefs.SetInt("PlayerPoints", game.getPlayer().getPoints());
-        SceneManager.LoadScene("balloon_end_screen_scene");
+        SceneManager.LoadScene("Balloon_End_Screen");
     }
 
     private void prepareAndStartNewRound()

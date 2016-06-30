@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class LoginScript : MonoBehaviour {
 
@@ -20,28 +21,30 @@ public class LoginScript : MonoBehaviour {
 
     public IEnumerator CheckLogin(string username, string password)
     {
-        WWW db = new WWW("http://localhost/unity_games/login_user.php?username=" + username + "&password=" + password);
+        string hashedPassword = Utilities.GetSHA256(password);
+
+        WWW db = new WWW("http://localhost/unity_games/login_user.php?username=" + username + "&password=" + hashedPassword);
         yield return db;
-        
-        string[] phpOutput = db.text.Split(":"[0]);
-        if (phpOutput[0].Equals(""))
+
+        string[] phpOutput = Utilities.GetPhpOutput(db);
+
+        if (phpOutput.Length == 0)
         {
             Debug.Log("database is not running");
             GameObject.Find("LoginFailText").GetComponent<Text>().text = "Anmeldung ist fehlgeschlagen. Es konnte nicht auf die Datenbank zugegriffen werden. Bitte überprüfe deine Internetverbindung.";
         }
         else
         {
-            string phpReturn = phpOutput[1];
-            if (phpReturn != "1")
-            {
-                Debug.Log("login failed");
-                GameObject.Find("LoginFailText").GetComponent<Text>().text = "Anmeldung ist fehlgeschlagen: Falsches Passwort oder falscher Nutzername!";
-            }
-            else
+            if (Array.IndexOf(phpOutput,"LOGIN:1") > 0)
             {
                 Debug.Log("login succeeded");
                 PlayerPrefs.Save();
-                SceneManager.LoadScene("game_selection_scene");
+                SceneManager.LoadScene("Game_Selection");
+            }
+            else
+            {
+                Debug.Log("login failed");
+                GameObject.Find("LoginFailText").GetComponent<Text>().text = "Anmeldung ist fehlgeschlagen: Falsches Passwort oder falscher Nutzername!";
             }
         }
     }
@@ -49,7 +52,7 @@ public class LoginScript : MonoBehaviour {
 
     public void OnRegisterButtonClick()
     {
-        SceneManager.LoadScene("Registration_Scene");
+        SceneManager.LoadScene("Registration");
     }
 	
 

@@ -16,12 +16,12 @@ public class GameSelectionScript : MonoBehaviour {
 
     public void loadBalloonGame()
     {
-        SceneManager.LoadScene("balloon_menu_scene");
+        SceneManager.LoadScene("Balloon_Menu");
     }
 
     public void loadNumberLineGame()
     {
-        SceneManager.LoadScene("numberline_menu_scene");
+        SceneManager.LoadScene("Numberline_Menu");
     }
 
     public void OnValueChanged()
@@ -29,7 +29,7 @@ public class GameSelectionScript : MonoBehaviour {
         if (playerMenu.options[playerMenu.value].text.Equals("Ausloggen"))
         {
             Debug.Log("log out");
-            Application.Quit();
+            SceneManager.LoadScene("Login");
         }
     }
 
