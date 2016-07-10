@@ -35,5 +35,5 @@ public class PhpOutputHandler
     public Dictionary<string, string> GetOutput()
     {
         return output;
-    }
+    }  
 }

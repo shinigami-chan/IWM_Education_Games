@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-public static class Logger
+public class Logger
 {
-    private static IEnumerator StartSessionWorker(string user, Identifier id)
-    {
-        int system_action_log_id = 0;
+    private int session_id = -1;
 
+    private IEnumerator StartSessionWorker(string user)
+    {
         // Prepare url with ref to the session start script and the given parameters
         string url = "http://localhost/unity_games/start_session.php?" + "username=" + user;
 
@@ -20,13 +20,13 @@ public static class Logger
 
         PhpOutputHandler handler = new PhpOutputHandler(db);
 
-        if (handler.Success() && handler.GetOutput().ContainsKey("ID"))
+        if (handler.Success() && handler.GetOutput().ContainsKey("SESSION_ID"))
         {
-            id.SetId(Int32.Parse(handler.GetOutput()["ID"]));
+            session_id = Int32.Parse(handler.GetOutput()["SESSION_ID"]);
         }
     }
 
-    public static IEnumerator EndSession(int system_action_log_id)
+    public IEnumerator EndSession(int system_action_log_id)
     {
         string url = "http://localhost/unity_games/end_session.php?" + "system_action_log_id=" + system_action_log_id;
 
