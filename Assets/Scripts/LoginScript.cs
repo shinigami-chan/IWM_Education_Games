@@ -50,7 +50,6 @@ public class LoginScript : MonoBehaviour {
             {
                 Debug.Log("login succeeded");
                 PlayerPrefs.Save();
-                SystemLog.LogAction(SystemLog.REGISTRATION);
                 SceneManager.LoadScene("Game_Selection");
             }
             else

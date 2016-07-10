@@ -16,11 +16,13 @@ public class GameSelectionScript : MonoBehaviour {
 
     public void loadBalloonGame()
     {
+        Logger.Instance.Log(Action.CHOOSE_GAME);
         SceneManager.LoadScene("Balloon_Menu");
     }
 
     public void loadNumberLineGame()
     {
+        Logger.Instance.Log(Action.SHOW_STATISTICS);
         SceneManager.LoadScene("Numberline_Menu");
     }
 
