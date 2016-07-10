@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
+using System.Linq;
 
 public class LoginScript : MonoBehaviour {
 
@@ -44,6 +45,7 @@ public class LoginScript : MonoBehaviour {
             {
                 Debug.Log("login succeeded");
                 PlayerPrefs.Save();
+                SystemLog.LogAction(SystemLog.REGISTRATION);
                 SceneManager.LoadScene("Game_Selection");
             }
             else
