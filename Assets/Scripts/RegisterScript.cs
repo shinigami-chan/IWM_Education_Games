@@ -23,60 +23,66 @@ public class RegisterScript : MonoBehaviour {
 
     public IEnumerator OnRegisterButtonClick()
     {
-        string username = PercentEncode(GameObject.Find("UsernameField").GetComponent<InputField>().text);
-        string password = PercentEncode(GameObject.Find("PasswordField").GetComponent<InputField>().text);
-        string email = PercentEncode(GameObject.Find("EmailField").GetComponent<InputField>().text);
-        string sex = ExtractGenderFromToggle(
-            GameObject.Find("MaleToggle").GetComponent<Toggle>() as Toggle,
-            GameObject.Find("FemaleToggle").GetComponent<Toggle>() as Toggle);
-        string age = RegisterSceneController.getSelectedItemFromDropdown(GameObject.Find("AgeDropdown").GetComponent<Dropdown>());
-        string school = PercentEncode(ReplaceUmlautForPhp(GameObject.Find("SchoolDropdown").GetComponent<Dropdown>().options[GameObject.Find("SchoolDropdown").GetComponent<Dropdown>().value].text));
-        string state = PercentEncode(ReplaceUmlautForPhp(GameObject.Find("StateDropdown").GetComponent<Dropdown>().options[GameObject.Find("StateDropdown").GetComponent<Dropdown>().value].text));
-        string nativeLanguage = PercentEncode(ReplaceUmlautForPhp(GameObject.Find("MothertongueDropdown").GetComponent<Dropdown>().options[GameObject.Find("MothertongueDropdown").GetComponent<Dropdown>().value].text));
+        // Extract hashed passwort from password field
+        string username = Utilities.PercentEncode(GameObject.Find("UsernameField").GetComponent<InputField>().text);
+        string hashedPw = Utilities.GetSHA256(GameObject.Find("PasswordField").GetComponent<InputField>().text);
+        string password = Utilities.PercentEncode(hashedPw);
 
+        // Prepare url with ref to the register script and the given parameters
         string url = "http://localhost/unity_games/register_user.php?";
 
         string usernameString = "username=" + username;
-        string passwordString = "&password=" + GetSHA256(password);
+        string passwordString = "&password=" + password;
 
         url += usernameString;
         url += passwordString;
 
         if (controller.hasEmail())
+        {
+            string email = Utilities.PercentEncode(GameObject.Find("EmailField").GetComponent<InputField>().text);
             url += "&email=" + email;
+        }
         if (controller.hasSex())
+        {
+            string sex = ExtractGenderFromToggle(
+                    GameObject.Find("MaleToggle").GetComponent<Toggle>() as Toggle,
+                    GameObject.Find("FemaleToggle").GetComponent<Toggle>() as Toggle);
             url += "&sex=" + sex;
+        }
         if (controller.hasAge())
+        {
+            string age = RegisterSceneController.getSelectedItemFromDropdown(GameObject.Find("AgeDropdown").GetComponent<Dropdown>());
             url += "&age=" + age;
+        }
         if (controller.hasSchoolType())
+        {
+            string school = Utilities.PercentEncode(Utilities.ReplaceUmlautForPhp(GameObject.Find("SchoolDropdown").GetComponent<Dropdown>().options[GameObject.Find("SchoolDropdown").GetComponent<Dropdown>().value].text));
             url += "&school=" + school;
+        }
         if (controller.hasState())
+        {
+            string state = Utilities.PercentEncode(Utilities.ReplaceUmlautForPhp(GameObject.Find("StateDropdown").GetComponent<Dropdown>().options[GameObject.Find("StateDropdown").GetComponent<Dropdown>().value].text));
             url += "&state=" + state;
+        }
         if (controller.hasNativeLanguage())
+        {
+            string nativeLanguage = Utilities.PercentEncode(Utilities.ReplaceUmlautForPhp(GameObject.Find("MothertongueDropdown").GetComponent<Dropdown>().options[GameObject.Find("MothertongueDropdown").GetComponent<Dropdown>().value].text));
             url += "&native_language=" + nativeLanguage;
-
-        Debug.Log("URL: " + url);
+        }
+        
         WWW db = new WWW(url);
 
         yield return db;
 
-        Debug.Log("Text: " + db.text);
-
         if (db.text != "1")
         {
-            print("failed");
+
         }
         else
         {
-            SceneManager.LoadScene("login_scene");
-            print("success");
+            SceneManager.LoadScene("Login");
+            //print("success");
         }
-    }
-
-    public static string ReplaceUmlautForPhp(string s)
-    {
-        return s.Replace("ü", "' || U&\'\\00FC\' || \'").Replace("ö", "' || U&26\'\\00F6\' || \'").Replace("ä", "' || U&26\'\\00F4\' || \'");
-
     }
 
     public IEnumerator RegisterIfUsernameIsFree(string username)
@@ -98,8 +104,6 @@ public class RegisterScript : MonoBehaviour {
                 controller.UpdateValidity(GameObject.Find("UsernameField"), false);
         }
     }
-
-
 
     public void RegisterCoroutine()
     {
@@ -134,43 +138,5 @@ public class RegisterScript : MonoBehaviour {
             hashString += string.Format("{0:x2}", x);
         }
         return hashString;
-    }
-
-    public static string PercentEncode(string s)
-    {
-        Debug.Log("string before percent encoding:\n " + s);
-        Dictionary<string, string> percentEncodings = new Dictionary<string,string>();
-        percentEncodings.Add(" ", "%20");
-        percentEncodings.Add("!", "%21");
-        percentEncodings.Add("\"", "%22");
-        percentEncodings.Add("#", "%23");
-        percentEncodings.Add("$", "%24");
-        //percentEncodings.Add("%", "%25");
-        percentEncodings.Add("&", "%26");
-        percentEncodings.Add("'", "%27");
-        percentEncodings.Add("(", "%28");
-        percentEncodings.Add(")", "%29");
-        percentEncodings.Add("*", "%2A");
-        percentEncodings.Add("+", "%2B");
-        percentEncodings.Add(",", "%2C");
-        percentEncodings.Add("/", "%2F");
-        percentEncodings.Add(":", "%3A");
-        percentEncodings.Add(";", "%3B");
-        percentEncodings.Add("=", "%3D");
-        percentEncodings.Add("?", "%3F");
-        percentEncodings.Add("@", "%40");
-        percentEncodings.Add("[", "%5B");
-        percentEncodings.Add("\\", "%5C");
-        percentEncodings.Add("]", "%5D");
-        percentEncodings.Add("{", "%7B");
-        percentEncodings.Add("|", "%7C");
-        percentEncodings.Add("}", "%7D");
-
-        s = s.Replace("%", "%25");
-
-        foreach (KeyValuePair<string, string> keyValue in percentEncodings)
-            s = s.Replace(keyValue.Key, keyValue.Value);
-        Debug.Log("string after percent encoding:\n " + s);
-        return s;
     }
 }

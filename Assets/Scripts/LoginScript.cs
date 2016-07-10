@@ -23,11 +23,14 @@ public class LoginScript : MonoBehaviour {
     {
         string hashedPassword = Utilities.GetSHA256(password);
 
-        WWW db = new WWW("http://localhost/unity_games/login_user.php?username=" + username + "&password=" + hashedPassword);
+        string url = "http://localhost/unity_games/login_user.php?username=" + username + "&password=" + hashedPassword;
+
+        WWW db = new WWW(url);
+
         yield return db;
 
         string[] phpOutput = Utilities.GetPhpOutput(db);
-
+        
         if (phpOutput.Length == 0)
         {
             Debug.Log("database is not running");
@@ -35,6 +38,8 @@ public class LoginScript : MonoBehaviour {
         }
         else
         {
+            Debug.Log("Indexof: " + Array.IndexOf(phpOutput, "LOGIN:1"));
+
             if (Array.IndexOf(phpOutput,"LOGIN:1") > 0)
             {
                 Debug.Log("login succeeded");
