@@ -10,12 +10,17 @@
 		
 		$query = "SELECT user_password FROM mathgames.user WHERE user_name='$username';";
 			
-			echo $query."<br>";
+			//echo $query."<br>";
 
 		$user_password = $connection->query($query);
 		$user_password = $user_password->fetch(PDO::FETCH_NUM)[0];
 		
-		echo $user_password."<br>";
+		//echo $user_password."<br>";
+		
+		$user_id = $connection->query("SELECT user_id FROM mathgames.user WHERE user_name='$username';");
+		$user_id = $user_id->fetch(PDO::FETCH_NUM)[0];
+		
+		echo "USERID:".$user_id."<br>";
 		
 		return $password == $user_password;
 	}
@@ -32,10 +37,9 @@
 	$result = login_user($username, $password);
 
 	if (!$result) {
-		echo "Verification failed! <br>";
-		echo "RETURN:0";
+		echo "LOGIN:0";
 		return "";
 	} 
-	echo "RETURN:1";
+	echo "LOGIN:1";
 	return "success";
 ?>
