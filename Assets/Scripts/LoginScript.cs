@@ -24,24 +24,29 @@ public class LoginScript : MonoBehaviour {
     {
         string hashedPassword = Utilities.GetSHA256(password);
 
-        string url = "http://localhost/unity_games/login_user.php?username=" + username + "&password=" + hashedPassword;
+        //string url = "http://localhost/unity_games/login_user.php?username=" + username + "&password=" + hashedPassword;
+        string url = RegisterScript.SERVER + "login_user.php?username" + username + "&password=" + hashedPassword;
 
         WWW db = new WWW(url);
 
         yield return db;
 
         string[] phpOutput = Utilities.GetPhpOutput(db);
-        
-        if (phpOutput.Length == 0)
+
+        PhpOutputHandler handler = new PhpOutputHandler(db, true);
+
+        Debug.Log("hallo");
+
+        if (!handler.Connection())
         {
             Debug.Log("database is not running");
             GameObject.Find("LoginFailText").GetComponent<Text>().text = "Anmeldung ist fehlgeschlagen. Es konnte nicht auf die Datenbank zugegriffen werden. Bitte überprüfe deine Internetverbindung.";
         }
-        else
+        else if (handler.Success())
         {
             Debug.Log("Indexof: " + Array.IndexOf(phpOutput, "LOGIN:1"));
 
-            if (Array.IndexOf(phpOutput,"LOGIN:1") > 0)
+            if (handler.GetOutput().ContainsKey("LOGIN") && handler.GetOutput()["LOGIN"] == "1")
             {
                 Debug.Log("login succeeded");
                 PlayerPrefs.Save();

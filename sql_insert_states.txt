@@ -26,6 +26,17 @@ ALTER TABLE mathgames.user
     ALTER user_id SET DEFAULT nextval('mathgames.user_user_id');
 ALTER SEQUENCE mathgames.user_user_id OWNED BY mathgames.user.user_id;
 
+CREATE SEQUENCE mathgames.school_type_school_type_id;
+ALTER TABLE mathgames.school_type
+	ALTER school_type_id SET DEFAULT nextval('mathgames.school_type_school_type_id');
+ALTER SEQUENCE mathgames.school_type_school_type_id OWNED BY mathgames.school_type.school_type_id;
+
+INSERT INTO mathgames.school_type (name) VALUES ('Grundschule');
+INSERT INTO mathgames.school_type (name) VALUES ('Hauptschule');
+INSERT INTO mathgames.school_type (name) VALUES ('Realschule');
+INSERT INTO mathgames.school_type (name) VALUES ('Gymnasium');
+INSERT INTO mathgames.school_type (name) VALUES ('Gesamtschule');
+INSERT INTO mathgames.school_type (name) VALUES ('F' || U&'\00F6' || 'rderschule');
 
 ALTER TABLE mathgames.user
 	ALTER registration_date SET DEFAULT current_timestamp;
@@ -33,7 +44,6 @@ ALTER TABLE mathgames.user
 CREATE SEQUENCE mathgames.native_language_native_language_id;
 ALTER TABLE mathgames.native_language
 	ALTER native_language_id SET DEFAULT nextval('mathgames.native_language_native_language_id');
-<<<<<<< HEAD
 ALTER SEQUENCE mathgames.native_language_native_language_id OWNED BY mathgames.native_language.native_language_id;
 
 INSERT INTO mathgames.native_language (name) VALUES ('Chinesisch');
@@ -58,6 +68,12 @@ INSERT INTO mathgames.native_language (name) VALUES ('Vietnamesisch');
 INSERT INTO mathgames.native_language (name) VALUES ('Urdu');
 
 
-=======
-ALTER SEQUENCE mathgames.native_language_native_language_id OWNED BY mathgames.native_language.native_language_id;
->>>>>>> 8c14282a42870047a98e9ce562a8918cf6233ee8
+ALTER TABLE mathgames.user ALTER COLUMN sex DROP NOT NULL;
+ALTER TABLE mathgames.user ALTER COLUMN school_type_id DROP NOT NULL;
+ALTER TABLE mathgames.user ALTER COLUMN state_id DROP NOT NULL;
+ALTER TABLE mathgames.user ALTER COLUMN native_language_id DROP NOT NULL;
+
+ALTER TABLE mathgames.user ADD COLUMN user_email character varying(64);
+COMMENT ON COLUMN mathgames.user.user_email IS 'Users E-mail Address';
+
+INSERT INTO mathgames.system_action (system_action system_action_description) VALUES ('CHOOSE_GAME','Action when user chooses game.');

@@ -9,7 +9,8 @@ using System.Collections.Generic;
 public class RegisterScript : MonoBehaviour {
     private bool usernameValid;
     private RegisterSceneController controller;
-    
+    public static readonly string SERVER = "http://lernplattform.iwm-kmrc.de/php_scripts/";
+
 
     // Use this for initialization
     void Start () {
@@ -21,7 +22,7 @@ public class RegisterScript : MonoBehaviour {
 	
 	}
 
-    public IEnumerator OnRegisterButtonClick()
+    public IEnumerator RegisterWorker()
     {
         // Extract hashed passwort from password field
         string username = Utilities.PercentEncode(GameObject.Find("UsernameField").GetComponent<InputField>().text);
@@ -29,7 +30,7 @@ public class RegisterScript : MonoBehaviour {
         string password = Utilities.PercentEncode(hashedPw);
 
         // Prepare url with ref to the register script and the given parameters
-        string url = "http://localhost/unity_games/register_user.php?";
+        string url = SERVER + "register_user.php?";
 
         string usernameString = "username=" + username;
         string passwordString = "&password=" + password;
@@ -37,77 +38,95 @@ public class RegisterScript : MonoBehaviour {
         url += usernameString;
         url += passwordString;
 
-        if (controller.hasEmail())
+        if (controller.HasEmail())
         {
             string email = Utilities.PercentEncode(GameObject.Find("EmailField").GetComponent<InputField>().text);
             url += "&email=" + email;
         }
-        if (controller.hasSex())
+        if (controller.HasSex())
         {
             string sex = ExtractGenderFromToggle(
                     GameObject.Find("MaleToggle").GetComponent<Toggle>() as Toggle,
                     GameObject.Find("FemaleToggle").GetComponent<Toggle>() as Toggle);
             url += "&sex=" + sex;
         }
-        if (controller.hasAge())
+        if (controller.HasAge())
         {
-            string age = RegisterSceneController.getSelectedItemFromDropdown(GameObject.Find("AgeDropdown").GetComponent<Dropdown>());
+            string age = controller.GetAge();
             url += "&age=" + age;
         }
-        if (controller.hasSchoolType())
+        if (controller.HasSchoolType())
         {
             string school = Utilities.PercentEncode(Utilities.ReplaceUmlautForPhp(GameObject.Find("SchoolDropdown").GetComponent<Dropdown>().options[GameObject.Find("SchoolDropdown").GetComponent<Dropdown>().value].text));
             url += "&school=" + school;
         }
-        if (controller.hasState())
+        if (controller.HasState())
         {
             string state = Utilities.PercentEncode(Utilities.ReplaceUmlautForPhp(GameObject.Find("StateDropdown").GetComponent<Dropdown>().options[GameObject.Find("StateDropdown").GetComponent<Dropdown>().value].text));
             url += "&state=" + state;
         }
-        if (controller.hasNativeLanguage())
+        if (controller.HasNativeLanguage())
         {
             string nativeLanguage = Utilities.PercentEncode(Utilities.ReplaceUmlautForPhp(GameObject.Find("MothertongueDropdown").GetComponent<Dropdown>().options[GameObject.Find("MothertongueDropdown").GetComponent<Dropdown>().value].text));
             url += "&native_language=" + nativeLanguage;
         }
-        
+
+        Debug.Log(url);
+
         WWW db = new WWW(url);
 
         yield return db;
 
-        if (db.text != "1")
-        {
+        PhpOutputHandler handler = new PhpOutputHandler(db, true);
 
+        if (handler.Success())
+        {
+            // Registration was successful
+            SceneManager.LoadScene("Login");
         }
         else
         {
-            SceneManager.LoadScene("Login");
-            //print("success");
+            // Registration was unsuccessful
+            // Do nothing (eventually show notification)
         }
     }
-
-    public IEnumerator RegisterIfUsernameIsFree(string username)
+    
+    public IEnumerator RegisterCoroutine()
     {
-        Debug.Log("load Data");
-        WWW itemsData = new WWW("http://localhost/unity_games/is_name_taken.php?username=" + username);
+        string username = GameObject.Find("UsernameField").GetComponent<InputField>().text;
+        string url = SERVER + "is_name_taken.php?username=" + username;
+
+        //Debug.Log(url);
+
+        WWW itemsData = new WWW(url);
 
         yield return itemsData;
 
-        if (controller.IsContentEqual(GameObject.Find("PasswordRepeatField"), GameObject.Find("PasswordField")))
+        PhpOutputHandler handler = new PhpOutputHandler(itemsData, true);
+
+        Debug.Log("loggable");
+        Debug.Log(controller.IsContentEqual(GameObject.Find("PasswordRepeatField"), GameObject.Find("PasswordField")));
+
+        if (handler.Success() && controller.IsContentEqual(GameObject.Find("PasswordRepeatField"), GameObject.Find("PasswordField")))
         {
-            Debug.Log("Text: " + itemsData.text);
-            if (itemsData.text.Equals("0"))
+            if (handler.GetOutput().ContainsKey("USERNAME_TAKEN") && handler.GetOutput()["USERNAME_TAKEN"].Equals("0"))
             {
-                Debug.Log("IS FREE");
-                StartCoroutine(OnRegisterButtonClick());
+                // Username is free
+                Debug.Log("Username is free");
+                StartCoroutine(RegisterWorker());
             }
             else
+            {
+                // Username is taken
+                Debug.Log("Username is taken");
                 controller.UpdateValidity(GameObject.Find("UsernameField"), false);
+            }
         }
     }
 
-    public void RegisterCoroutine()
+    public void Register()
     {
-        StartCoroutine(OnRegisterButtonClick());
+        StartCoroutine(RegisterCoroutine());
     }
 
     private static string ExtractGenderFromToggle(Toggle maleToggle, Toggle femaleToggle)

@@ -6,15 +6,18 @@ using UnityEngine;
 
 public class PhpOutputHandler 
 {
-    private static Dictionary<string, string> output = new Dictionary<string, string>();
+    private readonly Dictionary<string, string> output = new Dictionary<string, string>();
 
-    public PhpOutputHandler(WWW result)
+    public PhpOutputHandler(WWW result, bool verbose = false)
     {
         string[] array = result.text.Split(new string[] { "<br>" }, StringSplitOptions.RemoveEmptyEntries);
         Dictionary<string, string> dict = new Dictionary<string, string>();
 
         foreach (string kv in array)
         {
+            if (verbose)
+                Debug.Log(kv);
+
             string[] split = kv.Split('=');
             if (split.Length == 2)
             {
@@ -26,6 +29,15 @@ public class PhpOutputHandler
     public bool Success()
     {
         if (output.ContainsKey("SUCCESS") && output["SUCCESS"] == "1")
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool Connection()
+    {
+        if (output.ContainsKey("CONNECTION") && output["CONNECTION"] == "1")
         {
             return true;
         }

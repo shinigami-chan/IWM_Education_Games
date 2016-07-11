@@ -81,7 +81,6 @@ public class RegisterSceneController : MonoBehaviour {
         Dropdown schoolDropdown = GameObject.Find("SchoolDropdown").GetComponent<Dropdown>();
         Dropdown gradeDropdown = GameObject.Find("GradeDropdown").GetComponent<Dropdown>();
         string selectedSchool = schoolDropdown.options[schoolDropdown.value].text;
-        Debug.Log(selectedSchool.Equals("Förderschule"));
 
         gradeDropdown.ClearOptions();
         gradeDropdown.interactable = true;
@@ -105,7 +104,6 @@ public class RegisterSceneController : MonoBehaviour {
                 gradeDropdown.AddOptions(gymnasium);
                 break;
             case "Förderschule":
-                Debug.Log("set förderschule for grade dropdown: Förderschule");
                 gradeDropdown.AddOptions(foerderschule);
                 break;
             case "Gesamtschule":
@@ -165,21 +163,31 @@ public class RegisterSceneController : MonoBehaviour {
 
     }
 
-    public bool hasEmail()
+    public bool HasEmail()
     {
         if (GameObject.Find("EmailField").GetComponent<InputField>().text.Equals(""))
             return false;
         return true;
     }
 
-    public bool hasAge()
+    public bool HasAge()
     {
         if (getSelectedItemFromDropdown(GameObject.Find("AgeDropdown").GetComponent<Dropdown>()).Equals(DefaultDropdownValue))
             return false;
         return true;
     }
 
-    public bool hasSex()
+    public string GetAge()
+    {
+        string value = getSelectedItemFromDropdown(GameObject.Find("AgeDropdown").GetComponent<Dropdown>());
+        if (value.Contains(">"))
+        {
+            return System.Int32.MaxValue.ToString();
+        }
+        return value;
+    }
+
+    public bool HasSex()
     {
         if (GameObject.Find("MaleToggle").GetComponent<Toggle>().isOn ||
             GameObject.Find("FemaleToggle").GetComponent<Toggle>().isOn)
@@ -187,28 +195,28 @@ public class RegisterSceneController : MonoBehaviour {
         return false;
     }
 
-    public bool hasSchoolType()
+    public bool HasSchoolType()
     {
         if (getSelectedItemFromDropdown(GameObject.Find("SchoolDropdown").GetComponent<Dropdown>()).Equals(DefaultDropdownValue))
             return false;
         return true;
     }
 
-    public bool hasGrade()
+    public bool HasGrade()
     {
         if (getSelectedItemFromDropdown(GameObject.Find("GradeDropdown").GetComponent<Dropdown>()).Equals(DefaultDropdownValue))
             return false;
         return true;
     }
 
-    public bool hasState()
+    public bool HasState()
     {
         if (getSelectedItemFromDropdown(GameObject.Find("StateDropdown").GetComponent<Dropdown>()).Equals(DefaultDropdownValue))
             return false;
         return true;
     }
 
-    public bool hasNativeLanguage()
+    public bool HasNativeLanguage()
     {
         if (getSelectedItemFromDropdown(GameObject.Find("MothertongueDropdown").GetComponent<Dropdown>()).Equals(DefaultDropdownValue))
             return false;
@@ -225,11 +233,7 @@ public class RegisterSceneController : MonoBehaviour {
      */
     public void Register()
     {
-        GameObject usernameField = GameObject.Find("UsernameField");
-        InputField usernameInput = usernameField.GetComponent<InputField>();
-        string usernameString = usernameInput.text;
-        if (regScript == null) Debug.Log("ich bin null");
-        StartCoroutine(regScript.RegisterIfUsernameIsFree(usernameString));
+        regScript.Register();
     }
     
 

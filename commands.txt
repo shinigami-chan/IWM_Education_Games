@@ -1,0 +1,2 @@
+## Transfer file from local computer to the lernplattform server
+pscp ./connect.php jfritscher@lernplattform.iwm-kmrc.de:/var/www/vhosts/lernplattform.iwm-kmrc.de/drupal_wiscam/php_scripts/^C
