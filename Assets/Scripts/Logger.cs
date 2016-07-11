@@ -10,6 +10,7 @@ public sealed class Logger : MonoBehaviour
     private static object syncRoot = new System.Object();
 
     private int session_id = -1;
+    private int user_id = -1;
     private const string FILEPATH = "./";
     private const string FILENAME = "loggingQueue.txt";
 
@@ -26,8 +27,8 @@ public sealed class Logger : MonoBehaviour
                     if (instance == null)
                     {
                     instance = new Logger();
-                    GameObject.Find("Main Camera").AddComponent<Logger>();
-                    instance = GameObject.Find("Main Camera").GetComponent<Logger>();
+                    GameObject.Find("Logger").AddComponent<Logger>();
+                    instance = GameObject.Find("Logger").GetComponent<Logger>();
                 }
                 }
             }
@@ -76,39 +77,60 @@ public sealed class Logger : MonoBehaviour
         }
     }
 
-    
-    private IEnumerator StartSessionWorker(string user)
+    public void StartSession()
+    {
+        if (user_id != -1)
+            StartCoroutine(StartSessionWorker());
+        else
+            Debug.Log("user_id is not set");
+    }
+
+    private IEnumerator StartSessionWorker()
     {
         // Prepare url with ref to the session start script and the given parameters
-        string url = "http://localhost/unity_games/start_session.php?" + "username=" + user;
-        
+        string url = RegisterScript.SERVER + "/start_session.php?" + "user_id=" + user_id;
+
         WWW db = new WWW(url);
 
         yield return db;
 
-        PhpOutputHandler handler = new PhpOutputHandler(db);
+        Debug.Log("START SESSION HANDLER");
+        PhpOutputHandler handler = new PhpOutputHandler(db,true);
 
         if (handler.Success() && handler.GetOutput().ContainsKey("SESSION_ID"))
         {
             session_id = Int32.Parse(handler.GetOutput()["SESSION_ID"]);
         }
+        else
+        {
+            Debug.Log("Session Start could not be Logged although the connection to the database has been established.");
+        }
     }
 
-    public IEnumerator EndSession(int system_action_log_id)
+    public void EndSession()
     {
-        string url = "http://localhost/unity_games/end_session.php?" + "system_action_log_id=" + system_action_log_id;
+        Debug.Log("EndSession");
+        StartCoroutine(EndSessionWorker());
+    }
+
+    private IEnumerator EndSessionWorker()
+    {
+        string url = RegisterScript.SERVER + "end_session.php?system_action_log_id=" + session_id;
 
         WWW db = new WWW(url);
 
         yield return db;
 
-        if (db.text != "1")
-        {
+        Debug.Log("END SESSION HANDLER");
+        PhpOutputHandler handler = new PhpOutputHandler(db, true);
 
+        if (handler.Success())
+        {
+            Debug.Log("Session has been closed successfully");
         }
         else
         {
-            //print("success");
+            Debug.Log("Session End could not be Logged although the connection to the database has been established.");
         }
     }
 
@@ -141,5 +163,20 @@ public sealed class Logger : MonoBehaviour
                 break;
         }
         OfflineSaveLog(url);
+    }
+
+    public void SetUserID(int user_id)
+    {
+        this.user_id = user_id;
+    }
+
+    public int GetUserID()
+    {
+        return this.user_id;
+    }
+
+    void Awake()
+    {
+        DontDestroyOnLoad(transform.gameObject);
     }
 }

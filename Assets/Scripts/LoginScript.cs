@@ -35,8 +35,6 @@ public class LoginScript : MonoBehaviour {
 
         PhpOutputHandler handler = new PhpOutputHandler(db, true);
 
-        Debug.Log("hallo");
-
         if (!handler.Connection())
         {
             Debug.Log("database is not running");
@@ -49,6 +47,10 @@ public class LoginScript : MonoBehaviour {
                 Debug.Log("login succeeded");
                 PlayerPrefs.Save();
                 SceneManager.LoadScene("Game_Selection");
+
+                if (handler.GetOutput().ContainsKey("USER_ID"))
+                    Logger.Instance.SetUserID(Int32.Parse(handler.GetOutput()["USER_ID"]));
+                Logger.Instance.StartSession();
             }
             else
             {
