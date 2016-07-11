@@ -25,13 +25,13 @@ public class LoginScript : MonoBehaviour {
         string hashedPassword = Utilities.GetSHA256(password);
 
         //string url = "http://localhost/unity_games/login_user.php?username=" + username + "&password=" + hashedPassword;
-        string url = RegisterScript.SERVER + "login_user.php?username" + username + "&password=" + hashedPassword;
+        string url = RegisterScript.SERVER + "login_user.php?username=" + username + "&password=" + hashedPassword;
+
+        Debug.Log(url);
 
         WWW db = new WWW(url);
 
         yield return db;
-
-        string[] phpOutput = Utilities.GetPhpOutput(db);
 
         PhpOutputHandler handler = new PhpOutputHandler(db, true);
 
@@ -44,9 +44,7 @@ public class LoginScript : MonoBehaviour {
         }
         else if (handler.Success())
         {
-            Debug.Log("Indexof: " + Array.IndexOf(phpOutput, "LOGIN:1"));
-
-            if (handler.GetOutput().ContainsKey("LOGIN") && handler.GetOutput()["LOGIN"] == "1")
+            if (handler.GetOutput().ContainsKey("SUCCESS") && handler.GetOutput()["SUCCESS"] == "1")
             {
                 Debug.Log("login succeeded");
                 PlayerPrefs.Save();
