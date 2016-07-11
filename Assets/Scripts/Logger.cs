@@ -88,8 +88,8 @@ public sealed class Logger : MonoBehaviour
     private IEnumerator StartSessionWorker()
     {
         // Prepare url with ref to the session start script and the given parameters
-        string url = RegisterScript.SERVER + "/start_session.php?" + "user_id=" + user_id;
-
+        string url = RegisterScript.SERVER + "start_session.php?" + "user_id=" + user_id;
+        Debug.Log(url);
         WWW db = new WWW(url);
 
         yield return db;
@@ -115,7 +115,7 @@ public sealed class Logger : MonoBehaviour
 
     private IEnumerator EndSessionWorker()
     {
-        string url = RegisterScript.SERVER + "end_session.php?system_action_log_id=" + session_id;
+        string url = RegisterScript.SERVER + "end_session.php?system_log_id=" + session_id;
 
         WWW db = new WWW(url);
 
