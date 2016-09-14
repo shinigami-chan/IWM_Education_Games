@@ -1,3 +1,1 @@
-http://localhost/unity_games/end_session.php?system_action_log_id=2
-miau
-http://localhost/unity_games/end_session.php?system_action_log_id=2
+http://lernplattform.iwm-kmrc.de/php_scripts/log_action.php?session_id=53&game_id=1&time_stamp=2016-09-14 10:16:36.512

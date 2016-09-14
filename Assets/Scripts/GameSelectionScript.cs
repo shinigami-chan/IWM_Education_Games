@@ -20,7 +20,7 @@ public class GameSelectionScript : MonoBehaviour {
 
     public void loadBalloonGame()
     {
-        Logger.Instance.Log(Action.CHOOSE_GAME);
+        Logger.Instance.Log(Action.START_BALLOON_GAME);
         SceneManager.LoadScene("Balloon_Menu");
     }
 

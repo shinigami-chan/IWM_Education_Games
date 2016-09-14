@@ -26,10 +26,10 @@ public sealed class Logger : MonoBehaviour
                 {
                     if (instance == null)
                     {
-                    instance = new Logger();
-                    GameObject.Find("Logger").AddComponent<Logger>();
-                    instance = GameObject.Find("Logger").GetComponent<Logger>();
-                }
+                        instance = new Logger();
+                        GameObject.Find("Logger").AddComponent<Logger>();
+                        instance = GameObject.Find("Logger").GetComponent<Logger>();
+                    }
                 }
             }
             return instance;
@@ -38,12 +38,22 @@ public sealed class Logger : MonoBehaviour
 
     private void OfflineSaveLog(string latestUrl)
     {
+
+        //string firstLine;
+
+        //using (StreamReader reader = new StreamReader("MyFile.txt"))
+        //{
+        //    firstLine = reader.ReadLine() ?? "";
+        //}
+
+        File.Delete(@FILEPATH + "\\" + FILENAME);
         writeIntoFile(FILENAME,latestUrl);
-        string[] urlQueue = File.ReadAllLines(@FILEPATH+"\\"+FILENAME);;
+        string[] urlQueue = File.ReadAllLines(@FILEPATH+"\\"+FILENAME);
         for(int i=0; i<urlQueue.Length; i++)
         {
+            Debug.Log(urlQueue[i]);
             StartCoroutine(TryUrl(urlQueue,i));
-            if (urlQueue[i] == null)
+            if (urlQueue[i] != null)
             {
                 rewriteUrlQueue(urlQueue);
                 break;
@@ -66,13 +76,16 @@ public sealed class Logger : MonoBehaviour
 
     private IEnumerator TryUrl(string[] urlQueue, int indexInQueue)
     {
+        Debug.Log("before url");
         WWW db = new WWW(urlQueue[indexInQueue]);
         yield return db;
+        Debug.Log("finished waiting for url");
 
-        PhpOutputHandler handler = new PhpOutputHandler(db);
+        PhpOutputHandler handler = new PhpOutputHandler(db,true);
 
         if (handler.Success())
         {
+            Debug.Log("logger was successful");
             urlQueue[indexInQueue] = null;
         }
     }
@@ -153,11 +166,12 @@ public sealed class Logger : MonoBehaviour
         string url;
         switch (action)
         {
-            case Action.CHOOSE_GAME:
-                url = "miau";               
+            case Action.START_BALLOON_GAME:
+                url = RegisterScript.SERVER + "log_action.php?"+"session_id="+session_id+"&game_id="+Action.START_BALLOON_GAME.GetAttribute<Id>().id+"&time_stamp="+getTimestamp();
+                Debug.Log("Action: Start Balloon Game");
                 break;
             case Action.SHOW_STATISTICS:
-                url = "http://localhost/unity_games/end_session.php?" + "system_action_log_id=" + 2;
+                url = "";
                 break;
             default: url = "";
                 break;

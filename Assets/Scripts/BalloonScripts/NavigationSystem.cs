@@ -44,6 +44,8 @@ public class NavigationSystem : MonoBehaviour {
 
     public void quitGame()
     {
+        Destroy(music);
+        Destroy(sound);
         SceneManager.LoadScene("Game_Selection");
     }
 
