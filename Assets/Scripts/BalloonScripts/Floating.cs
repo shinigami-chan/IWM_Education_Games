@@ -32,7 +32,7 @@ public class Floating : MonoBehaviour {
 
         //Float up and down along the y axis, 
         Vector3 point = transform.position;
-        point.y = Mathf.Sin(step) * 1.8f + offsetY;
+        point.y = Mathf.Sin(step) * 0.5f + offsetY;
         transform.position = point;
     }
 }
