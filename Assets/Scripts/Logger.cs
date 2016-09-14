@@ -5,7 +5,7 @@ using System.IO;
 
 public sealed class Logger : MonoBehaviour
 {
-    //Singelton approach for ensuring only one instance of the Logger class
+    //Singleton approach for ensuring only one instance of the Logger class
     private static volatile Logger instance;
     private static object syncRoot = new System.Object();
 
@@ -26,10 +26,13 @@ public sealed class Logger : MonoBehaviour
                 {
                     if (instance == null)
                     {
-                    instance = new Logger();
-                    GameObject.Find("Logger").AddComponent<Logger>();
-                    instance = GameObject.Find("Logger").GetComponent<Logger>();
-                }
+                        //instance = new Logger();
+                        if (GameObject.FindGameObjectWithTag("Logger") == null) {
+                            Debug.Log("Logger GameObject is null");
+                        }
+                        GameObject.Find("Logger").AddComponent<Logger>();
+                        instance = GameObject.Find("Logger").GetComponent<Logger>();
+                    }
                 }
             }
             return instance;
