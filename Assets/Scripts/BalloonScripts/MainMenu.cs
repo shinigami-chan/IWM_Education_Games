@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
+        changeSpeed(GameObject.Find("Slider").GetComponent<Slider>());
     }
 
     //public void OnPressEnter()
@@ -19,12 +20,12 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-            SceneManager.LoadScene("Balloon_Game");
+        Logger.Instance.GameLog(Action.START_BALLOON_GAME,PlayerPrefs.GetInt("SpeedMode"));
+        SceneManager.LoadScene("Balloon_Game");
     }
 
     public void changeSpeed(Slider slider)
     {
         PlayerPrefs.SetInt("SpeedMode",(int)slider.value);
-        Debug.Log(slider.value);
     }
 }
