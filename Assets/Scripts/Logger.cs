@@ -128,7 +128,7 @@ public sealed class Logger : MonoBehaviour
         {
             if (url != null)
             {
-                writeIntoFile(FILENAME,url);
+                WriteIntoFile(url);
             }
         }
     }
@@ -219,13 +219,13 @@ public sealed class Logger : MonoBehaviour
         return Utilities.PercentEncode(getTimestamp());
     }
 
-    private void writeIntoFile(string fileName, string content)
+    private void WriteIntoFile(string content)
     {
-        if (!File.Exists(FILEPATH + fileName))
+        if (!File.Exists(FILEPATH + FILENAME))
         {
-            File.Create(FILEPATH + fileName).Close();
+            File.Create(FILEPATH + FILENAME).Close();
         }
-        File.AppendAllText(FILEPATH + fileName, content+"\n");
+        File.AppendAllText(FILEPATH + FILENAME, Environment.NewLine + content);
     }
 
     public void GameLog(Action action, int difficulty)
@@ -244,24 +244,11 @@ public sealed class Logger : MonoBehaviour
             default: url = "";
                 break;
         }
+        WriteIntoFile(url);
         ExecuteQuery();
         //OfflineSaveLog(url);
     }
 
-    public void Log(Action action)
-    {
-        string url;
-        switch (action)
-        {
-            case Action.SHOW_STATISTICS:
-                url = "";
-                break;
-            default:
-                url = "";
-                break;
-        }
-        OfflineSaveLog(url);
-    }
     public void SetUserID(int user_id)
     {
         this.user_id = user_id;

@@ -47,6 +47,7 @@ public class LoginScript : MonoBehaviour {
                 Debug.Log("login succeeded");
                 PlayerPrefs.Save();
                 SceneManager.LoadScene("Game_Selection_Android");
+                //SceneManager.LoadScene("Game_Selection");
 
                 if (handler.GetOutput().ContainsKey("USER_ID"))
                     Logger.Instance.SetUserID(Int32.Parse(handler.GetOutput()["USER_ID"]));
