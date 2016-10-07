@@ -1,1 +1,0 @@
-http://lernplattform.iwm-kmrc.de/php_scripts/log_action.php?session_id=55&game_id=1&time_stamp=2016-09-14 12:26:13.440

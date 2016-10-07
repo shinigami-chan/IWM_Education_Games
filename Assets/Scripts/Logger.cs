@@ -210,7 +210,13 @@ public sealed class Logger : MonoBehaviour
 
     private string getTimestamp()
     {
-        return DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.fff");
+        //needs placeholder "SPACE" to avoid misinterpreation
+        return DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.ffffff");
+    }
+
+    private string getEncodedTimestamp()
+    {
+        return Utilities.PercentEncode(getTimestamp());
     }
 
     private void writeIntoFile(string fileName, string content)
@@ -222,17 +228,18 @@ public sealed class Logger : MonoBehaviour
         File.AppendAllText(FILEPATH + fileName, content+"\n");
     }
 
-    public void Log(Action action)
+    public void GameLog(Action action, int difficulty)
     {
         string url;
         switch (action)
         {
             case Action.START_BALLOON_GAME:
-                url = RegisterScript.SERVER + "log_action.php?"+"session_id="+session_id+"&game_id="+Action.START_BALLOON_GAME.GetAttribute<Id>().id+"&time_stamp="+getTimestamp();
+                url = RegisterScript.SERVER + "log_action.php?"+"session_id="+session_id+"&game_id="+Action.START_BALLOON_GAME.GetAttribute<Id>().id+"&time_stamp="+getEncodedTimestamp()+"&difficulty="+difficulty;
                 Debug.Log("Action: Start Balloon Game");
                 break;
-            case Action.SHOW_STATISTICS:
-                url = "";
+            case Action.START_NUMBER_LINE_GAME:
+                url = RegisterScript.SERVER + "log_action.php?" + "session_id=" + session_id + "&game_id=" + Action.START_NUMBER_LINE_GAME.GetAttribute<Id>().id + "&time_stamp=" + getEncodedTimestamp()+"&difficulty=" + difficulty;
+                Debug.Log("Action: Start Number Line Game");
                 break;
             default: url = "";
                 break;
@@ -241,6 +248,20 @@ public sealed class Logger : MonoBehaviour
         //OfflineSaveLog(url);
     }
 
+    public void Log(Action action)
+    {
+        string url;
+        switch (action)
+        {
+            case Action.SHOW_STATISTICS:
+                url = "";
+                break;
+            default:
+                url = "";
+                break;
+        }
+        OfflineSaveLog(url);
+    }
     public void SetUserID(int user_id)
     {
         this.user_id = user_id;

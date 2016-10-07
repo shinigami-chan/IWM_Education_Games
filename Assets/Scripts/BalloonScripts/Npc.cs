@@ -38,9 +38,9 @@ public class Npc : MonoBehaviour
     {
         switch (speedMode)
         {
-            case 0: meanResponseTime = 1500; break;
-            case 1: meanResponseTime = 3000; break;
-            case 2: meanResponseTime = 4000; break;
+            case 3: meanResponseTime = 1500; break;
+            case 2: meanResponseTime = 3000; break;
+            case 1: meanResponseTime = 4000; break;
         }
     }
 
