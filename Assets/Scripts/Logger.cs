@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using System.IO;
+using System.Linq;
 
 public sealed class Logger : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public sealed class Logger : MonoBehaviour
 
     private int session_id = -1;
     private int user_id = -1;
-    private const string FILEPATH = "./";
+    //    private const string FILEPATH = "./";
+    private readonly string FILEPATH = Application.persistentDataPath;
     private const string FILENAME = "loggingQueue.txt";
 
     private Logger() { }
@@ -26,10 +28,7 @@ public sealed class Logger : MonoBehaviour
                 {
                     if (instance == null)
                     {
-                        //instance = new Logger();
-                        if (GameObject.FindGameObjectWithTag("Logger") == null) {
-                            Debug.Log("Logger GameObject is null");
-                        }
+                        instance = new Logger();
                         GameObject.Find("Logger").AddComponent<Logger>();
                         instance = GameObject.Find("Logger").GetComponent<Logger>();
                     }
@@ -39,19 +38,86 @@ public sealed class Logger : MonoBehaviour
         }
     }
 
-    private void OfflineSaveLog(string latestUrl)
+    private void AddURLToQuery(string url)
     {
-        writeIntoFile(FILENAME,latestUrl);
-        string[] urlQueue = File.ReadAllLines(@FILEPATH+"\\"+FILENAME);;
-        for(int i=0; i<urlQueue.Length; i++)
+        String file = @FILEPATH + "/" + FILENAME;
+        using (StreamWriter w = File.AppendText(file))
         {
-            StartCoroutine(TryUrl(urlQueue,i));
-            if (urlQueue[i] == null)
+            w.WriteLine(url);
+        }
+    }
+    
+    /// <summary>
+    /// Write content of file to same file without the first line
+    /// </summary>
+    /// <param name="file">file that shall "loose" its first line</param>
+    private void WriteToFileWithoutFirstLine(String file)
+    {
+        var lines = File.ReadAllLines(file);
+        File.WriteAllLines(file, lines.Skip(1).ToArray());
+    }
+
+    /// <summary>
+    /// Recursively execute URLs in the Logfile until there is no connection
+    /// </summary>
+    /// <returns>IEnumerator</returns>
+    private IEnumerator ExecuteQuery()
+    {
+        string line;
+        string file = FILEPATH + "/" + FILENAME;
+        if ((line = ReadFirstLine(file)) != null)
+        {
+            Debug.Log("before url");
+            WWW db = new WWW(line);
+            yield return db;
+            Debug.Log("finished waiting for url");
+
+            PhpOutputHandler handler = new PhpOutputHandler(db, true);
+
+            if (handler.Success())
             {
-                rewriteUrlQueue(urlQueue);
-                break;
+                Debug.Log("logger was successful");
+                WriteToFileWithoutFirstLine(file);
+                ExecuteQuery();
             }
         }
+    }
+
+    private string ReadFirstLine(string file)
+    {
+        string firstLine = null;
+        using (StreamReader reader = new StreamReader(file))
+        {
+            firstLine = reader.ReadLine();
+        }
+        return firstLine;
+    }
+
+    private void OfflineSaveLog(string latestUrl)
+    {
+
+        //string firstLine;
+
+        //using (StreamReader reader = new StreamReader("MyFile.txt"))
+        //{
+        //    firstLine = reader.ReadLine() ?? "";
+        //}
+        //File.Delete(@FILEPATH + "/" + FILENAME);
+        //File.Create(@FILEPATH + "/" + FILENAME);
+
+        Debug.Log("PATH: \\" + @FILEPATH + "/" + FILENAME);
+        //writeIntoFile(FILENAME,latestUrl);
+        string[] urlQueue = File.ReadAllLines(@FILEPATH+"/"+FILENAME);
+        //for(int i=0; i<urlQueue.Length; i++)
+        //{
+            //Debug.Log(urlQueue[i]);
+            //StartCoroutine(TryUrl(urlQueue,i));
+            //if (urlQueue[i] != null)
+            //{
+                //rewriteUrlQueue(urlQueue);
+            //    break;
+            //}
+        //}
 
     }
 
@@ -67,15 +133,20 @@ public sealed class Logger : MonoBehaviour
         }
     }
 
+    
+
     private IEnumerator TryUrl(string[] urlQueue, int indexInQueue)
     {
+        Debug.Log("before url");
         WWW db = new WWW(urlQueue[indexInQueue]);
         yield return db;
+        Debug.Log("finished waiting for url");
 
-        PhpOutputHandler handler = new PhpOutputHandler(db);
+        PhpOutputHandler handler = new PhpOutputHandler(db,true);
 
         if (handler.Success())
         {
+            Debug.Log("logger was successful");
             urlQueue[indexInQueue] = null;
         }
     }
@@ -156,16 +227,18 @@ public sealed class Logger : MonoBehaviour
         string url;
         switch (action)
         {
-            case Action.CHOOSE_GAME:
-                url = "miau";               
+            case Action.START_BALLOON_GAME:
+                url = RegisterScript.SERVER + "log_action.php?"+"session_id="+session_id+"&game_id="+Action.START_BALLOON_GAME.GetAttribute<Id>().id+"&time_stamp="+getTimestamp();
+                Debug.Log("Action: Start Balloon Game");
                 break;
             case Action.SHOW_STATISTICS:
-                url = "http://localhost/unity_games/end_session.php?" + "system_action_log_id=" + 2;
+                url = "";
                 break;
             default: url = "";
                 break;
         }
-        OfflineSaveLog(url);
+        ExecuteQuery();
+        //OfflineSaveLog(url);
     }
 
     public void SetUserID(int user_id)

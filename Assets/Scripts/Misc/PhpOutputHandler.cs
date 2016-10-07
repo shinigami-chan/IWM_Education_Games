@@ -10,7 +10,10 @@ public class PhpOutputHandler
 
     public PhpOutputHandler(WWW result, bool verbose = false)
     {
+        Debug.Log("IM BLUE DABEDIDABEDEI");
+
         string[] array = result.text.Split(new string[] { "<br>" }, StringSplitOptions.RemoveEmptyEntries);
+        Debug.Log("hier sollte was stehen "+array[0]);
         Dictionary<string, string> dict = new Dictionary<string, string>();
 
         foreach (string kv in array)
