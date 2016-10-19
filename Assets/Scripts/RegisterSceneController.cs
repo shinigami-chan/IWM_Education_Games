@@ -6,6 +6,16 @@ using UnityEngine.EventSystems;
 using System.Text.RegularExpressions;
 
 public class RegisterSceneController : MonoBehaviour {
+    // Public variables
+    public InputField usernameField;
+    public InputField emailField;
+    public InputField passwordField;
+    public InputField passwordRepeatField;
+
+    public Dropdown schoolDropdown;
+    public Dropdown gradeDropdown;
+    public Dropdown ageDropdown;
+
     // Set background color of inputfields with valid input
     private static readonly Color Valid = new Color(0.733f, 0.867f, 0.734f, 1f);
     // Set background color of inputfields with invalid input
