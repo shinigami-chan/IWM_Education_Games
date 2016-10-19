@@ -6,9 +6,21 @@ using System;
 using System.Linq;
 
 public class LoginScript : MonoBehaviour {
-
+    public GameObject errorSignPanel;
+    public Text errorSignText;
 
 	void Start () {
+    }
+
+    public void ShowErrorMessage(String errorMessage)
+    {
+        errorSignText.text = errorMessage;
+        errorSignPanel.SetActive(true);
+    }
+
+    public void HideErrorMessage()
+    {
+        errorSignPanel.SetActive(false);
     }
 
     public void OnLoginButtonClick()
@@ -38,10 +50,12 @@ public class LoginScript : MonoBehaviour {
         if (!handler.Connection())
         {
             Debug.Log("database is not running");
-            GameObject.Find("LoginFailText").GetComponent<Text>().text = "Anmeldung ist fehlgeschlagen. Es konnte nicht auf die Datenbank zugegriffen werden. Bitte überprüfe deine Internetverbindung.";
+            ShowErrorMessage("Es gibt keine Verbindung zum Internet. Bitte stelle sicher dass dein Gerät mit dem Internet verbunden ist.");
+            //GameObject.Find("LoginFailText").GetComponent<Text>().text = "Anmeldung ist fehlgeschlagen. Es konnte nicht auf die Datenbank zugegriffen werden. Bitte überprüfe deine Internetverbindung.";
         }
         else if (handler.Success())
         {
+            Debug.Log("Connection is stable");
             if (handler.GetOutput().ContainsKey("SUCCESS") && handler.GetOutput()["SUCCESS"] == "1")
             {
                 Debug.Log("login succeeded");
@@ -53,11 +67,12 @@ public class LoginScript : MonoBehaviour {
                     Logger.Instance.SetUserID(Int32.Parse(handler.GetOutput()["USER_ID"]));
                 Logger.Instance.StartSession();
             }
-            else
-            {
-                Debug.Log("login failed");
-                GameObject.Find("LoginFailText").GetComponent<Text>().text = "Anmeldung ist fehlgeschlagen: Falsches Passwort oder falscher Nutzername!";
-            }
+        }
+        else
+        {
+            Debug.Log("login failed");
+            ShowErrorMessage("Anmeldung ist fehlgeschlagen: Entweder ist dein Nutzername oder dein Passwort falsch!");
+            //GameObject.Find("LoginFailText").GetComponent<Text>().text = "Anmeldung ist fehlgeschlagen: Falsches Passwort oder falscher Nutzername!";
         }
     }
 
