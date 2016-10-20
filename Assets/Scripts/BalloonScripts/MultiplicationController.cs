@@ -159,8 +159,25 @@ public class MultiplicationController : MonoBehaviour
             //game.getReactionData().addTimeStampClickedWrong(DateTime.Now);
             Debug.Log(game.getCurrentQuest().getProblem().stringProblemTask() + " = " + game.getCurrentQuest().getProblem().getSolution() + " wrong answer given");
 
-            view.popBalloon(buttonIndex, Color.white);
-            view.setDisabledButtonColor(view.buttonList[buttonIndex], view.cWrong);
+            //Version with more than just one trial
+            //view.popBalloon(buttonIndex, Color.white);
+            //view.setDisabledButtonColor(view.buttonList[buttonIndex], view.cWrong);
+
+            //Version with only one solution trial
+            StopAllCoroutines();
+
+            int correctButton = 0;
+            for (int i = 0; i < view.buttonList.Count; i++)
+            {
+                if (((MathOption)game.getCurrentQuest().getOptions()[i]).getIsCorrect())
+                {
+                    correctButton = i;
+                    break;
+                }
+            }
+            view.letBallonsFlyAwayExceptIndex(correctButton);
+            Invoke("loadNewRound", ResetTimeBetweenRounds);
+
         }
         else
         {

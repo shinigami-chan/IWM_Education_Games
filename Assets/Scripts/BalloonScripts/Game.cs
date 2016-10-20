@@ -8,7 +8,7 @@ public class Game : MonoBehaviour
     private ReactionData reactionData = new ReactionData();
     private Player player;
     private Npc npc;
-    readonly int MaxRounds = 5;
+    readonly int MaxRounds = 15;
     private int currentRound = 0;
     private MultiplicationQuest currentQuest;
     private ArrayList quests = new ArrayList();
