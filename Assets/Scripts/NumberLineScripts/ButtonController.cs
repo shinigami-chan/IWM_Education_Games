@@ -21,7 +21,7 @@ public class ButtonController : MonoBehaviour {
 	}
 
 	public void QuitGame(){
-        SceneManager.LoadScene("Game_Selection");
+        SceneManager.LoadScene("Game_Selection_Android");
 	}
 
 	 public void OpenMenu(){
