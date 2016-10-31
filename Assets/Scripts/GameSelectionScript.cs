@@ -12,7 +12,7 @@ public class GameSelectionScript : MonoBehaviour {
         Debug.Log("User ID test: new Instance??");
         Debug.Log(Logger.Instance.GetUserID());
 
-        playerMenu = GameObject.Find("PlayerMenu").GetComponent<Dropdown>();
+        //playerMenu = GameObject.Find("PlayerMenu").GetComponent<Dropdown>();
         playerMenu.GetComponentInChildren<Text>().text = PlayerPrefs.GetString("username");
     }
 
@@ -35,6 +35,7 @@ public class GameSelectionScript : MonoBehaviour {
 
             //LOGGER
             Logger.Instance.EndSession();
+			Debug.Log ("After EndSession call");
 
             Debug.Log(Logger.Instance.GetUserID());
 
@@ -42,10 +43,11 @@ public class GameSelectionScript : MonoBehaviour {
 
             //Debug.Log(Logger.Instance.GetUserID());
 
-            Destroy(GameObject.Find("Logger"));
+            //Destroy(GameObject.Find("Logger"));
 
             SceneManager.LoadScene("Login");
-        }
+			Debug.Log ("Load LoginScene finally");
+		}
     }
 
 

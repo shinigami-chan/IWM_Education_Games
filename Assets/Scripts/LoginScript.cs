@@ -79,7 +79,7 @@ public class LoginScript : MonoBehaviour {
 
     public void OnRegisterButtonClick()
     {
-        SceneManager.LoadScene("Registration");
+        SceneManager.LoadScene("Registration_Android");
     }
 	
 

@@ -31,7 +31,18 @@ public class GameSelectionScriptAndroid : MonoBehaviour {
         SceneManager.LoadScene("Numberline_Menu");
     }
    
+	public void Logout() {
+		Logger.Instance.EndSession ();
+		Debug.Log ("Destroy in logout()");
+		SceneManager.LoadScene ("Login");
+	}
 
+	public IEnumerator DestroyWithDelay(GameObject gameObject) {
+		Debug.Log ("WaitForDestroy");
+		yield return new WaitForSeconds (0.1f);
+		Debug.Log ("DestroyWithDelay");
+		Destroy (gameObject);
+	}
 
     // Update is called once per frame
     void Update () {

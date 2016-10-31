@@ -13,10 +13,15 @@ public sealed class Logger : MonoBehaviour
     private int session_id = -1;
     private int user_id = -1;
     //    private const string FILEPATH = "./";
-    private readonly string FILEPATH = Application.persistentDataPath;
+	private static string FILEPATH;
     private const string FILENAME = "loggingQueue.txt";
 
     private Logger() { }
+
+	void Start () {
+		FILEPATH = Application.persistentDataPath;
+		Debug.Log (FILEPATH);
+	}
 
     public static Logger Instance
     {
@@ -28,7 +33,6 @@ public sealed class Logger : MonoBehaviour
                 {
                     if (instance == null)
                     {
-                        instance = new Logger();
                         GameObject.Find("Logger").AddComponent<Logger>();
                         instance = GameObject.Find("Logger").GetComponent<Logger>();
                     }
@@ -37,6 +41,12 @@ public sealed class Logger : MonoBehaviour
             return instance;
         }
     }
+
+	void OnApplicationQuit() {
+		Debug.Log("Application ending after " + Time.time + " seconds");
+		RegisterSceneController.DeleteRegisterPrefs ();
+		EndSession ();
+	}
 
     private void AddURLToQuery(string url)
     {
@@ -67,19 +77,26 @@ public sealed class Logger : MonoBehaviour
         string file = FILEPATH + "/" + FILENAME;
         if ((line = ReadFirstLine(file)) != null)
         {
-            Debug.Log("before url");
+            Debug.Log("Start Log: " + line);
             WWW db = new WWW(line);
             yield return db;
             Debug.Log("finished waiting for url");
+			Debug.Log ("Yololo");
 
             PhpOutputHandler handler = new PhpOutputHandler(db, true);
 
-            if (handler.Success())
-            {
-                Debug.Log("logger was successful");
-                WriteToFileWithoutFirstLine(file);
-                ExecuteQuery();
-            }
+			if (handler.Success ()) {
+				Debug.Log ("1logger was successful");
+				WriteToFileWithoutFirstLine (file);
+				StartCoroutine(ExecuteQuery ());
+			} else {
+				if (handler.Connection ()) {
+					WriteFailedIntoFile (line);
+					WriteToFileWithoutFirstLine (file);
+					Debug.Log ("Failure not because missing connection!");
+				}
+				Debug.Log ("Logger was unsuccessful");
+			}
         }
     }
 
@@ -184,29 +201,26 @@ public sealed class Logger : MonoBehaviour
     public void EndSession()
     {
         Debug.Log("EndSession");
-        StartCoroutine(EndSessionWorker());
+
+		string url = RegisterScript.SERVER + "end_session.php?system_log_id=" + session_id;
+
+		WriteIntoFile(url);
+		StartCoroutine (ExecuteQuery ());
+		StartCoroutine (DestroyWithDelay ());
     }
 
-    private IEnumerator EndSessionWorker()
-    {
-        string url = RegisterScript.SERVER + "end_session.php?system_log_id=" + session_id;
-
-        WWW db = new WWW(url);
-
-        yield return db;
-
-        Debug.Log("END SESSION HANDLER");
-        PhpOutputHandler handler = new PhpOutputHandler(db, true);
-
-        if (handler.Success())
-        {
-            Debug.Log("Session has been closed successfully");
-        }
-        else
-        {
-            Debug.Log("Session End could not be Logged although the connection to the database has been established.");
-        }
-    }
+	/// <summary>
+	/// Destroy GameObject that holds the Logger after a delay, to ensure logging can complete
+	/// before logging object is destroyed
+	/// </summary>
+	/// <returns>The with delay.</returns>
+	IEnumerator DestroyWithDelay () {
+		Debug.Log ("2Function Call Destroy With Delay");
+		yield return new WaitForSeconds (1);
+		Debug.Log ("2Destroy call");
+		Destroy (transform.gameObject);
+		Debug.Log ("2Destroy complete");
+	}
 
     private string getTimestamp()
     {
@@ -219,23 +233,32 @@ public sealed class Logger : MonoBehaviour
         return Utilities.PercentEncode(getTimestamp());
     }
 
-    private void WriteIntoFile(string content)
-    {
-        if (!File.Exists(FILEPATH + FILENAME))
-        {
-            File.Create(FILEPATH + FILENAME).Close();
-        }
-        File.AppendAllText(FILEPATH + FILENAME, Environment.NewLine + content);
-    }
+	/// <summary>
+	/// Writes the into logging file. If File does not exist it is created
+	/// </summary>
+	/// <param name="url">URL.</param>
+	private void WriteIntoFile(string url) {
+		String file = @FILEPATH + "/" + FILENAME;
+		using (StreamWriter w = File.AppendText(file))
+		{
+			w.WriteLine(url);
+		}
+	}
 
+	/// <summary>
+	/// Logs the GameAction
+	/// </summary>
+	/// <param name="action">Action.</param>
+	/// <param name="difficulty">Difficulty.</param>
     public void GameLog(Action action, int difficulty)
     {
         string url;
         switch (action)
         {
-            case Action.START_BALLOON_GAME:
-                url = RegisterScript.SERVER + "log_action.php?"+"session_id="+session_id+"&game_id="+Action.START_BALLOON_GAME.GetAttribute<Id>().id+"&time_stamp="+getEncodedTimestamp()+"&difficulty="+difficulty;
-                Debug.Log("Action: Start Balloon Game");
+			case Action.START_BALLOON_GAME:
+				url = RegisterScript.SERVER + "log_action.php?" + "session_id=" + session_id + "&game_id=" + Action.START_BALLOON_GAME.GetAttribute<Id> ().id + "&time_stamp=" + getEncodedTimestamp () + "&difficulty=" + difficulty;
+				Debug.Log ("Action: Start Balloon Game");
+				Debug.Log ("BALLON: " + url);
                 break;
             case Action.START_NUMBER_LINE_GAME:
                 url = RegisterScript.SERVER + "log_action.php?" + "session_id=" + session_id + "&game_id=" + Action.START_NUMBER_LINE_GAME.GetAttribute<Id>().id + "&time_stamp=" + getEncodedTimestamp()+"&difficulty=" + difficulty;
@@ -245,7 +268,7 @@ public sealed class Logger : MonoBehaviour
                 break;
         }
         WriteIntoFile(url);
-        ExecuteQuery();
+		StartCoroutine(ExecuteQuery ());
         //OfflineSaveLog(url);
     }
 
@@ -258,6 +281,20 @@ public sealed class Logger : MonoBehaviour
     {
         return this.user_id;
     }
+
+
+	/// <summary>
+	/// For debugging purposes write queries that failed not due to connection issues
+	/// into a separate logging file
+	/// </summary>
+	/// <param name="url">URL.</param>
+	void WriteFailedIntoFile(string url) {
+		String file = @FILEPATH + "/" + "failed_loggingQueue.txt";
+		using (StreamWriter w = File.AppendText(file))
+		{
+			w.WriteLine(url);
+		}
+	}
 
     void Awake()
     {

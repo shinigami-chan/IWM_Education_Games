@@ -8,13 +8,26 @@ using System.Collections.Generic;
 
 public class RegisterScript : MonoBehaviour {
     private bool usernameValid;
-    private RegisterSceneController controller;
+	private RegisterSceneController controller1;
+    private RegisterScene2Controller controller2;
     public static readonly string SERVER = "http://lernplattform.iwm-kmrc.de/php_scripts/";
 
+	private string username;
+	private string email;
+	private string password;
+	private string passwordRepeat;
+
+	private string age;
+	private string gender;
+	private string school;
+	private string grade;
+	private string state;
+	private string language;
 
     // Use this for initialization
     void Start () {
-        controller = GameObject.Find("RegistrationPanel").GetComponent<RegisterSceneController>();
+		controller1 = GameObject.Find ("GameController1").GetComponent<RegisterSceneController> ();
+        controller2 = GameObject.Find("GameController2").GetComponent<RegisterScene2Controller> ();
     }
 	
 	// Update is called once per frame
@@ -22,54 +35,75 @@ public class RegisterScript : MonoBehaviour {
 	
 	}
 
+	void InitRegisterValues() {
+		username = controller1.GetUsername ();
+		email = controller1.GetEmail ();
+		password = controller1.GetPassword ();
+		passwordRepeat = controller1.GetPasswordRepeat ();
+
+		age = controller2.GetAge ();
+		gender = controller2.GetGender ();
+		school = controller2.GetSchool ();
+		grade = controller2.GetGrade ();
+		state = controller2.GetState ();
+		language = controller2.GetLanguage ();
+	}
+
     public IEnumerator RegisterWorker()
     {
-        // Extract hashed passwort from password field
-        string username = Utilities.PercentEncode(GameObject.Find("UsernameField").GetComponent<InputField>().text);
-        string hashedPw = Utilities.GetSHA256(GameObject.Find("PasswordField").GetComponent<InputField>().text);
-        string password = Utilities.PercentEncode(hashedPw);
 
+		InitRegisterValues ();
         // Prepare url with ref to the register script and the given parameters
         string url = SERVER + "register_user.php?";
 
-        string usernameString = "username=" + username;
-        string passwordString = "&password=" + password;
+		// Extract hashed passwort from password field
+		string hashedPw = Utilities.GetSHA256(password);
 
-        url += usernameString;
-        url += passwordString;
+		url += "username=" + Utilities.PercentEncode(username);
+		url += "&password=" + Utilities.PercentEncode (hashedPw);
 
-        if (controller.HasEmail())
-        {
-            string email = Utilities.PercentEncode(GameObject.Find("EmailField").GetComponent<InputField>().text);
-            url += "&email=" + email;
-        }
-        if (controller.HasSex())
-        {
-            string sex = ExtractGenderFromToggle(
-                    GameObject.Find("MaleToggle").GetComponent<Toggle>() as Toggle,
-                    GameObject.Find("FemaleToggle").GetComponent<Toggle>() as Toggle);
-            url += "&sex=" + sex;
-        }
-        if (controller.HasAge())
-        {
-            string age = controller.GetAge();
+		if (controller1.HasEmail ())
+			url += "&email=" + Utilities.PercentEncode (email);
+		else {
+			controller2.GetRegisterHelpScript ().ShowHelp ("Du hast keine E-Mail angegeben, bitte klicke zurück gebe eine E-Mail Adresse an!");
+			return false;
+		}
+		if (controller2.HasGender ()) {
+			url += "&sex=" + ExtractGenderForDatabase (gender);
+		} else {
+			controller2.GetRegisterHelpScript ().ShowHelp ("Du hast kein Geschlecht ausgewählt, bitte wähle ein Geschlecht aus!");
+			return false;
+		}
+        if (controller2.HasAge())
             url += "&age=" + age;
-        }
-        if (controller.HasSchoolType())
-        {
-            string school = Utilities.PercentEncode(Utilities.ReplaceUmlautForPhp(GameObject.Find("SchoolDropdown").GetComponent<Dropdown>().options[GameObject.Find("SchoolDropdown").GetComponent<Dropdown>().value].text));
-            url += "&school=" + school;
-        }
-        if (controller.HasState())
-        {
-            string state = Utilities.PercentEncode(Utilities.ReplaceUmlautForPhp(GameObject.Find("StateDropdown").GetComponent<Dropdown>().options[GameObject.Find("StateDropdown").GetComponent<Dropdown>().value].text));
-            url += "&state=" + state;
-        }
-        if (controller.HasNativeLanguage())
-        {
-            string nativeLanguage = Utilities.PercentEncode(Utilities.ReplaceUmlautForPhp(GameObject.Find("MothertongueDropdown").GetComponent<Dropdown>().options[GameObject.Find("MothertongueDropdown").GetComponent<Dropdown>().value].text));
-            url += "&native_language=" + nativeLanguage;
-        }
+		else {
+			controller2.GetRegisterHelpScript ().ShowHelp ("Du hast kein Alter ausgewählt, bitte sag uns wie Alt du bist!");
+			return false;
+		}
+        if (controller2.HasSchoolType())
+			url += "&school=" + Utilities.PercentEncode(school);
+		else {
+			controller2.GetRegisterHelpScript ().ShowHelp ("Du hast keine Schule ausgewählt, bitte gebe eine Schule an!");
+			return false;
+		}
+		if (controller2.HasGrade())
+			url += "&grade=" + Utilities.PercentEncode(grade);
+		else {
+			controller2.GetRegisterHelpScript ().ShowHelp ("Du hast keine Klasse ausgewählt, sag uns doch in welche Klasse du gehst!");
+			return false;
+		}
+        if (controller2.HasState())
+			url += "&state=" + Utilities.PercentEncode(state);
+		else {
+			controller2.GetRegisterHelpScript ().ShowHelp ("Sag uns bitte noch woher du kommst!");
+			return false;
+		}
+        if (controller2.HasNativeLanguage())
+			url += "&native_language=" + Utilities.PercentEncode(language);
+		else {
+			controller2.GetRegisterHelpScript ().ShowHelp ("Sag uns doch bitte in welcher Sprache bei dir Zuhause meistens gesprochen wird!");
+			return false;
+		}
 
         Debug.Log(url);
 
@@ -82,6 +116,7 @@ public class RegisterScript : MonoBehaviour {
         if (handler.Success())
         {
             // Registration was successful
+			controller2.DeleteRegisterPrefs ();
             SceneManager.LoadScene("Login");
         }
         else
@@ -93,7 +128,7 @@ public class RegisterScript : MonoBehaviour {
     
     public IEnumerator RegisterCoroutine()
     {
-        string username = GameObject.Find("UsernameField").GetComponent<InputField>().text;
+        //string username = GameObject.Find("UsernameField").GetComponent<InputField>().text;
         string url = SERVER + "is_name_taken.php?username=" + username;
 
         //Debug.Log(url);
@@ -104,10 +139,8 @@ public class RegisterScript : MonoBehaviour {
 
         PhpOutputHandler handler = new PhpOutputHandler(itemsData, true);
 
-        Debug.Log("loggable");
-        Debug.Log(controller.IsContentEqual(GameObject.Find("PasswordRepeatField"), GameObject.Find("PasswordField")));
 
-        if (handler.Success() && controller.IsContentEqual(GameObject.Find("PasswordRepeatField"), GameObject.Find("PasswordField")))
+        if (handler.Success()/* && controller1.IsContentEqual(GameObject.Find("PasswordRepeatField"), GameObject.Find("PasswordField"))*/)
         {
             if (handler.GetOutput().ContainsKey("USERNAME_TAKEN") && handler.GetOutput()["USERNAME_TAKEN"].Equals("0"))
             {
@@ -119,7 +152,8 @@ public class RegisterScript : MonoBehaviour {
             {
                 // Username is taken
                 Debug.Log("Username is taken");
-                controller.UpdateValidity(GameObject.Find("UsernameField"), false);
+				controller2.GetRegisterHelpScript ().ShowHelp ("Der Benutzername wurde dir vor der Nase weggeschnappt! Gehe zurück und wähle einen neuen aus!");
+                /*controller1.UpdateValidity(GameObject.Find("UsernameField"), false);*/
             }
         }
     }
@@ -129,13 +163,13 @@ public class RegisterScript : MonoBehaviour {
         StartCoroutine(RegisterCoroutine());
     }
 
-    private static string ExtractGenderFromToggle(Toggle maleToggle, Toggle femaleToggle)
+	private static string ExtractGenderForDatabase(string gender)
     {
-        if (maleToggle.isOn && !femaleToggle.isOn)
+		if (gender.Equals("Junge"))
         {
             return "M";
         }
-        else if (!maleToggle.isOn && femaleToggle.isOn)
+		else if (gender.Equals("Mädchen"))
         {
             return "W";
         }
@@ -143,19 +177,5 @@ public class RegisterScript : MonoBehaviour {
         {
             return "";
         }
-    }
-
-    public static string GetSHA256(string text)
-    {
-        byte[] byteRepresentation = Encoding.UTF8.GetBytes(text);
-
-        SHA256Managed hashstring = new SHA256Managed();
-        byte[] hash = hashstring.ComputeHash(byteRepresentation);
-        string hashString = string.Empty;
-        foreach (byte x in hash)
-        {
-            hashString += string.Format("{0:x2}", x);
-        }
-        return hashString;
     }
 }
