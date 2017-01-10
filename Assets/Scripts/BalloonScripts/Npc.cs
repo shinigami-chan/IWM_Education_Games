@@ -15,8 +15,12 @@ public class Npc : MonoBehaviour
     {
         float errorProbability = RandomFromDistribution.RandomNormalDistribution(0.2f, 0.05f);
 
+        //old version: npc can be wrong
         //no error if errorProbability is negative
-        return rnd.Next(0,100)>errorProbability*100;
+        //return rnd.Next(0,100)>errorProbability*100;
+
+        //in this version the npc will always be correct
+        return true;
     }
 
     public float getNpcResponseTime()
@@ -38,9 +42,9 @@ public class Npc : MonoBehaviour
     {
         switch (speedMode)
         {
-            case 3: meanResponseTime = 1500; break;
-            case 2: meanResponseTime = 3000; break;
-            case 1: meanResponseTime = 4000; break;
+            case 3: meanResponseTime = 3000; break;
+            case 2: meanResponseTime = 5000; break;
+            case 1: meanResponseTime = 7000; break;
         }
     }
 

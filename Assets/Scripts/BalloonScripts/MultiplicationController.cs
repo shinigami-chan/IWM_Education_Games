@@ -11,7 +11,7 @@ public class MultiplicationController : MonoBehaviour
 
     private View view;
     private Game game;
-    readonly float ResetTimeBetweenRounds = 2.5f;
+    readonly float ResetTimeBetweenRounds = 3;
 
     // Use this for initialization
     void Awake()
@@ -139,11 +139,11 @@ public class MultiplicationController : MonoBehaviour
 
             Debug.Log(game.getCurrentQuest().getProblem().stringProblemTask() + " = " + game.getCurrentQuest().getProblem().getSolution() + " correct answer given");
             view.setDisabledButtonColor(view.buttonList[buttonIndex], view.cRight);
-            view.popBalloonExceptIndex(buttonIndex, Color.white);
+            view.letBallonsFlyAwayExceptIndex(buttonIndex);
         }
         else
         {
-            view.letBallonsFlyAwayExceptIndex(buttonIndex);
+            view.popBalloonExceptIndex(buttonIndex, view.cRight);
             view.setDisabledButtonColor(view.buttonList[buttonIndex], view.cRight);
         }
         updatePoints(10, isPlayer);
@@ -175,12 +175,13 @@ public class MultiplicationController : MonoBehaviour
                     break;
                 }
             }
-            view.letBallonsFlyAwayExceptIndex(correctButton);
+            view.popBalloonExceptIndex(correctButton, view.cWrong);
             Invoke("loadNewRound", ResetTimeBetweenRounds);
 
         }
         else
         {
+            //note that in the current version the npc is always correct
             view.popBalloon(buttonIndex, new Color(230, 0, 255, 188));
             view.setDisabledButtonColor(view.buttonList[buttonIndex], view.cWrong);
             StartCoroutine(startNpcBehaviour());
