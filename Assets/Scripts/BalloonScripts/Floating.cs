@@ -5,18 +5,21 @@ using System;
 using UnityEngine.SceneManagement;
 
 public class Floating : MonoBehaviour {
+	public float rate = 1;
+	public float amplitudeFactor = 1;
 
     private float step;
     private float offsetY; //How far to offset the object upwards
     private float offsetX;
 
-    private float amplitude;
+	private float amplitude;
+
 
         void Start()
     {
         if(SceneManager.GetActiveScene().name != "Balloon_Game")
         {
-            amplitude = 10 * GameObject.FindObjectOfType<Canvas>().GetComponent<Canvas>().transform.localScale.y;
+			amplitude = amplitudeFactor * 10 * GameObject.FindObjectOfType<Canvas>().GetComponent<Canvas>().transform.localScale.y;
         }
         else
         {
@@ -38,7 +41,7 @@ public class Floating : MonoBehaviour {
     void floating()
     {
 
-        step += 0.035f;
+        step += 0.035f * rate;
         //Make sure Steps value never gets too out of hand 
         if (step > 999999) { step = 1; }
 

@@ -66,43 +66,43 @@ public class RegisterScript : MonoBehaviour {
 			url += "&email=" + Utilities.PercentEncode (email);
 		else {
 			controller2.GetRegisterHelpScript ().ShowHelp ("Du hast keine E-Mail angegeben, bitte klicke zurück gebe eine E-Mail Adresse an!");
-			return false;
+			yield break;
 		}
 		if (controller2.HasGender ()) {
 			url += "&sex=" + ExtractGenderForDatabase (gender);
 		} else {
 			controller2.GetRegisterHelpScript ().ShowHelp ("Du hast kein Geschlecht ausgewählt, bitte wähle ein Geschlecht aus!");
-			return false;
+			yield break;
 		}
         if (controller2.HasAge())
             url += "&age=" + age;
 		else {
 			controller2.GetRegisterHelpScript ().ShowHelp ("Du hast kein Alter ausgewählt, bitte sag uns wie Alt du bist!");
-			return false;
+			yield break;
 		}
         if (controller2.HasSchoolType())
 			url += "&school=" + Utilities.PercentEncode(school);
 		else {
 			controller2.GetRegisterHelpScript ().ShowHelp ("Du hast keine Schule ausgewählt, bitte gebe eine Schule an!");
-			return false;
+			yield break;
 		}
 		if (controller2.HasGrade())
 			url += "&grade=" + Utilities.PercentEncode(grade);
 		else {
 			controller2.GetRegisterHelpScript ().ShowHelp ("Du hast keine Klasse ausgewählt, sag uns doch in welche Klasse du gehst!");
-			return false;
+			yield break;
 		}
         if (controller2.HasState())
 			url += "&state=" + Utilities.PercentEncode(state);
 		else {
 			controller2.GetRegisterHelpScript ().ShowHelp ("Sag uns bitte noch woher du kommst!");
-			return false;
+			yield break;
 		}
         if (controller2.HasNativeLanguage())
 			url += "&native_language=" + Utilities.PercentEncode(language);
 		else {
 			controller2.GetRegisterHelpScript ().ShowHelp ("Sag uns doch bitte in welcher Sprache bei dir Zuhause meistens gesprochen wird!");
-			return false;
+			yield break;
 		}
 
         Debug.Log(url);

@@ -8,6 +8,7 @@ using System.Linq;
 public class LoginScript : MonoBehaviour {
     public GameObject errorSignPanel;
     public Text errorSignText;
+	public Button exitButton;
 
 	void Start () {
     }
