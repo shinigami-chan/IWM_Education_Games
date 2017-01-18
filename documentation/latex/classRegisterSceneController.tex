@@ -1,0 +1,286 @@
+\hypertarget{classRegisterSceneController}{}\section{Register\+Scene\+Controller Class Reference}
+\label{classRegisterSceneController}\index{Register\+Scene\+Controller@{Register\+Scene\+Controller}}
+Inheritance diagram for Register\+Scene\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classRegisterSceneController}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classRegisterSceneController_ab78b17088c92fb2d8f9bc7bc54536f7f}{Load\+Second\+Register\+Scene\+Worker} ()
+\begin{DoxyCompactList}\small\item\em Loads the second register scene. \end{DoxyCompactList}\item 
+void \hyperlink{classRegisterSceneController_a079ea72a1aea4a4c8a8f7ed1013156d2}{Set\+First\+Register\+Scene\+Field\+Values} ()
+\begin{DoxyCompactList}\small\item\em Sets the first register scene field values. \end{DoxyCompactList}\item 
+void \hyperlink{classRegisterSceneController_a3a3da6d880ef88abb72811fbd18a893b}{Check\+Email} ()
+\item 
+void \hyperlink{classRegisterSceneController_a79fc8fdaa225cc89fb7df61421feeb68}{Check\+Username} ()
+\begin{DoxyCompactList}\small\item\em Checks the username. \end{DoxyCompactList}\item 
+void \hyperlink{classRegisterSceneController_a6a534733d442b967c58b229423b6b71d}{Check\+Password} ()
+\begin{DoxyCompactList}\small\item\em Checks if the password meets the requirements of length and containing characters \end{DoxyCompactList}\item 
+void \hyperlink{classRegisterSceneController_aecd570e465ac294c6fb89fc88140bb89}{Check\+Password\+Repeat} ()
+\begin{DoxyCompactList}\small\item\em Checks if the repeated password matches the password and updates the validity of the field accordingly \end{DoxyCompactList}\item 
+bool \hyperlink{classRegisterSceneController_a7f1d806aaa9a339363112fa8b4af05bd}{Is\+Content\+Equal} (Input\+Field input1, Input\+Field input2)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance is content equal the specified input1 input2. \end{DoxyCompactList}\item 
+bool \hyperlink{classRegisterSceneController_aca29000f3de2f31a41a420a9c4c1639b}{Validate\+Input} (Input\+Field input, string regex, int min\+Length, int max\+Length)
+\begin{DoxyCompactList}\small\item\em Validates the input. \end{DoxyCompactList}\item 
+void \hyperlink{classRegisterSceneController_aa7d1efd7bd7be513fbba6a248e115e8b}{Update\+Validity} (Input\+Field input, bool is\+Valid)
+\begin{DoxyCompactList}\small\item\em Updates the validity. \end{DoxyCompactList}\item 
+bool \hyperlink{classRegisterSceneController_a98caf58a3c2c691304a397aee86c5344}{Has\+Email} ()
+\item 
+void \hyperlink{classRegisterSceneController_aacefa2b50cf97ef1b598341fdd03b5f5}{Load\+Login\+Scene} ()
+\item 
+string \hyperlink{classRegisterSceneController_a3cf7888cc3ffee9b18f8ed9c7aac7234}{Get\+Username} ()
+\item 
+string \hyperlink{classRegisterSceneController_a6a16162669f6e291bddb586f1b6027da}{Get\+Email} ()
+\item 
+string \hyperlink{classRegisterSceneController_a5dccef6b11a29509945aa82dc97f7e4b}{Get\+Password} ()
+\item 
+string \hyperlink{classRegisterSceneController_a26bf1ef1a810b7b7841c50044f1c7d95}{Get\+Password\+Repeat} ()
+\item 
+void \hyperlink{classRegisterSceneController_afcd9e91a3c6b0a25ce098b1b6b423ca9}{Next} ()
+\item 
+void \hyperlink{classRegisterSceneController_a612f117976627191de166236562ce2e9}{Load\+Second\+Register\+Scene} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{classRegisterSceneController_abf0f6592a409a6bf706640b5eb482544}{Delete\+Register\+Prefs} ()
+\begin{DoxyCompactList}\small\item\em Deletes the register player prefs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Input\+Field \hyperlink{classRegisterSceneController_ac27f7ab56f00b3713652c2d136e85421}{username\+Field}
+\item 
+Input\+Field \hyperlink{classRegisterSceneController_a99889a309513341744100dcb7d7c569b}{email\+Field}
+\item 
+Input\+Field \hyperlink{classRegisterSceneController_a0064121ad74ca0ba4d72fad144c19049}{password\+Field}
+\item 
+Input\+Field \hyperlink{classRegisterSceneController_a69afc78a2738889c4b0761405d630a1e}{password\+Repeat\+Field}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classRegisterSceneController_a3a3da6d880ef88abb72811fbd18a893b}\label{classRegisterSceneController_a3a3da6d880ef88abb72811fbd18a893b}} 
+\index{Register\+Scene\+Controller@{Register\+Scene\+Controller}!Check\+Email@{Check\+Email}}
+\index{Check\+Email@{Check\+Email}!Register\+Scene\+Controller@{Register\+Scene\+Controller}}
+\subsubsection{\texorpdfstring{Check\+Email()}{CheckEmail()}}
+{\footnotesize\ttfamily void Register\+Scene\+Controller.\+Check\+Email (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterSceneController_a6a534733d442b967c58b229423b6b71d}\label{classRegisterSceneController_a6a534733d442b967c58b229423b6b71d}} 
+\index{Register\+Scene\+Controller@{Register\+Scene\+Controller}!Check\+Password@{Check\+Password}}
+\index{Check\+Password@{Check\+Password}!Register\+Scene\+Controller@{Register\+Scene\+Controller}}
+\subsubsection{\texorpdfstring{Check\+Password()}{CheckPassword()}}
+{\footnotesize\ttfamily void Register\+Scene\+Controller.\+Check\+Password (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if the password meets the requirements of length and containing characters 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & Input.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRegisterSceneController_aecd570e465ac294c6fb89fc88140bb89}\label{classRegisterSceneController_aecd570e465ac294c6fb89fc88140bb89}} 
+\index{Register\+Scene\+Controller@{Register\+Scene\+Controller}!Check\+Password\+Repeat@{Check\+Password\+Repeat}}
+\index{Check\+Password\+Repeat@{Check\+Password\+Repeat}!Register\+Scene\+Controller@{Register\+Scene\+Controller}}
+\subsubsection{\texorpdfstring{Check\+Password\+Repeat()}{CheckPasswordRepeat()}}
+{\footnotesize\ttfamily void Register\+Scene\+Controller.\+Check\+Password\+Repeat (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if the repeated password matches the password and updates the validity of the field accordingly 
+
+
+\begin{DoxyParams}{Parameters}
+{\em password\+Repeat} & Password repeat.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRegisterSceneController_a79fc8fdaa225cc89fb7df61421feeb68}\label{classRegisterSceneController_a79fc8fdaa225cc89fb7df61421feeb68}} 
+\index{Register\+Scene\+Controller@{Register\+Scene\+Controller}!Check\+Username@{Check\+Username}}
+\index{Check\+Username@{Check\+Username}!Register\+Scene\+Controller@{Register\+Scene\+Controller}}
+\subsubsection{\texorpdfstring{Check\+Username()}{CheckUsername()}}
+{\footnotesize\ttfamily void Register\+Scene\+Controller.\+Check\+Username (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks the username. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & Input.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRegisterSceneController_abf0f6592a409a6bf706640b5eb482544}\label{classRegisterSceneController_abf0f6592a409a6bf706640b5eb482544}} 
+\index{Register\+Scene\+Controller@{Register\+Scene\+Controller}!Delete\+Register\+Prefs@{Delete\+Register\+Prefs}}
+\index{Delete\+Register\+Prefs@{Delete\+Register\+Prefs}!Register\+Scene\+Controller@{Register\+Scene\+Controller}}
+\subsubsection{\texorpdfstring{Delete\+Register\+Prefs()}{DeleteRegisterPrefs()}}
+{\footnotesize\ttfamily static void Register\+Scene\+Controller.\+Delete\+Register\+Prefs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Deletes the register player prefs. 
+
+\mbox{\Hypertarget{classRegisterSceneController_a6a16162669f6e291bddb586f1b6027da}\label{classRegisterSceneController_a6a16162669f6e291bddb586f1b6027da}} 
+\index{Register\+Scene\+Controller@{Register\+Scene\+Controller}!Get\+Email@{Get\+Email}}
+\index{Get\+Email@{Get\+Email}!Register\+Scene\+Controller@{Register\+Scene\+Controller}}
+\subsubsection{\texorpdfstring{Get\+Email()}{GetEmail()}}
+{\footnotesize\ttfamily string Register\+Scene\+Controller.\+Get\+Email (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterSceneController_a5dccef6b11a29509945aa82dc97f7e4b}\label{classRegisterSceneController_a5dccef6b11a29509945aa82dc97f7e4b}} 
+\index{Register\+Scene\+Controller@{Register\+Scene\+Controller}!Get\+Password@{Get\+Password}}
+\index{Get\+Password@{Get\+Password}!Register\+Scene\+Controller@{Register\+Scene\+Controller}}
+\subsubsection{\texorpdfstring{Get\+Password()}{GetPassword()}}
+{\footnotesize\ttfamily string Register\+Scene\+Controller.\+Get\+Password (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterSceneController_a26bf1ef1a810b7b7841c50044f1c7d95}\label{classRegisterSceneController_a26bf1ef1a810b7b7841c50044f1c7d95}} 
+\index{Register\+Scene\+Controller@{Register\+Scene\+Controller}!Get\+Password\+Repeat@{Get\+Password\+Repeat}}
+\index{Get\+Password\+Repeat@{Get\+Password\+Repeat}!Register\+Scene\+Controller@{Register\+Scene\+Controller}}
+\subsubsection{\texorpdfstring{Get\+Password\+Repeat()}{GetPasswordRepeat()}}
+{\footnotesize\ttfamily string Register\+Scene\+Controller.\+Get\+Password\+Repeat (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterSceneController_a3cf7888cc3ffee9b18f8ed9c7aac7234}\label{classRegisterSceneController_a3cf7888cc3ffee9b18f8ed9c7aac7234}} 
+\index{Register\+Scene\+Controller@{Register\+Scene\+Controller}!Get\+Username@{Get\+Username}}
+\index{Get\+Username@{Get\+Username}!Register\+Scene\+Controller@{Register\+Scene\+Controller}}
+\subsubsection{\texorpdfstring{Get\+Username()}{GetUsername()}}
+{\footnotesize\ttfamily string Register\+Scene\+Controller.\+Get\+Username (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterSceneController_a98caf58a3c2c691304a397aee86c5344}\label{classRegisterSceneController_a98caf58a3c2c691304a397aee86c5344}} 
+\index{Register\+Scene\+Controller@{Register\+Scene\+Controller}!Has\+Email@{Has\+Email}}
+\index{Has\+Email@{Has\+Email}!Register\+Scene\+Controller@{Register\+Scene\+Controller}}
+\subsubsection{\texorpdfstring{Has\+Email()}{HasEmail()}}
+{\footnotesize\ttfamily bool Register\+Scene\+Controller.\+Has\+Email (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterSceneController_a7f1d806aaa9a339363112fa8b4af05bd}\label{classRegisterSceneController_a7f1d806aaa9a339363112fa8b4af05bd}} 
+\index{Register\+Scene\+Controller@{Register\+Scene\+Controller}!Is\+Content\+Equal@{Is\+Content\+Equal}}
+\index{Is\+Content\+Equal@{Is\+Content\+Equal}!Register\+Scene\+Controller@{Register\+Scene\+Controller}}
+\subsubsection{\texorpdfstring{Is\+Content\+Equal()}{IsContentEqual()}}
+{\footnotesize\ttfamily bool Register\+Scene\+Controller.\+Is\+Content\+Equal (\begin{DoxyParamCaption}\item[{Input\+Field}]{input1,  }\item[{Input\+Field}]{input2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Determines whether this instance is content equal the specified input1 input2. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance is content equal the specified input1 input2; otherwise, {\ttfamily false}.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em input1} & Input1.\\
+\hline
+{\em input2} & Input2.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRegisterSceneController_aacefa2b50cf97ef1b598341fdd03b5f5}\label{classRegisterSceneController_aacefa2b50cf97ef1b598341fdd03b5f5}} 
+\index{Register\+Scene\+Controller@{Register\+Scene\+Controller}!Load\+Login\+Scene@{Load\+Login\+Scene}}
+\index{Load\+Login\+Scene@{Load\+Login\+Scene}!Register\+Scene\+Controller@{Register\+Scene\+Controller}}
+\subsubsection{\texorpdfstring{Load\+Login\+Scene()}{LoadLoginScene()}}
+{\footnotesize\ttfamily void Register\+Scene\+Controller.\+Load\+Login\+Scene (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterSceneController_a612f117976627191de166236562ce2e9}\label{classRegisterSceneController_a612f117976627191de166236562ce2e9}} 
+\index{Register\+Scene\+Controller@{Register\+Scene\+Controller}!Load\+Second\+Register\+Scene@{Load\+Second\+Register\+Scene}}
+\index{Load\+Second\+Register\+Scene@{Load\+Second\+Register\+Scene}!Register\+Scene\+Controller@{Register\+Scene\+Controller}}
+\subsubsection{\texorpdfstring{Load\+Second\+Register\+Scene()}{LoadSecondRegisterScene()}}
+{\footnotesize\ttfamily void Register\+Scene\+Controller.\+Load\+Second\+Register\+Scene (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterSceneController_ab78b17088c92fb2d8f9bc7bc54536f7f}\label{classRegisterSceneController_ab78b17088c92fb2d8f9bc7bc54536f7f}} 
+\index{Register\+Scene\+Controller@{Register\+Scene\+Controller}!Load\+Second\+Register\+Scene\+Worker@{Load\+Second\+Register\+Scene\+Worker}}
+\index{Load\+Second\+Register\+Scene\+Worker@{Load\+Second\+Register\+Scene\+Worker}!Register\+Scene\+Controller@{Register\+Scene\+Controller}}
+\subsubsection{\texorpdfstring{Load\+Second\+Register\+Scene\+Worker()}{LoadSecondRegisterSceneWorker()}}
+{\footnotesize\ttfamily void Register\+Scene\+Controller.\+Load\+Second\+Register\+Scene\+Worker (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Loads the second register scene. 
+
+\mbox{\Hypertarget{classRegisterSceneController_afcd9e91a3c6b0a25ce098b1b6b423ca9}\label{classRegisterSceneController_afcd9e91a3c6b0a25ce098b1b6b423ca9}} 
+\index{Register\+Scene\+Controller@{Register\+Scene\+Controller}!Next@{Next}}
+\index{Next@{Next}!Register\+Scene\+Controller@{Register\+Scene\+Controller}}
+\subsubsection{\texorpdfstring{Next()}{Next()}}
+{\footnotesize\ttfamily void Register\+Scene\+Controller.\+Next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterSceneController_a079ea72a1aea4a4c8a8f7ed1013156d2}\label{classRegisterSceneController_a079ea72a1aea4a4c8a8f7ed1013156d2}} 
+\index{Register\+Scene\+Controller@{Register\+Scene\+Controller}!Set\+First\+Register\+Scene\+Field\+Values@{Set\+First\+Register\+Scene\+Field\+Values}}
+\index{Set\+First\+Register\+Scene\+Field\+Values@{Set\+First\+Register\+Scene\+Field\+Values}!Register\+Scene\+Controller@{Register\+Scene\+Controller}}
+\subsubsection{\texorpdfstring{Set\+First\+Register\+Scene\+Field\+Values()}{SetFirstRegisterSceneFieldValues()}}
+{\footnotesize\ttfamily void Register\+Scene\+Controller.\+Set\+First\+Register\+Scene\+Field\+Values (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the first register scene field values. 
+
+\mbox{\Hypertarget{classRegisterSceneController_aa7d1efd7bd7be513fbba6a248e115e8b}\label{classRegisterSceneController_aa7d1efd7bd7be513fbba6a248e115e8b}} 
+\index{Register\+Scene\+Controller@{Register\+Scene\+Controller}!Update\+Validity@{Update\+Validity}}
+\index{Update\+Validity@{Update\+Validity}!Register\+Scene\+Controller@{Register\+Scene\+Controller}}
+\subsubsection{\texorpdfstring{Update\+Validity()}{UpdateValidity()}}
+{\footnotesize\ttfamily void Register\+Scene\+Controller.\+Update\+Validity (\begin{DoxyParamCaption}\item[{Input\+Field}]{input,  }\item[{bool}]{is\+Valid }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Updates the validity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & Input.\\
+\hline
+{\em is\+Valid} & If set to {\ttfamily true} is valid.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRegisterSceneController_aca29000f3de2f31a41a420a9c4c1639b}\label{classRegisterSceneController_aca29000f3de2f31a41a420a9c4c1639b}} 
+\index{Register\+Scene\+Controller@{Register\+Scene\+Controller}!Validate\+Input@{Validate\+Input}}
+\index{Validate\+Input@{Validate\+Input}!Register\+Scene\+Controller@{Register\+Scene\+Controller}}
+\subsubsection{\texorpdfstring{Validate\+Input()}{ValidateInput()}}
+{\footnotesize\ttfamily bool Register\+Scene\+Controller.\+Validate\+Input (\begin{DoxyParamCaption}\item[{Input\+Field}]{input,  }\item[{string}]{regex,  }\item[{int}]{min\+Length,  }\item[{int}]{max\+Length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Validates the input. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true}, if input was validated, {\ttfamily false} otherwise.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em input} & Input.\\
+\hline
+{\em regex} & Regex.\\
+\hline
+{\em min\+Length} & Minimum length.\\
+\hline
+{\em max\+Length} & Max length.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classRegisterSceneController_a99889a309513341744100dcb7d7c569b}\label{classRegisterSceneController_a99889a309513341744100dcb7d7c569b}} 
+\index{Register\+Scene\+Controller@{Register\+Scene\+Controller}!email\+Field@{email\+Field}}
+\index{email\+Field@{email\+Field}!Register\+Scene\+Controller@{Register\+Scene\+Controller}}
+\subsubsection{\texorpdfstring{email\+Field}{emailField}}
+{\footnotesize\ttfamily Input\+Field Register\+Scene\+Controller.\+email\+Field}
+
+\mbox{\Hypertarget{classRegisterSceneController_a0064121ad74ca0ba4d72fad144c19049}\label{classRegisterSceneController_a0064121ad74ca0ba4d72fad144c19049}} 
+\index{Register\+Scene\+Controller@{Register\+Scene\+Controller}!password\+Field@{password\+Field}}
+\index{password\+Field@{password\+Field}!Register\+Scene\+Controller@{Register\+Scene\+Controller}}
+\subsubsection{\texorpdfstring{password\+Field}{passwordField}}
+{\footnotesize\ttfamily Input\+Field Register\+Scene\+Controller.\+password\+Field}
+
+\mbox{\Hypertarget{classRegisterSceneController_a69afc78a2738889c4b0761405d630a1e}\label{classRegisterSceneController_a69afc78a2738889c4b0761405d630a1e}} 
+\index{Register\+Scene\+Controller@{Register\+Scene\+Controller}!password\+Repeat\+Field@{password\+Repeat\+Field}}
+\index{password\+Repeat\+Field@{password\+Repeat\+Field}!Register\+Scene\+Controller@{Register\+Scene\+Controller}}
+\subsubsection{\texorpdfstring{password\+Repeat\+Field}{passwordRepeatField}}
+{\footnotesize\ttfamily Input\+Field Register\+Scene\+Controller.\+password\+Repeat\+Field}
+
+\mbox{\Hypertarget{classRegisterSceneController_ac27f7ab56f00b3713652c2d136e85421}\label{classRegisterSceneController_ac27f7ab56f00b3713652c2d136e85421}} 
+\index{Register\+Scene\+Controller@{Register\+Scene\+Controller}!username\+Field@{username\+Field}}
+\index{username\+Field@{username\+Field}!Register\+Scene\+Controller@{Register\+Scene\+Controller}}
+\subsubsection{\texorpdfstring{username\+Field}{usernameField}}
+{\footnotesize\ttfamily Input\+Field Register\+Scene\+Controller.\+username\+Field}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Assets/\+Scripts/\hyperlink{RegisterSceneController_8cs}{Register\+Scene\+Controller.\+cs}\end{DoxyCompactItemize}

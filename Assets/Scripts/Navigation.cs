@@ -148,4 +148,10 @@ public class Navigation : MonoBehaviour {
 	public void LoadBalloonGame() {
 		SceneManager.LoadScene("Balloon_Menu");
 	}
+
+	public void Logout() {
+		Logger.Instance.EndSession ();
+		Debug.Log ("Destroy in logout()");
+		ShowLogin ();
+	}
 }

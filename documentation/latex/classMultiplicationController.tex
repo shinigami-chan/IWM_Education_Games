@@ -1,0 +1,63 @@
+\hypertarget{classMultiplicationController}{}\section{Multiplication\+Controller Class Reference}
+\label{classMultiplicationController}\index{Multiplication\+Controller@{Multiplication\+Controller}}
+Inheritance diagram for Multiplication\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMultiplicationController}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classMultiplicationController_ade300713624e2fe34010816a2eec94db}{load\+New\+Round} ()
+\item 
+void \hyperlink{classMultiplicationController_a521da5ae3ea1be50eaea06d7000954c8}{update\+Points} (int recieved\+Points, bool player)
+\item 
+I\+Enumerator \hyperlink{classMultiplicationController_ac96188fbf43771fd1f13475db8da52b5}{start\+Npc\+Behaviour} ()
+\begin{DoxyCompactList}\small\item\em Chooses a button depending on a correctness probability and sets it to not interactable. Reaction time is normal distributed and depends on the chosen difficulty mode. \end{DoxyCompactList}\item 
+void \hyperlink{classMultiplicationController_ab3f3d41af4f9a513943e9d7bbfa63021}{trigger\+Events\+After\+Players\+Answer} (Button button)
+\begin{DoxyCompactList}\small\item\em Sets clicked button to not interactable and checks whether the answer is correct or not. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classMultiplicationController_ade300713624e2fe34010816a2eec94db}\label{classMultiplicationController_ade300713624e2fe34010816a2eec94db}} 
+\index{Multiplication\+Controller@{Multiplication\+Controller}!load\+New\+Round@{load\+New\+Round}}
+\index{load\+New\+Round@{load\+New\+Round}!Multiplication\+Controller@{Multiplication\+Controller}}
+\subsubsection{\texorpdfstring{load\+New\+Round()}{loadNewRound()}}
+{\footnotesize\ttfamily void Multiplication\+Controller.\+load\+New\+Round (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classMultiplicationController_ac96188fbf43771fd1f13475db8da52b5}\label{classMultiplicationController_ac96188fbf43771fd1f13475db8da52b5}} 
+\index{Multiplication\+Controller@{Multiplication\+Controller}!start\+Npc\+Behaviour@{start\+Npc\+Behaviour}}
+\index{start\+Npc\+Behaviour@{start\+Npc\+Behaviour}!Multiplication\+Controller@{Multiplication\+Controller}}
+\subsubsection{\texorpdfstring{start\+Npc\+Behaviour()}{startNpcBehaviour()}}
+{\footnotesize\ttfamily I\+Enumerator Multiplication\+Controller.\+start\+Npc\+Behaviour (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Chooses a button depending on a correctness probability and sets it to not interactable. Reaction time is normal distributed and depends on the chosen difficulty mode. 
+
+correct answer\+: all balloons except for the chosen one fly away 
+
+incorrect answer\+: not used in this version \mbox{\Hypertarget{classMultiplicationController_ab3f3d41af4f9a513943e9d7bbfa63021}\label{classMultiplicationController_ab3f3d41af4f9a513943e9d7bbfa63021}} 
+\index{Multiplication\+Controller@{Multiplication\+Controller}!trigger\+Events\+After\+Players\+Answer@{trigger\+Events\+After\+Players\+Answer}}
+\index{trigger\+Events\+After\+Players\+Answer@{trigger\+Events\+After\+Players\+Answer}!Multiplication\+Controller@{Multiplication\+Controller}}
+\subsubsection{\texorpdfstring{trigger\+Events\+After\+Players\+Answer()}{triggerEventsAfterPlayersAnswer()}}
+{\footnotesize\ttfamily void Multiplication\+Controller.\+trigger\+Events\+After\+Players\+Answer (\begin{DoxyParamCaption}\item[{Button}]{button }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets clicked button to not interactable and checks whether the answer is correct or not. 
+
+correct answer\+: time stamp is saved and all balloons except for the clicked one pop 
+
+incorrect answer\+: time stamp is saved and the clicked balloon pops \mbox{\Hypertarget{classMultiplicationController_a521da5ae3ea1be50eaea06d7000954c8}\label{classMultiplicationController_a521da5ae3ea1be50eaea06d7000954c8}} 
+\index{Multiplication\+Controller@{Multiplication\+Controller}!update\+Points@{update\+Points}}
+\index{update\+Points@{update\+Points}!Multiplication\+Controller@{Multiplication\+Controller}}
+\subsubsection{\texorpdfstring{update\+Points()}{updatePoints()}}
+{\footnotesize\ttfamily void Multiplication\+Controller.\+update\+Points (\begin{DoxyParamCaption}\item[{int}]{recieved\+Points,  }\item[{bool}]{player }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Assets/\+Scripts/\+Balloon\+Scripts/\hyperlink{MultiplicationController_8cs}{Multiplication\+Controller.\+cs}\end{DoxyCompactItemize}

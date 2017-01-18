@@ -1,0 +1,634 @@
+\hypertarget{classRegisterController}{}\section{Register\+Controller Class Reference}
+\label{classRegisterController}\index{Register\+Controller@{Register\+Controller}}
+Inheritance diagram for Register\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classRegisterController}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classRegisterController_a28f855c65269510bd5dac66aa39a1f9e}{Set\+Grade\+Dropdown\+Items} ()
+\begin{DoxyCompactList}\small\item\em Sets the grade dropdown items according to the selected school. \end{DoxyCompactList}\item 
+void \hyperlink{classRegisterController_a27e92b0ef5a5ba595f3b6c1a51a0c0d0}{Register\+If\+Data\+Valid} ()
+\begin{DoxyCompactList}\small\item\em Check if Data in input fields of the registration form is valid and start the registration if so. \end{DoxyCompactList}\item 
+void \hyperlink{classRegisterController_a6134936cccf67ed5356ebe5951ca50a8}{Registration\+Name\+Handler} (\hyperlink{classPhpOutputHandler}{Php\+Output\+Handler} handler)
+\item 
+void \hyperlink{classRegisterController_ac6582ef5a1dfcfedb2d84d6f31ba6f31}{Registration\+Handler} (\hyperlink{classPhpOutputHandler}{Php\+Output\+Handler} handler)
+\begin{DoxyCompactList}\small\item\em Handle the php output of the registration script Proceed to login if successful, Show error message if unsuccessful \end{DoxyCompactList}\item 
+void \hyperlink{classRegisterController_a607fdc380924cef70152dbb79c46d4df}{Login\+Handler} (\hyperlink{classPhpOutputHandler}{Php\+Output\+Handler} handler)
+\begin{DoxyCompactList}\small\item\em Handles the php output of the login script. \end{DoxyCompactList}\item 
+void \hyperlink{classRegisterController_afb9a08d203a224faee4874247d51491e}{Login} ()
+\item 
+bool \hyperlink{classRegisterController_a35307b8660a21bbf7a186878a50c1082}{is\+Dropdown\+Value\+Equal\+To} (Dropdown dropdown, string value)
+\begin{DoxyCompactList}\small\item\em Checks if the dropdown value is equal to a given string \end{DoxyCompactList}\item 
+bool \hyperlink{classRegisterController_a63d41cc83568f2a3aa0159acf51bf265}{is\+Grade\+Selected} ()
+\begin{DoxyCompactList}\small\item\em Checks if the user selected the grade. \end{DoxyCompactList}\item 
+bool \hyperlink{classRegisterController_a963f94012946979c3c9c85adf9f8efb9}{Has\+Email} ()
+\item 
+bool \hyperlink{classRegisterController_a2442b0771f689d2a974c65fd7d756874}{Has\+Age} ()
+\begin{DoxyCompactList}\small\item\em Determines whether this instance has age. \end{DoxyCompactList}\item 
+bool \hyperlink{classRegisterController_a6c0e18d451f9960d33d798e12c1fd6d0}{Has\+Gender} ()
+\begin{DoxyCompactList}\small\item\em Determines whether this instance has sex. \end{DoxyCompactList}\item 
+bool \hyperlink{classRegisterController_a9641e09116e823648addfc362af8fb24}{Has\+School\+Type} ()
+\begin{DoxyCompactList}\small\item\em Determines whether this instance has school type. \end{DoxyCompactList}\item 
+bool \hyperlink{classRegisterController_ace91b2c3a079dbe729ece56c3e4a1552}{Has\+Grade} ()
+\begin{DoxyCompactList}\small\item\em Determines whether user selected a grade. \end{DoxyCompactList}\item 
+bool \hyperlink{classRegisterController_aa5c83aee5c268b2338d29a9f1fd0282f}{Has\+State} ()
+\begin{DoxyCompactList}\small\item\em Determines whether the user selected a state. \end{DoxyCompactList}\item 
+bool \hyperlink{classRegisterController_ab107f3182247b1b6f62ba81278dba550}{Has\+Native\+Language} ()
+\begin{DoxyCompactList}\small\item\em Determines whether the user selected a language. \end{DoxyCompactList}\item 
+void \hyperlink{classRegisterController_af4daa10f24e177e3dc114128ef2aedbe}{Validate\+Email} ()
+\begin{DoxyCompactList}\small\item\em Checks the email. \end{DoxyCompactList}\item 
+void \hyperlink{classRegisterController_ab1addfaffc04ea9065b81724d4f7e8cb}{Validate\+Username} ()
+\begin{DoxyCompactList}\small\item\em Checks the username. \end{DoxyCompactList}\item 
+void \hyperlink{classRegisterController_a6ec9cefdd115c96a4619df4b4154b10b}{Validate\+Password} ()
+\begin{DoxyCompactList}\small\item\em Checks if the password meets the requirements of length and containing characters \end{DoxyCompactList}\item 
+void \hyperlink{classRegisterController_a0cb0ad305504222292c52f22f558822e}{Validate\+Password\+Repeat} ()
+\begin{DoxyCompactList}\small\item\em Checks if the repeated password matches the password and updates the validity of the field accordingly \end{DoxyCompactList}\item 
+bool \hyperlink{classRegisterController_a7728cb73673b72b2fa059200a9cbc4af}{Is\+Content\+Equal} (Input\+Field input1, Input\+Field input2)
+\begin{DoxyCompactList}\small\item\em Determines whether this instance is content equal the specified input1 input2. \end{DoxyCompactList}\item 
+bool \hyperlink{classRegisterController_a962585ca46ff0707c3ca32d5300c5716}{Is\+Input\+Valid} (Input\+Field input, string regex, int min\+Length, int max\+Length)
+\begin{DoxyCompactList}\small\item\em Validates the input. \end{DoxyCompactList}\item 
+void \hyperlink{classRegisterController_a02902491d57c7eb064bbcec47b4ff1a1}{Update\+Validity} (Input\+Field input, bool is\+Valid)
+\begin{DoxyCompactList}\small\item\em Updates the validity. \end{DoxyCompactList}\item 
+void \hyperlink{classRegisterController_a6a4d488534b263f16c741b920f7e3543}{Load\+Register2} ()
+\item 
+string \hyperlink{classRegisterController_ab69e503f3a5fbf2474abd32dad6a071f}{Get\+Username\+Login} ()
+\item 
+string \hyperlink{classRegisterController_a96881a003ae56e420a67436e60f27ab8}{Get\+Password\+Login} ()
+\item 
+string \hyperlink{classRegisterController_a9c65087784b926a7bfa3883cd7df74df}{Get\+Username} ()
+\item 
+string \hyperlink{classRegisterController_a3e017e31a84c05fd55855b80ee4bf082}{Get\+Email} ()
+\item 
+string \hyperlink{classRegisterController_a95b354b8d1933b87bcedd25994edbc3f}{Get\+Password} ()
+\item 
+string \hyperlink{classRegisterController_a10550f3ccac168ab1edde3e0dab6fb30}{Get\+Password\+Repeat} ()
+\item 
+string \hyperlink{classRegisterController_a9a6a8e029ed5a644c8fe2048b96e2121}{Get\+Age} ()
+\begin{DoxyCompactList}\small\item\em Extracts the Age from the age Dropdown \end{DoxyCompactList}\item 
+string \hyperlink{classRegisterController_a5b1fb947518fb240ed183733551750ab}{Get\+Gender} ()
+\item 
+string \hyperlink{classRegisterController_a9d045a715368cfde9b97eaacf0a2088f}{Get\+School} ()
+\item 
+string \hyperlink{classRegisterController_a7f1027ff167a61b09727736607bbe1a0}{Get\+Grade} ()
+\item 
+string \hyperlink{classRegisterController_a8f676337877ac8e82fd695c7cf7d38fb}{Get\+State} ()
+\item 
+string \hyperlink{classRegisterController_a5473dbdd4bf42009c9f51cb1be7b160d}{Get\+Language} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static string \hyperlink{classRegisterController_a3c58d07f9660dbeddd5bd41edcd4dcc3}{Get\+Selected\+Item\+From\+Dropdown} (Dropdown dropdown)
+\begin{DoxyCompactList}\small\item\em Gets the selected item from dropdown. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Input\+Field \hyperlink{classRegisterController_a45cc611f9b86972779c97016a496484e}{username\+Login\+Field}
+\item 
+Input\+Field \hyperlink{classRegisterController_afb2904227cec3d91f80316b563c2a4d3}{password\+Login\+Field}
+\item 
+Input\+Field \hyperlink{classRegisterController_a47e25a3708c32d2610d8ca0db7ca51ee}{username\+Field}
+\item 
+Input\+Field \hyperlink{classRegisterController_a9c39e08fb93964af5d5c3c30783fa8e6}{email\+Field}
+\item 
+Input\+Field \hyperlink{classRegisterController_a04e4d5a4f7a00b7afeb62175455b8688}{password\+Field}
+\item 
+Input\+Field \hyperlink{classRegisterController_a057245e171c45f52cee78f343e7fc60c}{password\+Repeat\+Field}
+\item 
+Dropdown \hyperlink{classRegisterController_aa0ca4dba13add88d0bb74296ef75901c}{school\+Dropdown}
+\item 
+Dropdown \hyperlink{classRegisterController_af1f1c189c7974e628dd5f728a28409b6}{grade\+Dropdown}
+\item 
+Dropdown \hyperlink{classRegisterController_a15a9c2e4a4af0a04ded3f896eafc79a1}{day\+Dropdown}
+\item 
+Dropdown \hyperlink{classRegisterController_aa7fc852727ec7fc43ffe8ca7f842aee2}{month\+Dropdown}
+\item 
+Dropdown \hyperlink{classRegisterController_a3d0d5c6827a821305a047ac365a46fd0}{year\+Dropdown}
+\item 
+Dropdown \hyperlink{classRegisterController_a194e288ec2513ca13448895f95e862f9}{gender\+Dropdown}
+\item 
+Dropdown \hyperlink{classRegisterController_af0176c009d5aa3b397b0029473b522e9}{state\+Dropdown}
+\item 
+Dropdown \hyperlink{classRegisterController_a07e91bda695dab82c74e8d79ecb65f91}{language\+Dropdown}
+\item 
+Game\+Object \hyperlink{classRegisterController_ac81ca9cc151ce7c892f133ca5270bcb4}{login}
+\item 
+Game\+Object \hyperlink{classRegisterController_a8aec5b029845d59b39988246a018af8c}{register1}
+\item 
+Game\+Object \hyperlink{classRegisterController_a8372a097a730f83fce93fbae7531aeb5}{register2}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classRegisterController_a9a6a8e029ed5a644c8fe2048b96e2121}\label{classRegisterController_a9a6a8e029ed5a644c8fe2048b96e2121}} 
+\index{Register\+Controller@{Register\+Controller}!Get\+Age@{Get\+Age}}
+\index{Get\+Age@{Get\+Age}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Get\+Age()}{GetAge()}}
+{\footnotesize\ttfamily string Register\+Controller.\+Get\+Age (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Extracts the Age from the age Dropdown 
+
+\begin{DoxyReturn}{Returns}
+The age.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRegisterController_a3e017e31a84c05fd55855b80ee4bf082}\label{classRegisterController_a3e017e31a84c05fd55855b80ee4bf082}} 
+\index{Register\+Controller@{Register\+Controller}!Get\+Email@{Get\+Email}}
+\index{Get\+Email@{Get\+Email}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Get\+Email()}{GetEmail()}}
+{\footnotesize\ttfamily string Register\+Controller.\+Get\+Email (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterController_a5b1fb947518fb240ed183733551750ab}\label{classRegisterController_a5b1fb947518fb240ed183733551750ab}} 
+\index{Register\+Controller@{Register\+Controller}!Get\+Gender@{Get\+Gender}}
+\index{Get\+Gender@{Get\+Gender}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Get\+Gender()}{GetGender()}}
+{\footnotesize\ttfamily string Register\+Controller.\+Get\+Gender (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterController_a7f1027ff167a61b09727736607bbe1a0}\label{classRegisterController_a7f1027ff167a61b09727736607bbe1a0}} 
+\index{Register\+Controller@{Register\+Controller}!Get\+Grade@{Get\+Grade}}
+\index{Get\+Grade@{Get\+Grade}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Get\+Grade()}{GetGrade()}}
+{\footnotesize\ttfamily string Register\+Controller.\+Get\+Grade (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterController_a5473dbdd4bf42009c9f51cb1be7b160d}\label{classRegisterController_a5473dbdd4bf42009c9f51cb1be7b160d}} 
+\index{Register\+Controller@{Register\+Controller}!Get\+Language@{Get\+Language}}
+\index{Get\+Language@{Get\+Language}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Get\+Language()}{GetLanguage()}}
+{\footnotesize\ttfamily string Register\+Controller.\+Get\+Language (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterController_a95b354b8d1933b87bcedd25994edbc3f}\label{classRegisterController_a95b354b8d1933b87bcedd25994edbc3f}} 
+\index{Register\+Controller@{Register\+Controller}!Get\+Password@{Get\+Password}}
+\index{Get\+Password@{Get\+Password}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Get\+Password()}{GetPassword()}}
+{\footnotesize\ttfamily string Register\+Controller.\+Get\+Password (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterController_a96881a003ae56e420a67436e60f27ab8}\label{classRegisterController_a96881a003ae56e420a67436e60f27ab8}} 
+\index{Register\+Controller@{Register\+Controller}!Get\+Password\+Login@{Get\+Password\+Login}}
+\index{Get\+Password\+Login@{Get\+Password\+Login}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Get\+Password\+Login()}{GetPasswordLogin()}}
+{\footnotesize\ttfamily string Register\+Controller.\+Get\+Password\+Login (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterController_a10550f3ccac168ab1edde3e0dab6fb30}\label{classRegisterController_a10550f3ccac168ab1edde3e0dab6fb30}} 
+\index{Register\+Controller@{Register\+Controller}!Get\+Password\+Repeat@{Get\+Password\+Repeat}}
+\index{Get\+Password\+Repeat@{Get\+Password\+Repeat}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Get\+Password\+Repeat()}{GetPasswordRepeat()}}
+{\footnotesize\ttfamily string Register\+Controller.\+Get\+Password\+Repeat (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterController_a9d045a715368cfde9b97eaacf0a2088f}\label{classRegisterController_a9d045a715368cfde9b97eaacf0a2088f}} 
+\index{Register\+Controller@{Register\+Controller}!Get\+School@{Get\+School}}
+\index{Get\+School@{Get\+School}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Get\+School()}{GetSchool()}}
+{\footnotesize\ttfamily string Register\+Controller.\+Get\+School (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterController_a3c58d07f9660dbeddd5bd41edcd4dcc3}\label{classRegisterController_a3c58d07f9660dbeddd5bd41edcd4dcc3}} 
+\index{Register\+Controller@{Register\+Controller}!Get\+Selected\+Item\+From\+Dropdown@{Get\+Selected\+Item\+From\+Dropdown}}
+\index{Get\+Selected\+Item\+From\+Dropdown@{Get\+Selected\+Item\+From\+Dropdown}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Get\+Selected\+Item\+From\+Dropdown()}{GetSelectedItemFromDropdown()}}
+{\footnotesize\ttfamily static string Register\+Controller.\+Get\+Selected\+Item\+From\+Dropdown (\begin{DoxyParamCaption}\item[{Dropdown}]{dropdown }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Gets the selected item from dropdown. 
+
+\begin{DoxyReturn}{Returns}
+The selected item from dropdown.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em dropdown} & Dropdown.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRegisterController_a8f676337877ac8e82fd695c7cf7d38fb}\label{classRegisterController_a8f676337877ac8e82fd695c7cf7d38fb}} 
+\index{Register\+Controller@{Register\+Controller}!Get\+State@{Get\+State}}
+\index{Get\+State@{Get\+State}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Get\+State()}{GetState()}}
+{\footnotesize\ttfamily string Register\+Controller.\+Get\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterController_a9c65087784b926a7bfa3883cd7df74df}\label{classRegisterController_a9c65087784b926a7bfa3883cd7df74df}} 
+\index{Register\+Controller@{Register\+Controller}!Get\+Username@{Get\+Username}}
+\index{Get\+Username@{Get\+Username}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Get\+Username()}{GetUsername()}}
+{\footnotesize\ttfamily string Register\+Controller.\+Get\+Username (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterController_ab69e503f3a5fbf2474abd32dad6a071f}\label{classRegisterController_ab69e503f3a5fbf2474abd32dad6a071f}} 
+\index{Register\+Controller@{Register\+Controller}!Get\+Username\+Login@{Get\+Username\+Login}}
+\index{Get\+Username\+Login@{Get\+Username\+Login}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Get\+Username\+Login()}{GetUsernameLogin()}}
+{\footnotesize\ttfamily string Register\+Controller.\+Get\+Username\+Login (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterController_a2442b0771f689d2a974c65fd7d756874}\label{classRegisterController_a2442b0771f689d2a974c65fd7d756874}} 
+\index{Register\+Controller@{Register\+Controller}!Has\+Age@{Has\+Age}}
+\index{Has\+Age@{Has\+Age}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Has\+Age()}{HasAge()}}
+{\footnotesize\ttfamily bool Register\+Controller.\+Has\+Age (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Determines whether this instance has age. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance has age; otherwise, {\ttfamily false}.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRegisterController_a963f94012946979c3c9c85adf9f8efb9}\label{classRegisterController_a963f94012946979c3c9c85adf9f8efb9}} 
+\index{Register\+Controller@{Register\+Controller}!Has\+Email@{Has\+Email}}
+\index{Has\+Email@{Has\+Email}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Has\+Email()}{HasEmail()}}
+{\footnotesize\ttfamily bool Register\+Controller.\+Has\+Email (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterController_a6c0e18d451f9960d33d798e12c1fd6d0}\label{classRegisterController_a6c0e18d451f9960d33d798e12c1fd6d0}} 
+\index{Register\+Controller@{Register\+Controller}!Has\+Gender@{Has\+Gender}}
+\index{Has\+Gender@{Has\+Gender}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Has\+Gender()}{HasGender()}}
+{\footnotesize\ttfamily bool Register\+Controller.\+Has\+Gender (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Determines whether this instance has sex. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance has sex; otherwise, {\ttfamily false}.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRegisterController_ace91b2c3a079dbe729ece56c3e4a1552}\label{classRegisterController_ace91b2c3a079dbe729ece56c3e4a1552}} 
+\index{Register\+Controller@{Register\+Controller}!Has\+Grade@{Has\+Grade}}
+\index{Has\+Grade@{Has\+Grade}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Has\+Grade()}{HasGrade()}}
+{\footnotesize\ttfamily bool Register\+Controller.\+Has\+Grade (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Determines whether user selected a grade. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if user selected a grade; otherwise, {\ttfamily false}.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRegisterController_ab107f3182247b1b6f62ba81278dba550}\label{classRegisterController_ab107f3182247b1b6f62ba81278dba550}} 
+\index{Register\+Controller@{Register\+Controller}!Has\+Native\+Language@{Has\+Native\+Language}}
+\index{Has\+Native\+Language@{Has\+Native\+Language}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Has\+Native\+Language()}{HasNativeLanguage()}}
+{\footnotesize\ttfamily bool Register\+Controller.\+Has\+Native\+Language (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Determines whether the user selected a language. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if user selected a language; otherwise, {\ttfamily false}.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRegisterController_a9641e09116e823648addfc362af8fb24}\label{classRegisterController_a9641e09116e823648addfc362af8fb24}} 
+\index{Register\+Controller@{Register\+Controller}!Has\+School\+Type@{Has\+School\+Type}}
+\index{Has\+School\+Type@{Has\+School\+Type}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Has\+School\+Type()}{HasSchoolType()}}
+{\footnotesize\ttfamily bool Register\+Controller.\+Has\+School\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Determines whether this instance has school type. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance has school type; otherwise, {\ttfamily false}.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRegisterController_aa5c83aee5c268b2338d29a9f1fd0282f}\label{classRegisterController_aa5c83aee5c268b2338d29a9f1fd0282f}} 
+\index{Register\+Controller@{Register\+Controller}!Has\+State@{Has\+State}}
+\index{Has\+State@{Has\+State}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Has\+State()}{HasState()}}
+{\footnotesize\ttfamily bool Register\+Controller.\+Has\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Determines whether the user selected a state. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if user selected a state; otherwise, {\ttfamily false}.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRegisterController_a7728cb73673b72b2fa059200a9cbc4af}\label{classRegisterController_a7728cb73673b72b2fa059200a9cbc4af}} 
+\index{Register\+Controller@{Register\+Controller}!Is\+Content\+Equal@{Is\+Content\+Equal}}
+\index{Is\+Content\+Equal@{Is\+Content\+Equal}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Is\+Content\+Equal()}{IsContentEqual()}}
+{\footnotesize\ttfamily bool Register\+Controller.\+Is\+Content\+Equal (\begin{DoxyParamCaption}\item[{Input\+Field}]{input1,  }\item[{Input\+Field}]{input2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Determines whether this instance is content equal the specified input1 input2. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if this instance is content equal the specified input1 input2; otherwise, {\ttfamily false}.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em input1} & Input1.\\
+\hline
+{\em input2} & Input2.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRegisterController_a35307b8660a21bbf7a186878a50c1082}\label{classRegisterController_a35307b8660a21bbf7a186878a50c1082}} 
+\index{Register\+Controller@{Register\+Controller}!is\+Dropdown\+Value\+Equal\+To@{is\+Dropdown\+Value\+Equal\+To}}
+\index{is\+Dropdown\+Value\+Equal\+To@{is\+Dropdown\+Value\+Equal\+To}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{is\+Dropdown\+Value\+Equal\+To()}{isDropdownValueEqualTo()}}
+{\footnotesize\ttfamily bool Register\+Controller.\+is\+Dropdown\+Value\+Equal\+To (\begin{DoxyParamCaption}\item[{Dropdown}]{dropdown,  }\item[{string}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if the dropdown value is equal to a given string 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true}, if dropdown value equal to was ised, {\ttfamily false} otherwise.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em dropdown} & Dropdown.\\
+\hline
+{\em value} & Value.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRegisterController_a63d41cc83568f2a3aa0159acf51bf265}\label{classRegisterController_a63d41cc83568f2a3aa0159acf51bf265}} 
+\index{Register\+Controller@{Register\+Controller}!is\+Grade\+Selected@{is\+Grade\+Selected}}
+\index{is\+Grade\+Selected@{is\+Grade\+Selected}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{is\+Grade\+Selected()}{isGradeSelected()}}
+{\footnotesize\ttfamily bool Register\+Controller.\+is\+Grade\+Selected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if the user selected the grade. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true}, if grade selected was ised, {\ttfamily false} otherwise.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRegisterController_a962585ca46ff0707c3ca32d5300c5716}\label{classRegisterController_a962585ca46ff0707c3ca32d5300c5716}} 
+\index{Register\+Controller@{Register\+Controller}!Is\+Input\+Valid@{Is\+Input\+Valid}}
+\index{Is\+Input\+Valid@{Is\+Input\+Valid}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Is\+Input\+Valid()}{IsInputValid()}}
+{\footnotesize\ttfamily bool Register\+Controller.\+Is\+Input\+Valid (\begin{DoxyParamCaption}\item[{Input\+Field}]{input,  }\item[{string}]{regex,  }\item[{int}]{min\+Length,  }\item[{int}]{max\+Length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Validates the input. 
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true}, if input was validated, {\ttfamily false} otherwise.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em input} & Input.\\
+\hline
+{\em regex} & Regex.\\
+\hline
+{\em min\+Length} & Minimum length.\\
+\hline
+{\em max\+Length} & Max length.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRegisterController_a6a4d488534b263f16c741b920f7e3543}\label{classRegisterController_a6a4d488534b263f16c741b920f7e3543}} 
+\index{Register\+Controller@{Register\+Controller}!Load\+Register2@{Load\+Register2}}
+\index{Load\+Register2@{Load\+Register2}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Load\+Register2()}{LoadRegister2()}}
+{\footnotesize\ttfamily void Register\+Controller.\+Load\+Register2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterController_afb9a08d203a224faee4874247d51491e}\label{classRegisterController_afb9a08d203a224faee4874247d51491e}} 
+\index{Register\+Controller@{Register\+Controller}!Login@{Login}}
+\index{Login@{Login}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Login()}{Login()}}
+{\footnotesize\ttfamily void Register\+Controller.\+Login (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterController_a607fdc380924cef70152dbb79c46d4df}\label{classRegisterController_a607fdc380924cef70152dbb79c46d4df}} 
+\index{Register\+Controller@{Register\+Controller}!Login\+Handler@{Login\+Handler}}
+\index{Login\+Handler@{Login\+Handler}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Login\+Handler()}{LoginHandler()}}
+{\footnotesize\ttfamily void Register\+Controller.\+Login\+Handler (\begin{DoxyParamCaption}\item[{\hyperlink{classPhpOutputHandler}{Php\+Output\+Handler}}]{handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Handles the php output of the login script. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handler} & Handler.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRegisterController_a27e92b0ef5a5ba595f3b6c1a51a0c0d0}\label{classRegisterController_a27e92b0ef5a5ba595f3b6c1a51a0c0d0}} 
+\index{Register\+Controller@{Register\+Controller}!Register\+If\+Data\+Valid@{Register\+If\+Data\+Valid}}
+\index{Register\+If\+Data\+Valid@{Register\+If\+Data\+Valid}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Register\+If\+Data\+Valid()}{RegisterIfDataValid()}}
+{\footnotesize\ttfamily void Register\+Controller.\+Register\+If\+Data\+Valid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check if Data in input fields of the registration form is valid and start the registration if so. 
+
+\mbox{\Hypertarget{classRegisterController_ac6582ef5a1dfcfedb2d84d6f31ba6f31}\label{classRegisterController_ac6582ef5a1dfcfedb2d84d6f31ba6f31}} 
+\index{Register\+Controller@{Register\+Controller}!Registration\+Handler@{Registration\+Handler}}
+\index{Registration\+Handler@{Registration\+Handler}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Registration\+Handler()}{RegistrationHandler()}}
+{\footnotesize\ttfamily void Register\+Controller.\+Registration\+Handler (\begin{DoxyParamCaption}\item[{\hyperlink{classPhpOutputHandler}{Php\+Output\+Handler}}]{handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Handle the php output of the registration script Proceed to login if successful, Show error message if unsuccessful 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handler} & Handler.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRegisterController_a6134936cccf67ed5356ebe5951ca50a8}\label{classRegisterController_a6134936cccf67ed5356ebe5951ca50a8}} 
+\index{Register\+Controller@{Register\+Controller}!Registration\+Name\+Handler@{Registration\+Name\+Handler}}
+\index{Registration\+Name\+Handler@{Registration\+Name\+Handler}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Registration\+Name\+Handler()}{RegistrationNameHandler()}}
+{\footnotesize\ttfamily void Register\+Controller.\+Registration\+Name\+Handler (\begin{DoxyParamCaption}\item[{\hyperlink{classPhpOutputHandler}{Php\+Output\+Handler}}]{handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classRegisterController_a28f855c65269510bd5dac66aa39a1f9e}\label{classRegisterController_a28f855c65269510bd5dac66aa39a1f9e}} 
+\index{Register\+Controller@{Register\+Controller}!Set\+Grade\+Dropdown\+Items@{Set\+Grade\+Dropdown\+Items}}
+\index{Set\+Grade\+Dropdown\+Items@{Set\+Grade\+Dropdown\+Items}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Set\+Grade\+Dropdown\+Items()}{SetGradeDropdownItems()}}
+{\footnotesize\ttfamily void Register\+Controller.\+Set\+Grade\+Dropdown\+Items (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the grade dropdown items according to the selected school. 
+
+\mbox{\Hypertarget{classRegisterController_a02902491d57c7eb064bbcec47b4ff1a1}\label{classRegisterController_a02902491d57c7eb064bbcec47b4ff1a1}} 
+\index{Register\+Controller@{Register\+Controller}!Update\+Validity@{Update\+Validity}}
+\index{Update\+Validity@{Update\+Validity}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Update\+Validity()}{UpdateValidity()}}
+{\footnotesize\ttfamily void Register\+Controller.\+Update\+Validity (\begin{DoxyParamCaption}\item[{Input\+Field}]{input,  }\item[{bool}]{is\+Valid }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Updates the validity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & Input.\\
+\hline
+{\em is\+Valid} & If set to {\ttfamily true} is valid.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRegisterController_af4daa10f24e177e3dc114128ef2aedbe}\label{classRegisterController_af4daa10f24e177e3dc114128ef2aedbe}} 
+\index{Register\+Controller@{Register\+Controller}!Validate\+Email@{Validate\+Email}}
+\index{Validate\+Email@{Validate\+Email}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Validate\+Email()}{ValidateEmail()}}
+{\footnotesize\ttfamily void Register\+Controller.\+Validate\+Email (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks the email. 
+
+\mbox{\Hypertarget{classRegisterController_a6ec9cefdd115c96a4619df4b4154b10b}\label{classRegisterController_a6ec9cefdd115c96a4619df4b4154b10b}} 
+\index{Register\+Controller@{Register\+Controller}!Validate\+Password@{Validate\+Password}}
+\index{Validate\+Password@{Validate\+Password}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Validate\+Password()}{ValidatePassword()}}
+{\footnotesize\ttfamily void Register\+Controller.\+Validate\+Password (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if the password meets the requirements of length and containing characters 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & Input.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRegisterController_a0cb0ad305504222292c52f22f558822e}\label{classRegisterController_a0cb0ad305504222292c52f22f558822e}} 
+\index{Register\+Controller@{Register\+Controller}!Validate\+Password\+Repeat@{Validate\+Password\+Repeat}}
+\index{Validate\+Password\+Repeat@{Validate\+Password\+Repeat}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Validate\+Password\+Repeat()}{ValidatePasswordRepeat()}}
+{\footnotesize\ttfamily void Register\+Controller.\+Validate\+Password\+Repeat (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks if the repeated password matches the password and updates the validity of the field accordingly 
+
+
+\begin{DoxyParams}{Parameters}
+{\em password\+Repeat} & Password repeat.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classRegisterController_ab1addfaffc04ea9065b81724d4f7e8cb}\label{classRegisterController_ab1addfaffc04ea9065b81724d4f7e8cb}} 
+\index{Register\+Controller@{Register\+Controller}!Validate\+Username@{Validate\+Username}}
+\index{Validate\+Username@{Validate\+Username}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{Validate\+Username()}{ValidateUsername()}}
+{\footnotesize\ttfamily void Register\+Controller.\+Validate\+Username (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Checks the username. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & Input.\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classRegisterController_a15a9c2e4a4af0a04ded3f896eafc79a1}\label{classRegisterController_a15a9c2e4a4af0a04ded3f896eafc79a1}} 
+\index{Register\+Controller@{Register\+Controller}!day\+Dropdown@{day\+Dropdown}}
+\index{day\+Dropdown@{day\+Dropdown}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{day\+Dropdown}{dayDropdown}}
+{\footnotesize\ttfamily Dropdown Register\+Controller.\+day\+Dropdown}
+
+\mbox{\Hypertarget{classRegisterController_a9c39e08fb93964af5d5c3c30783fa8e6}\label{classRegisterController_a9c39e08fb93964af5d5c3c30783fa8e6}} 
+\index{Register\+Controller@{Register\+Controller}!email\+Field@{email\+Field}}
+\index{email\+Field@{email\+Field}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{email\+Field}{emailField}}
+{\footnotesize\ttfamily Input\+Field Register\+Controller.\+email\+Field}
+
+\mbox{\Hypertarget{classRegisterController_a194e288ec2513ca13448895f95e862f9}\label{classRegisterController_a194e288ec2513ca13448895f95e862f9}} 
+\index{Register\+Controller@{Register\+Controller}!gender\+Dropdown@{gender\+Dropdown}}
+\index{gender\+Dropdown@{gender\+Dropdown}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{gender\+Dropdown}{genderDropdown}}
+{\footnotesize\ttfamily Dropdown Register\+Controller.\+gender\+Dropdown}
+
+\mbox{\Hypertarget{classRegisterController_af1f1c189c7974e628dd5f728a28409b6}\label{classRegisterController_af1f1c189c7974e628dd5f728a28409b6}} 
+\index{Register\+Controller@{Register\+Controller}!grade\+Dropdown@{grade\+Dropdown}}
+\index{grade\+Dropdown@{grade\+Dropdown}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{grade\+Dropdown}{gradeDropdown}}
+{\footnotesize\ttfamily Dropdown Register\+Controller.\+grade\+Dropdown}
+
+\mbox{\Hypertarget{classRegisterController_a07e91bda695dab82c74e8d79ecb65f91}\label{classRegisterController_a07e91bda695dab82c74e8d79ecb65f91}} 
+\index{Register\+Controller@{Register\+Controller}!language\+Dropdown@{language\+Dropdown}}
+\index{language\+Dropdown@{language\+Dropdown}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{language\+Dropdown}{languageDropdown}}
+{\footnotesize\ttfamily Dropdown Register\+Controller.\+language\+Dropdown}
+
+\mbox{\Hypertarget{classRegisterController_ac81ca9cc151ce7c892f133ca5270bcb4}\label{classRegisterController_ac81ca9cc151ce7c892f133ca5270bcb4}} 
+\index{Register\+Controller@{Register\+Controller}!login@{login}}
+\index{login@{login}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{login}{login}}
+{\footnotesize\ttfamily Game\+Object Register\+Controller.\+login}
+
+\mbox{\Hypertarget{classRegisterController_aa7fc852727ec7fc43ffe8ca7f842aee2}\label{classRegisterController_aa7fc852727ec7fc43ffe8ca7f842aee2}} 
+\index{Register\+Controller@{Register\+Controller}!month\+Dropdown@{month\+Dropdown}}
+\index{month\+Dropdown@{month\+Dropdown}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{month\+Dropdown}{monthDropdown}}
+{\footnotesize\ttfamily Dropdown Register\+Controller.\+month\+Dropdown}
+
+\mbox{\Hypertarget{classRegisterController_a04e4d5a4f7a00b7afeb62175455b8688}\label{classRegisterController_a04e4d5a4f7a00b7afeb62175455b8688}} 
+\index{Register\+Controller@{Register\+Controller}!password\+Field@{password\+Field}}
+\index{password\+Field@{password\+Field}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{password\+Field}{passwordField}}
+{\footnotesize\ttfamily Input\+Field Register\+Controller.\+password\+Field}
+
+\mbox{\Hypertarget{classRegisterController_afb2904227cec3d91f80316b563c2a4d3}\label{classRegisterController_afb2904227cec3d91f80316b563c2a4d3}} 
+\index{Register\+Controller@{Register\+Controller}!password\+Login\+Field@{password\+Login\+Field}}
+\index{password\+Login\+Field@{password\+Login\+Field}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{password\+Login\+Field}{passwordLoginField}}
+{\footnotesize\ttfamily Input\+Field Register\+Controller.\+password\+Login\+Field}
+
+\mbox{\Hypertarget{classRegisterController_a057245e171c45f52cee78f343e7fc60c}\label{classRegisterController_a057245e171c45f52cee78f343e7fc60c}} 
+\index{Register\+Controller@{Register\+Controller}!password\+Repeat\+Field@{password\+Repeat\+Field}}
+\index{password\+Repeat\+Field@{password\+Repeat\+Field}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{password\+Repeat\+Field}{passwordRepeatField}}
+{\footnotesize\ttfamily Input\+Field Register\+Controller.\+password\+Repeat\+Field}
+
+\mbox{\Hypertarget{classRegisterController_a8aec5b029845d59b39988246a018af8c}\label{classRegisterController_a8aec5b029845d59b39988246a018af8c}} 
+\index{Register\+Controller@{Register\+Controller}!register1@{register1}}
+\index{register1@{register1}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{register1}{register1}}
+{\footnotesize\ttfamily Game\+Object Register\+Controller.\+register1}
+
+\mbox{\Hypertarget{classRegisterController_a8372a097a730f83fce93fbae7531aeb5}\label{classRegisterController_a8372a097a730f83fce93fbae7531aeb5}} 
+\index{Register\+Controller@{Register\+Controller}!register2@{register2}}
+\index{register2@{register2}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{register2}{register2}}
+{\footnotesize\ttfamily Game\+Object Register\+Controller.\+register2}
+
+\mbox{\Hypertarget{classRegisterController_aa0ca4dba13add88d0bb74296ef75901c}\label{classRegisterController_aa0ca4dba13add88d0bb74296ef75901c}} 
+\index{Register\+Controller@{Register\+Controller}!school\+Dropdown@{school\+Dropdown}}
+\index{school\+Dropdown@{school\+Dropdown}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{school\+Dropdown}{schoolDropdown}}
+{\footnotesize\ttfamily Dropdown Register\+Controller.\+school\+Dropdown}
+
+\mbox{\Hypertarget{classRegisterController_af0176c009d5aa3b397b0029473b522e9}\label{classRegisterController_af0176c009d5aa3b397b0029473b522e9}} 
+\index{Register\+Controller@{Register\+Controller}!state\+Dropdown@{state\+Dropdown}}
+\index{state\+Dropdown@{state\+Dropdown}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{state\+Dropdown}{stateDropdown}}
+{\footnotesize\ttfamily Dropdown Register\+Controller.\+state\+Dropdown}
+
+\mbox{\Hypertarget{classRegisterController_a47e25a3708c32d2610d8ca0db7ca51ee}\label{classRegisterController_a47e25a3708c32d2610d8ca0db7ca51ee}} 
+\index{Register\+Controller@{Register\+Controller}!username\+Field@{username\+Field}}
+\index{username\+Field@{username\+Field}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{username\+Field}{usernameField}}
+{\footnotesize\ttfamily Input\+Field Register\+Controller.\+username\+Field}
+
+\mbox{\Hypertarget{classRegisterController_a45cc611f9b86972779c97016a496484e}\label{classRegisterController_a45cc611f9b86972779c97016a496484e}} 
+\index{Register\+Controller@{Register\+Controller}!username\+Login\+Field@{username\+Login\+Field}}
+\index{username\+Login\+Field@{username\+Login\+Field}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{username\+Login\+Field}{usernameLoginField}}
+{\footnotesize\ttfamily Input\+Field Register\+Controller.\+username\+Login\+Field}
+
+\mbox{\Hypertarget{classRegisterController_a3d0d5c6827a821305a047ac365a46fd0}\label{classRegisterController_a3d0d5c6827a821305a047ac365a46fd0}} 
+\index{Register\+Controller@{Register\+Controller}!year\+Dropdown@{year\+Dropdown}}
+\index{year\+Dropdown@{year\+Dropdown}!Register\+Controller@{Register\+Controller}}
+\subsubsection{\texorpdfstring{year\+Dropdown}{yearDropdown}}
+{\footnotesize\ttfamily Dropdown Register\+Controller.\+year\+Dropdown}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Assets/\+Scripts/\hyperlink{RegisterController_8cs}{Register\+Controller.\+cs}\end{DoxyCompactItemize}
