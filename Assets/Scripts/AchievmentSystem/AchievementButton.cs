@@ -2,9 +2,9 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class AchievmentButton : MonoBehaviour {
+public class AchievementButton : MonoBehaviour {
 
-	public GameObject achievmentList;
+	public GameObject achievementList;
 	public Sprite neutral, highlight;
 	private bool active;
 
@@ -27,12 +27,14 @@ public class AchievmentButton : MonoBehaviour {
 	}
 
 	public void Click () {
+		Debug.Log ("Clicked " + name + "!");
+
 		if (!active) {
 			sprite.sprite = highlight;
-			achievmentList.SetActive (!active);
+			achievementList.SetActive (!active);
 		} else {
 			sprite.sprite = neutral;
-			achievmentList.SetActive (!active);
+			achievementList.SetActive (!active);
 		}
 		active = !active;
 	}

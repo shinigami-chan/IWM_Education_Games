@@ -13,12 +13,14 @@ public class Navigation : MonoBehaviour {
 	public GameObject profile;
 	public GameObject statistics;
 	public GameObject help;
+	public GameObject achievements;
 
 	public GameObject backButton;
 
 	public Image statisticsImg;
 	public Image profileImg;
 	public Image helpImg;
+	public Image achievementsImg;
 
 	private Sprite statisticsActive;
 	private Sprite statisticsInactive;
@@ -26,6 +28,8 @@ public class Navigation : MonoBehaviour {
 	private Sprite profileInactive;
 	private Sprite helpActive;
 	private Sprite helpInactive;
+	private Sprite achievementsActive;
+	private Sprite achievementsInactive;
 
 	private readonly string PATH = "Buttons/";
 
@@ -36,6 +40,8 @@ public class Navigation : MonoBehaviour {
 		profileInactive = Resources.Load<Sprite> (PATH + "profile");
 		helpActive = Resources.Load<Sprite> (PATH + "questionmark_active");
 		helpInactive = Resources.Load<Sprite> (PATH + "questionmark");
+		achievementsActive = Resources.Load<Sprite> (PATH + "trophy_active");
+		achievementsInactive = Resources.Load<Sprite> (PATH + "trophy_inactive");
 
 		StartLogin ();
 		//StartProfile ();
@@ -60,6 +66,7 @@ public class Navigation : MonoBehaviour {
 		profile.SetActive (false);
 		statistics.SetActive (false);
 		help.SetActive (false);
+		//achievments.SetActive (false);
 		backButton.SetActive (false);
 	}
 
@@ -117,16 +124,26 @@ public class Navigation : MonoBehaviour {
 		navigation.SetActive (true);
 		SetAllActive (false);
 	}
+		
+	public void ShowAchievments() {
+		HideAll ();
+		achievements.SetActive (true);
+		navigation.SetActive (true);
+		backButton.SetActive (true);
+		SetAchievementsActive ();
+	}
 
 	private void SetAllActive (bool active) {
 		if (active) {
 			statisticsImg.sprite = statisticsActive;
 			profileImg.sprite = profileActive;
 			helpImg.sprite = helpActive;
+			achievementsImg.sprite = achievementsActive;
 		} else {
 			statisticsImg.sprite = statisticsInactive;
 			profileImg.sprite = profileInactive;
 			helpImg.sprite = helpInactive;
+			achievementsImg.sprite = achievementsInactive;
 		}
 	}
 
@@ -145,9 +162,15 @@ public class Navigation : MonoBehaviour {
 		helpImg.sprite = helpActive;
 	}
 
+	private void SetAchievementsActive() {
+		SetAllActive (false);
+		achievementsImg.sprite = achievementsActive;
+	}
+
 	public void LoadBalloonGame() {
 		SceneManager.LoadScene("Balloon_Menu");
 	}
+		
 
 	public void Logout() {
 		Logger.Instance.EndSession ();

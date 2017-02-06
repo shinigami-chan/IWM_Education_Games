@@ -46,7 +46,7 @@ public class NavigationSystem : MonoBehaviour {
     {
         Destroy(music);
         Destroy(sound);
-        SceneManager.LoadScene("Game_Selection_Android");
+        SceneManager.LoadScene("Main");
     }
 
     public void muteSound()

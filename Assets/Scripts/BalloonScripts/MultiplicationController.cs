@@ -122,6 +122,9 @@ public class MultiplicationController : MonoBehaviour
         if (clickedOption.getIsCorrect())
         {
             correctAnswered(buttonIndex,true);
+			// New Code
+			BalloonEventCounter.Instance.increaseRightAnswerCounter ();
+			// End
         }
         else
         {

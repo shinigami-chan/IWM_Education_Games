@@ -97,6 +97,7 @@ public class RegisterController : MonoBehaviour {
     void Start () {
 		notificationScript = transform.GetComponent<NotificationScript> ();
 		navigation = transform.GetComponent<Navigation> ();
+		AchievementManager.Instance.Load ();
 
 		InitAgeDropdown ();
 		InitSchoolDropdown ();
@@ -105,6 +106,9 @@ public class RegisterController : MonoBehaviour {
 		InitStateDropdown ();
 		InitLanguageDropdown ();
 		SetGradeDropdownItems ();
+
+		if (Logger.Instance.IsSessionRunning ())
+			navigation.ShowGameSelection ();
     }
 
 	// Update is called once per frame

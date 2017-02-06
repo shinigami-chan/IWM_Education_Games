@@ -42,6 +42,10 @@ public sealed class Logger : MonoBehaviour
         }
     }
 
+	public bool IsSessionRunning() {
+		return session_id != -1 && user_id != -1;
+	}
+
 	void OnApplicationQuit() {
 		Debug.Log("Application ending after " + Time.time + " seconds");
 		RegisterSceneController.DeleteRegisterPrefs ();
