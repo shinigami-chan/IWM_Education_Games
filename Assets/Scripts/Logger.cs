@@ -40,6 +40,10 @@ public sealed class Logger : MonoBehaviour
             }
             return instance;
         }
+		set 
+		{
+			instance = value;
+		}
     }
 
 	public bool IsSessionRunning() {
@@ -222,7 +226,9 @@ public sealed class Logger : MonoBehaviour
 		Debug.Log ("2Function Call Destroy With Delay");
 		yield return new WaitForSeconds (1);
 		Debug.Log ("2Destroy call");
-		Destroy (transform.gameObject);
+		//Destroy (transform.gameObject);
+		//instance = null;
+		Destroy(this);
 		Debug.Log ("2Destroy complete");
 	}
 

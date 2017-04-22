@@ -42,10 +42,14 @@ public class Achievement {
 		this.unlocked = false;
 		this.spriteIndex = spriteIndex;
 
-		LoadAchievment ();
+		LoadAchievement ();
 	}	
 
 	public void LoadIntoScene (GameObject achievementPrefab) {
+		Debug.Log ("LoadIntoScene");
+
+		achievementRef = achievementPrefab;
+
 		achievementPrefab.transform.SetParent (AchievementManager.Instance.AchievementPanels[parent].transform);
 
 		if (unlocked) {
@@ -61,7 +65,7 @@ public class Achievement {
 	// Use this for initialization
 	void Start () {
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 	
@@ -69,20 +73,24 @@ public class Achievement {
 
 	public bool EarnAchievment() {
 		if (!unlocked) {
-			SaveAchievment (true);
+			if (achievementRef != null) 
+				achievementRef.GetComponent<Image> ().sprite = AchievementManager.Instance.unlockedSprite;
+			SaveAchievement (true);
 			return true;
 		}
 		return false;
 	}
 
-	public void SaveAchievment (bool value) {
+	public void SaveAchievement (bool value) {
 		unlocked = value;
 
 		PlayerPrefs.SetInt (name, value ? 1 : 0);
 		PlayerPrefs.Save ();
 	}
 
-	public void LoadAchievment () {
+	public void LoadAchievement () {
+
+		Debug.Log ("Lolo" + (PlayerPrefs.GetInt (name) == 1 ? true : false));
 		unlocked = PlayerPrefs.GetInt (name) == 1 ? true : false;
 
 		if (unlocked && achievementRef != null) {

@@ -3,11 +3,13 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.IO;
+using System;
 
 public class Navigation : MonoBehaviour {
 	public GameObject login;
 	public GameObject register1;
 	public GameObject register2;
+	public GameObject mainMenu;
 	public GameObject gameSelection;
 	public GameObject navigation;
 	public GameObject profile;
@@ -22,18 +24,27 @@ public class Navigation : MonoBehaviour {
 	public Image helpImg;
 	public Image achievementsImg;
 
-	private Sprite statisticsActive;
-	private Sprite statisticsInactive;
-	private Sprite profileActive;
-	private Sprite profileInactive;
-	private Sprite helpActive;
-	private Sprite helpInactive;
-	private Sprite achievementsActive;
-	private Sprite achievementsInactive;
+	private static Sprite statisticsActive;
+	private static Sprite statisticsInactive;
+	private static Sprite profileActive;
+	private static Sprite profileInactive;
+	private static Sprite helpActive;
+	private static Sprite helpInactive;
+	private static Sprite achievementsActive;
+	private static Sprite achievementsInactive;
 
 	private readonly string PATH = "Buttons/";
 
-	void Start () {
+	public void GOsLoaded () {
+		Debug.Log ("GameSelection loaded");
+		Debug.Log (gameSelection == null);
+	}
+
+	void Update() {
+
+	}
+
+	void Awake () {
 		statisticsActive = Resources.Load<Sprite> (PATH + "stats_active");
 		statisticsInactive = Resources.Load<Sprite> (PATH + "stats");
 		profileActive = Resources.Load<Sprite> (PATH + "profile_active");
@@ -42,8 +53,10 @@ public class Navigation : MonoBehaviour {
 		helpInactive = Resources.Load<Sprite> (PATH + "questionmark");
 		achievementsActive = Resources.Load<Sprite> (PATH + "trophy_active");
 		achievementsInactive = Resources.Load<Sprite> (PATH + "trophy_inactive");
+	}
 
-		StartLogin ();
+	void Start () {
+		//StartLogin ();
 		//StartProfile ();
 	}
 
@@ -57,6 +70,7 @@ public class Navigation : MonoBehaviour {
 		ShowProfile ();
 	}
 
+
 	public void HideAll () {
 		login.SetActive (false);
 		register1.SetActive (false);
@@ -66,8 +80,9 @@ public class Navigation : MonoBehaviour {
 		profile.SetActive (false);
 		statistics.SetActive (false);
 		help.SetActive (false);
-		//achievments.SetActive (false);
+		achievements.SetActive (false);
 		backButton.SetActive (false);
+		mainMenu.SetActive (false);
 	}
 
 	/// <summary>
@@ -76,6 +91,11 @@ public class Navigation : MonoBehaviour {
 	public void ShowLogin () {
 		HideAll ();
 		login.SetActive (true);
+	}
+
+	public void ShowMainMenu () {
+		HideAll ();
+		mainMenu.SetActive (true);
 	}
 
 	/// <summary>
@@ -97,7 +117,7 @@ public class Navigation : MonoBehaviour {
 	public void ShowProfile() {
 		HideAll ();
 		profile.SetActive (true);
-		navigation.SetActive (true);
+		//navigation.SetActive (true);
 		backButton.SetActive (true);
 		SetProfileActive ();
 	}
@@ -105,7 +125,7 @@ public class Navigation : MonoBehaviour {
 	public void ShowStatistics() {
 		HideAll ();
 		statistics.SetActive (true);
-		navigation.SetActive (true);
+		//navigation.SetActive (true);
 		backButton.SetActive (true);
 		SetStatisticsActive ();
 	}
@@ -113,27 +133,45 @@ public class Navigation : MonoBehaviour {
 	public void ShowHelp () {
 		HideAll ();
 		help.SetActive (true);
-		navigation.SetActive (true);
+		//navigation.SetActive (true);
 		backButton.SetActive (true);
 		SetHelpActive ();
 	}
 
 	public void ShowGameSelection () {
+		Debug.Log ("ShowGameSelection()");
 		HideAll ();
 		gameSelection.SetActive (true);
-		navigation.SetActive (true);
+		backButton.SetActive (true);
+		//navigation.SetActive (true);
 		SetAllActive (false);
+
+
+		login.SetActive (false);
 	}
+
 		
 	public void ShowAchievments() {
 		HideAll ();
 		achievements.SetActive (true);
-		navigation.SetActive (true);
+		navigation.SetActive (false);
 		backButton.SetActive (true);
 		SetAchievementsActive ();
 	}
 
-	private void SetAllActive (bool active) {
+	public void AreSpritesNull() {
+		Debug.Log (statisticsActive == null ? "statistics active is null" : "statistics is not null");
+		Debug.Log (statisticsInactive == null ? "statistics inactive is null" : "statistics is not null");
+		Debug.Log (helpActive == null ? "help active is null" : "help is not null");
+		Debug.Log (helpInactive == null ? "help inactive is null" : "help is not null");
+		Debug.Log (profileActive == null ? "profile active is null" : "profile is not null");
+		Debug.Log (profileInactive == null ? "profile inactive is null" : "profile is not null");
+		Debug.Log (achievementsActive == null ? "achievements active is null" : "achievements is not null");
+		Debug.Log (achievementsInactive == null ? "achievements inactive is null" : "achievements is not null");
+	}
+
+	public void SetAllActive (bool active) {
+		AreSpritesNull ();
 		if (active) {
 			statisticsImg.sprite = statisticsActive;
 			profileImg.sprite = profileActive;
@@ -162,15 +200,19 @@ public class Navigation : MonoBehaviour {
 		helpImg.sprite = helpActive;
 	}
 
-	private void SetAchievementsActive() {
+	private void SetAchievementsActive () {
 		SetAllActive (false);
 		achievementsImg.sprite = achievementsActive;
 	}
+
 
 	public void LoadBalloonGame() {
 		SceneManager.LoadScene("Balloon_Menu");
 	}
 		
+	public void LoadNumberlineGame() {
+		SceneManager.LoadScene("Numberline_Menu");
+	}
 
 	public void Logout() {
 		Logger.Instance.EndSession ();

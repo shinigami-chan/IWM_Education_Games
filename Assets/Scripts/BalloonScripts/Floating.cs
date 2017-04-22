@@ -5,25 +5,30 @@ using System;
 using UnityEngine.SceneManagement;
 
 public class Floating : MonoBehaviour {
+	public Canvas referenceCv = null;
+
 	public float rate = 1;
 	public float amplitudeFactor = 1;
 
-    private float step;
-    private float offsetY; //How far to offset the object upwards
-    private float offsetX;
+    public float step;
+    public float offsetY; //How far to offset the object upwards
+    public float offsetX;
 
-	private float amplitude;
+	public float amplitude;
 
+	public float canvasscaley;
 
-        void Start()
+    void Start()
     {
+		referenceCv = referenceCv == null ? GameObject.FindObjectOfType<Canvas> ().GetComponent<Canvas> () : referenceCv;
         if(SceneManager.GetActiveScene().name != "Balloon_Game")
         {
-			amplitude = amplitudeFactor * 10 * GameObject.FindObjectOfType<Canvas>().GetComponent<Canvas>().transform.localScale.y;
+			amplitude = amplitudeFactor * 10 * referenceCv.transform.localScale.y;
         }
         else
         {
-            amplitude = GameObject.FindObjectOfType<Canvas>().GetComponent<Canvas>().transform.localScale.y / 100;
+			
+            amplitude = referenceCv.transform.localScale.y / 100;
         }
 
         Random rnd = new Random(Guid.NewGuid().GetHashCode());

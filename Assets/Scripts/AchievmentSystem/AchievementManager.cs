@@ -53,7 +53,7 @@ public class AchievementManager : MonoBehaviour {
 	/// <summary>
 	/// Singleton instance of the Achievement Manager such that it can be accessed from everywhere
 	/// </summary>
-	private static AchievementManager instance;
+	private static AchievementManager instance = null;
 
 	public static AchievementManager Instance {
 		get
@@ -78,25 +78,71 @@ public class AchievementManager : MonoBehaviour {
 	public Button balloonsBtn;
 	public Button numberlineBtn;
 
-
+	/**
+	 * AwakeFunction
+	 */
 	void Awake() {
 		if (instance == null) {
+			DontDestroyOnLoad (gameObject);
 			instance = this;
-			Debug.Log ("awake");
-			Debug.Log (gameObject == null ? "null" : "not null");
-			DontDestroyOnLoad (transform.gameObject);
-		} else
+			InitializeAchievments ();
+		} else {
+			AchievementManager.instance.LoadGameObjects (
+				achievementParentPanel,
+				achievementMenu,
+				scrollRect,
+				earnCanvas,
+				generalCategory,
+				ballonsCategory,
+				numberlineCategory,
+				generalBtn,
+				balloonsBtn,
+				numberlineBtn);
 			Destroy (transform.gameObject);
+		}
+		Debug.Log ("Testitest");
+		instance.InitializeVariables ();
+		instance.Load ();
+	}
+	 
+	public void LoadGameObjects (
+		GameObject achievementParentPanel, GameObject achievementMenu, ScrollRect scrollRect, 
+		GameObject earnCanvas, GameObject generalCategory, GameObject ballonsCategory,
+		GameObject numberlineCategory, Button generalBtn, Button balloonsBtn, Button numberlineBtn) {
+
+		this.achievementParentPanel = achievementParentPanel;
+		this.achievementMenu = achievementMenu;
+		this.scrollRect = scrollRect;
+		//this.earnCanvas = earnCanvas;
+		this.generalCategory = generalCategory;
+		this.ballonsCategory = ballonsCategory;
+		this.numberlineCategory = numberlineCategory;
+		this.generalBtn = generalBtn;
+		this.balloonsBtn = balloonsBtn;
+		this.numberlineBtn = numberlineBtn;
+
+		this.balloonsBtn.onClick.AddListener(() => ChangeCategory (balloonsBtn.gameObject));
+		this.numberlineBtn.onClick.AddListener(() => ChangeCategory (numberlineBtn.gameObject));
+		this.generalBtn.onClick.AddListener(() => ChangeCategory (generalBtn.gameObject));
 	}
 
+	public void InitializeVariables () {
+		Debug.Log ("Initialize Category Panel");
+		Debug.Log (generalCategory == null);
+		achievementPanels.Clear ();
+		achievementPanels.Add (AchievementRefs.GENERAL_CATEGORY_PANEL, generalCategory);
+		achievementPanels.Add (AchievementRefs.BALLOONS_CATEGORY_PANEL, ballonsCategory);
+		achievementPanels.Add (AchievementRefs.NUMBERLINE_CATEGORY_PANEL, numberlineCategory);
+
+		activeCategoryButton = activeCategoryButton == null ? balloonsBtn.GetComponent<AchievementButton> () : activeCategoryButton;
+	}
 
 	// Use this for initialization
 	void Start () {
-		InitializeAchievments ();
-		//PlayerPrefs.DeleteAll ();
+		PlayerPrefs.DeleteAll ();	
 	}
 
-	public GameObject GetCategoryPanel(string category) {
+	public GameObject GetCategoryPanel (string category) {
 		return achievementPanels [category];
 	}
 
@@ -104,7 +150,10 @@ public class AchievementManager : MonoBehaviour {
 		CreateAchievement (AchievementRefs.GENERAL_CATEGORY_PANEL, "Drücke W", "Drücke W um diesen Erfolg freizuschalten!", 0);
 		CreateAchievement (AchievementRefs.BALLOONS_CATEGORY_PANEL, "Knallfrosch", "BauchiBauchi", 0);
 		CreateAchievement (AchievementRefs.GENERAL_CATEGORY_PANEL, "Drücke X", "Drücke W um die Erfolg freizuschalten!", 0);
-		CreateAchievement (AchievementRefs.BALLOONS_CATEGORY_PANEL, "Test", "BauchiBauchi", 0);
+		CreateAchievement (AchievementRefs.GENERAL_CATEGORY_PANEL, "Drücke Z", "Drücke W um die Erfolg freizuschalten!", 0);
+		CreateAchievement (AchievementRefs.BALLOONS_CATEGORY_PANEL, "Schießbude", "Lasse 20 Ballons platzen!", 0);
+		CreateAchievement (AchievementRefs.BALLOONS_CATEGORY_PANEL, "Clever", "Habe 10 mal das richtige Ergebnis", 0);
+
 
 		foreach (GameObject achievementList in achievementPanels.Values) {
 			achievementList.SetActive (false);
@@ -120,45 +169,44 @@ public class AchievementManager : MonoBehaviour {
 
 	/// <summary>
 	/// The achievementManager is not destroyed on scene change since it maintains the
-	/// achievment information throughout the whole game session.
+	/// achievement information throughout the whole game session.
 	/// Therefore you cannot pass the GameObjects via public variables with the unity editer
 	/// but can only be set via GameObject Find. Since this is a very hard to maintain approach
 	/// there is the static class AchievementRefs containing static string variables for the 
 	/// objects belonging to the achievement system.
 	/// This method loads the gameobject into the variables.
 	/// </summary>
-	public void LoadGameObjects() {
-		achievementParentPanel = GameObject.Find (AchievementRefs.PARENT_PANEL);
-		achievementMenu = GameObject.Find (AchievementRefs.MENU);
+	public void Aldknnasd () {
+		//achievementParentPanel = GameObject.Find (AchievementRefs.PARENT_PANEL);
+		//achievementMenu = GameObject.Find (AchievementRefs.MENU);
 
-		scrollRect = GameObject.Find (AchievementRefs.MASK).GetComponent<ScrollRect>();
+		//scrollRect = GameObject.Find (AchievementRefs.MASK).GetComponent<ScrollRect>();
 
-		achievementPanels.Add (AchievementRefs.GENERAL_CATEGORY_PANEL, GameObject.Find (AchievementRefs.GENERAL_CATEGORY_PANEL));
-		achievementPanels.Add (AchievementRefs.BALLOONS_CATEGORY_PANEL, GameObject.Find (AchievementRefs.BALLOONS_CATEGORY_PANEL));
-		achievementPanels.Add (AchievementRefs.NUMBERLINE_CATEGORY_PANEL, GameObject.Find (AchievementRefs.NUMBERLINE_CATEGORY_PANEL));
+		//generalBtn = GameObject.Find (AchievementRefs.GENERAL_CATEGORY_BUTTON).GetComponent<Button> ();
+		//balloonsBtn = GameObject.Find (AchievementRefs.BALLOONS_CATEGORY_BUTTON).GetComponent<Button> ();
+		//numberlineBtn = GameObject.Find (AchievementRefs.NUMBERLINE_CATEGORY_BUTTON).GetComponent<Button> ();
 
-		generalBtn = GameObject.Find (AchievementRefs.GENERAL_CATEGORY_BUTTON).GetComponent<Button> ();
-		balloonsBtn = GameObject.Find (AchievementRefs.BALLOONS_CATEGORY_BUTTON).GetComponent<Button> ();
-		numberlineBtn = GameObject.Find (AchievementRefs.NUMBERLINE_CATEGORY_BUTTON).GetComponent<Button> ();
-
-		balloonsBtn.onClick.AddListener(() => ChangeCategory (balloonsBtn.gameObject));
-		numberlineBtn.onClick.AddListener(() => ChangeCategory (numberlineBtn.gameObject));
-		generalBtn.onClick.AddListener(() => ChangeCategory (generalBtn.gameObject));
 
 		// CREATE SCRIPT THAT AUTOMATICALLY SAVES THE NAMES FROM THE INPUT GAMEOBJECTS AND RELOADS THEM
 
-		earnCanvas = GameObject.Find (AchievementRefs.EARN_CANVAS);
+		//earnCanvas = GameObject.Find (AchievementRefs.EARN_CANVAS);
 
-		Debug.Log (GameObject.Find(AchievementRefs.GENERAL_CATEGORY_BUTTON) == null ? "active is null" : "not nullaby");
-
-		activeCategoryButton = activeCategoryButton == null ? balloonsBtn.GetComponent<AchievementButton> () : activeCategoryButton;
-		Debug.Log (GameObject.Find(AchievementRefs.GENERAL_CATEGORY_BUTTON) == null ? "active is null" : "not nullaby");
+		//Debug.Log (GameObject.Find(AchievementRefs.GENERAL_CATEGORY_BUTTON) == null ? "active is null" : "not nullaby");
+		//
+		//activeCategoryButton = activeCategoryButton == null ? balloonsBtn.GetComponent<AchievementButton> () : activeCategoryButton;
+		//Debug.Log (GameObject.Find(AchievementRefs.GENERAL_CATEGORY_BUTTON) == null ? "active is null" : "not nullaby");
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.W)) {
+		if (Logger.Instance.IsSessionRunning() && Input.GetKeyDown (KeyCode.W)) {
 			EarnAchievement ("Drücke W");
+		}
+		if (Logger.Instance.IsSessionRunning() && Input.GetKeyDown (KeyCode.X)) {
+			EarnAchievement ("Drücke X");
+		}
+		if (Logger.Instance.IsSessionRunning() && Input.GetKeyDown (KeyCode.Z)) {
+			EarnAchievement ("Drücke Z");
 		}
 	}
 
@@ -171,6 +219,8 @@ public class AchievementManager : MonoBehaviour {
 	/// <param name="title">Title is the achievements title</param>
 	public void EarnAchievement(string title) {
 		if (achievements [title].EarnAchievment ()) {
+			Achievement a = achievements [title];
+
 			Debug.Log ("EarnAchievement");
 
 			// Create new visual achievement for the earn panel
@@ -197,13 +247,15 @@ public class AchievementManager : MonoBehaviour {
 	/// Must be performed after load GameObjects.
 	/// </summary>
 	public void LoadIntoScene() {
-		LoadGameObjects ();
 		foreach (Achievement a in achievements.Values) {
 			a.print ();
 			GameObject achievement = (GameObject)Instantiate (achievementPrefab);
-			Debug.Log ("Size: " + GameObject.FindGameObjectsWithTag ("AchievementCategories").Length);
 			a.LoadIntoScene (achievement);
 			SetAchievementInfo (achievement, a.Name);
+		}
+
+		foreach (GameObject panel in AchievementPanels.Values) {
+			panel.SetActive (false);
 		}
 	}
 

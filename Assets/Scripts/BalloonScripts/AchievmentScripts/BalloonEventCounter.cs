@@ -64,6 +64,7 @@ public class BalloonEventCounter {
 
 	public void increaseRightAnswerCounter () {
 		rightAnswerCounter++;
+		Debug.Log ("Right Answer!");
 	}
 
 	public void Load() {
@@ -77,10 +78,19 @@ public class BalloonEventCounter {
 	public void CheckForAchievements() {
 		Debug.Log ("Check for achievements");
 		AchievementManager mng = AchievementManager.Instance;
-		mng.EarnAchievement ("Knallfrosch");
+		//mng.EarnAchievement ("Knallfrosch");
+
 		if (poppedBalloons >= 1) {
 			Debug.Log ("Knallfrosch");
 			mng.EarnAchievement ("Knallfrosch");
+		}
+		if (poppedBalloons >= 20) {
+			Debug.Log ("Schießbude");
+			mng.EarnAchievement ("Schießbude");
+		}
+		if (rightAnswerCounter >= 10) {
+			Debug.Log ("Clever");
+			mng.EarnAchievement ("Clever");
 		}
 	}
 
